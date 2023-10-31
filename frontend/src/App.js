@@ -2,19 +2,20 @@ import axios from 'axios';
 import React from 'react';
 
 class App extends React.Component {
+  // Create state that rememebers details i.e. the database info as an array
   state = {details: [], }
 
   componentDidMount() {
     let data;
-    axios.get('localhost.8000/admin')
-    .then( res => {
-      data = res.data;
+    axios.get('http://localhost:8000')
+    .then( response => {
+      data = response.data;
       this.setState({
         details: data
       });
     })
-    .catch(err => {
-      console.error('Error fetching data:', err);
+    .catch(error => {
+      console.error('Error fetching data:', error);
     });
   }
 

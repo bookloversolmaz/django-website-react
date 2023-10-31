@@ -57,8 +57,14 @@ MIDDLEWARE = [
 ]
 
 # Below line stops the react framework from being blocked and enabling react to interact with django
-REST_FRAMEWORK: {'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny']}
+# REST_FRAMEWORK: {'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.AllowAny']}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -133,6 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
