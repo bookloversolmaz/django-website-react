@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 
-class App extends React.Component {
-  // Create state that remembers details i.e. the database info as an array
+class ToDo extends React.Component {
+ // Create state that remembers details i.e. the database info as an array
   state = {details: [], }
 
 // React will the below when the component is added (mounted) to the screen, calls data from backend using axios API.
@@ -43,6 +43,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
-
-  
+export default ToDo;
