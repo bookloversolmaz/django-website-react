@@ -2,9 +2,10 @@ import axios from 'axios';
 import React from 'react';
 
 class App extends React.Component {
-  // Create state that rememebers details i.e. the database info as an array
+  // Create state that remembers details i.e. the database info as an array
   state = {details: [], }
 
+// React will the below when the component is added (mounted) to the screen, calls data from backend using axios API.
   componentDidMount() {
     let data;
     axios.get('http://localhost:8000')
@@ -19,6 +20,11 @@ class App extends React.Component {
     });
   }
 
+  // TODO: create another component allows user to edit to do list in frontend e.g, read, add, delete, update.
+
+  // TODO: Fix error, whereby each time the backend is reloaded, each entry is re-rendered in the frontend
+
+  // Renders the below using the information gathered from the backend
   render() {
     return (
       <div>
