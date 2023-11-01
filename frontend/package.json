@@ -37,6 +37,15 @@
     ]
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "@babel/plugin-syntax-jsx": "^7.22.5",
+    "@babel/plugin-transform-react-jsx": "^7.22.15",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "babel-jest": "^29.7.0",
+    "jest": "^27.5.1",
+    "react-test-renderer": "^18.2.0"
+  },
+  "plugins": {
+    "@babel/plugin-syntax-jsx": ""
   }
 }
