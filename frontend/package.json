@@ -15,9 +15,15 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "jest", {
+        "name": "frontend",
+        "version": "0",
+        "moduleNameMapper": "",
+        "axios": "/node_modules/axios/dist/node/axios.cjs"
+      }
+    }
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
