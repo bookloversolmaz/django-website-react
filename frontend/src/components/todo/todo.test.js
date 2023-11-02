@@ -8,5 +8,19 @@ jest.mock('axios');
 test('it should fetch to do list data', () => {
   const ToDo = [{item: 'Clean', description: 'Do laundry'}];
   const response = {data: ToDo};
-  axios.get.mockResolvedValue(response);
+  axios.get.mockImplementation(() => Promise.resolve(response))
+});
+
+// Testing for async errors using Promise.catch.
+// it('tests error with promises', () => {
+//   expect.assertions(2);
+//   return componentDidMount().catch(e =>
+//     expect(e).toEqual({
+//       error: 'Error fetching data:',
+//     }),
+//   );
+// });
+
+test('the fetch fails with an error', async () => {
+  await expect(ToDo.componentDidMount()).rejects.toMatch('Error fetching data:');
 });
