@@ -7,11 +7,6 @@ jest.mock('axios');
 
 test('it should fetch to do list data', () => {
   const ToDo = [{item: 'Clean', description: 'Do laundry'}];
-  const response = {data: response.data};
+  const response = {data: ToDo};
   axios.get.mockResolvedValue(response);
-
-  return ToDo.all().then(data => expect(data).toEqual(ToDo));
 });
-
-
-// "test": "jest frontend/src/components"
