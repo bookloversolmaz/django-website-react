@@ -2,6 +2,16 @@ import { render, screen } from '@testing-library/react';
 import axios from 'axios';
 import ToDo from './todo.js';
 
-// Create jest.mock to function to automatically mock the axios module
+// Create jest.mock function to automatically mock the axios module
 jest.mock('axios');
 
+test('it should fetch to do list data', () => {
+  const ToDo = [{item: 'Clean', description: 'Do laundry'}];
+  const response = {data: response.data};
+  axios.get.mockResolvedValue(response);
+
+  return ToDo.all().then(data => expect(data).toEqual(ToDo));
+});
+
+
+// "test": "jest frontend/src/components"

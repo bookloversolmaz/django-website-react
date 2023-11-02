@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -15,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest frontend/src/components",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,16 +39,22 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
+    "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@babel/plugin-syntax-jsx": "^7.22.5",
+    "@babel/plugin-transform-private-property-in-object": "^7.22.11",
     "@babel/plugin-transform-react-jsx": "^7.22.15",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
-    "babel-jest": "^29.7.0",
     "jest": "^27.5.1",
     "node-fetch": "^2.6.1",
     "react-test-renderer": "^18.2.0"
   },
   "plugins": {
     "@babel/plugin-syntax-jsx": ""
+  },
+  "transformIgnorePatterns": {
+    "/node_modules/(?![@autofiy/autofiyable|@autofiy/property]).+\\.js$": "",
+    "/node_modules/(?![@autofiy/autofiyable|@autofiy/property]).+\\.ts$": "",
+    "/node_modules/(?![@autofiy/autofiyable|@autofiy/property]).+\\.tsx$": ""
   }
 }
