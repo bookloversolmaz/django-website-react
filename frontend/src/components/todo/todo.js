@@ -8,13 +8,16 @@ class ToDo extends React.Component {
 // React will the below when the component is added (mounted) to the screen, calls data from backend using axios API.
   componentDidMount() {
     let data;
+    // The axios.get function returns a Promise
     axios.get('http://localhost:8000')
+    // When you call .then() on the Promise, you provide a callback function that will be executed when the Promise is resolved (when the data is successfully fetched). 
     .then( response => {
       data = response.data;
       this.setState({
         details: data
       });
     })
+    // .catch() method handles errors if the Promise is rejected (if there's an error during the fetch operation).
     .catch(error => {
       console.error('Error fetching data:', error);
     });
