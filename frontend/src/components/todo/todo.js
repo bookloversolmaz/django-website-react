@@ -22,9 +22,16 @@ class ToDo extends React.Component {
       console.error('Error fetching data:', error);
     });
   }
-
   // TODO: create another component allows user to edit to do list in frontend e.g, read, add, delete, update.
+  // Respond to the event
+  
 
+  // Trigger a render (delivering the diner's order to the kitchen)
+
+  // Rendering the component (preparing the order in the kitchen)
+
+  // Committing to the DOM (placing the order on the table)
+  // TODO: ensure that changes made by the user updates the database in the backend
   // TODO: Fix error, whereby each time the backend is reloaded, each entry is re-rendered in the frontend
 
   // Renders the below using the information gathered from the backend

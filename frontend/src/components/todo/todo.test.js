@@ -16,3 +16,8 @@ test('it should fetch to do list data', () => {
 test('the fetch fails with an error', async () => {
   await expect(Promise.reject(new Error('Error fetching data:'))).rejects.toThrow('Error fetching data:');
 });
+
+// Enables user to edit to do list
+// test('user can add entries to list', () => {
+
+// });
