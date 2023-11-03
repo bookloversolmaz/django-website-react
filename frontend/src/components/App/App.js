@@ -5,7 +5,7 @@ import ToDo from '../todo/todo';
 
 const App = () => {
   return (
-    <div classname = "App">
+    <div className = "App">
       <ToDo/>
     </div>
 

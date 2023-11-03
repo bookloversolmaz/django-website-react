@@ -23,8 +23,9 @@ class ToDo extends React.Component {
     });
   }
   // TODO: create another component allows user to edit to do list in frontend e.g, read, add, delete, update.
-  // Respond to the event
-  
+  // Respond to the event. Create an event handler (functions that are triggered by user interactions)
+  // To add an event handler, you will first define a function and then pass it as a prop to the appropriate JSX tag. One event is a 
+  // form and another a button to submit the entries
 
   // Trigger a render (delivering the diner's order to the kitchen)
 
