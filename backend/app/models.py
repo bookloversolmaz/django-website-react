@@ -4,6 +4,5 @@ from django.db import models
 
 class React(models.Model):
     item = models.CharField(max_length=30)
-    description = models.CharField(max_length=200)
     def __str__(self):
         return self.item

@@ -23,16 +23,11 @@ const TodoForm = ({ queryset }) => {
   // TODO: create another component allows user to edit to do list in frontend e.g, read, add, delete, update.
 
   // Rendering the component (preparing the order in the kitchen)
-  const handleSubmit = async (event) => {
-    event.preventDefault();
   // Committing to the DOM (placing the order on the table)
   // TODO: ensure that changes made by the user updates the database in the backend
   // TODO: Fix error, whereby each time the backend is reloaded, each entry is re-rendered in the frontend
 
   // Renders the below using the information gathered from the backend
-
-
-
 
 
     let data;
@@ -51,17 +46,30 @@ const TodoForm = ({ queryset }) => {
     });
   }
 
-  return (
-    <>
-    <header>My website</header>
-      <form action={handleSubmit}>
-      <input name="queryset.item" />
-      <button type="submit">Submit</button>
-      <input name="queryset.description" />
-      <button type="submit">Submit</button>
-    </form>
-    </>
-  )
+  const handleClick = () => {
+    const id = todoList.length + 1;
+    setTodoList((prev) => [
+      ...prev,
+      {
+        id: id,
+        item: input,
+        complete: false,
+      },
+    ]);
+    setInput("");
+  };
+
+  // return (
+  //   <>
+  //   <header>My website</header>
+  //     <form action={handleSubmit}>
+  //     <input name="queryset.item" />
+  //     <button type="submit">Submit</button>
+  //     <input name="queryset.description" />
+  //     <button type="submit">Submit</button>
+  //   </form>
+  //   </>
+  // )
 
     // return (
     //   <div>
@@ -77,6 +85,6 @@ const TodoForm = ({ queryset }) => {
     //     ))}
     //   </div>
     // )
-}
+// }
 
 export default TodoForm;

@@ -7,7 +7,7 @@ jest.mock('axios');
 
 // Creates mocks to check that it can fetch data
 test('it should fetch to do list data', () => {
-  const ToDo = [{item: 'Clean', description: 'Do laundry'}];
+  const ToDo = [{item: 'Clean'}];
   const response = {data: ToDo};
   axios.get.mockImplementation(() => Promise.resolve(response))
 });
