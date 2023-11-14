@@ -16,7 +16,7 @@ import { useState } from 'react';
   // To add an event handler, you will first define a function and then pass it as a prop to the appropriate JSX tag. One event is a 
   // form and another a button to submit the entries
   // Trigger a render (delivering the diner's order to the kitchen)
-const todoForm = ({ queryset }) => {
+const TodoForm = ({ queryset }) => {
   // UseState hook updates the component with new data between renders
   const [item, setItem] = useState("");
   const [description, setDescription] = useState("");
@@ -55,8 +55,10 @@ const todoForm = ({ queryset }) => {
     <>
     <header>My website</header>
       <form action={handleSubmit}>
-      <input name="query" />
-      <button type="submit">Search</button>
+      <input name="queryset.item" />
+      <button type="submit">Submit</button>
+      <input name="queryset.description" />
+      <button type="submit">Submit</button>
     </form>
     </>
   )
@@ -77,4 +79,4 @@ const todoForm = ({ queryset }) => {
     // )
 }
 
-export default todoForm;
+export default TodoForm;
