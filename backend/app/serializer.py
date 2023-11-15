@@ -8,3 +8,4 @@ class ReactSerializer(serializers.ModelSerializer):
     class Meta:
         model = React
         fields = ('item')
+        fields = '__all__'
