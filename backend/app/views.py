@@ -41,17 +41,17 @@ class ReactView(APIView):
     queryset = React.objects.all()
     serializer_class = ReactSerializer
 
-    def get(self, request, pk):
+    def get(self, request, id):
         try:
-            react_object = React.objects.get(pk=pk)
+            react_object = React.objects.get(id=id)
             serializer = ReactSerializer(react_object)
             return Response(serializer.data)
         except React.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-    def delete(self, request, pk):
+    def delete(self, request, id):
         try:
-            react_object = React.objects.get(pk=pk)
+            react_object = React.objects.get(id=id)
             react_object.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except React.DoesNotExist:

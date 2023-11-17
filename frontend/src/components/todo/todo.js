@@ -66,7 +66,7 @@ const Todo = () => {
 
   return (
     <div className="Todo">
-      <h1>My To-Do List</h1>
+      <h1>To do list</h1>
 
       <div className="Top">
         <input
