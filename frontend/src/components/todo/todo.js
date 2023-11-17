@@ -3,23 +3,24 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 // Create a to do list that is connected via the backend database using axios. The list must be editable, whereby the user can read, update and delete items
+// CRUD: create, read, update, delete
 const Todo = () => {
   // Each item in the list
   const [inputItem, setInputItem] = useState('');
   // The list itself, initialised to an empty array
   const [list, setList] = useState([]);
   
-  // Mount the page
+  // Mount the page: create
   // Fetch existing data from the backend when the component mounts, before the user updates the list
   // UseEffect is a React Hook that lets you synchronize a component with an external system.
   useEffect(() => {
     fetchData(); 
   }, []);
 
-  // Reading items. The data for the list is obtained from the database using the axios API
+  // Render item on screen, the data for the list is obtained from the database using the axios API: read
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/app');
+      const response = await axios.get('http://127.0.0.1:8000/');
       setList(response.data); // Update the list with data from the backend
       // A promise that catches an error if the promise is unfulfilled
     } catch (error) {
@@ -27,11 +28,11 @@ const Todo = () => {
     }
   };
   
-  // Adding items to the list via the database
+  // Adding items to the list via the database: update
   const handleAddTodo = async () => {
     if (inputItem.trim() !== '') {
       try {
-        const response = await axios.post('http://localhost:8000/app', {
+        const response = await axios.post('http://127.0.0.1:8000/', {
           id: Math.random(),
           item: inputItem,
         });
@@ -45,11 +46,11 @@ const Todo = () => {
     }
   };
   
-  // Delete items from the list, do the same in the backend
+  // Delete items from the list, do the same in the backend: delete
   const handleDeleteTodo = async (id) => {
     try {
       // Make a DELETE request to the backend API with the specific task ID
-      await axios.delete(`http://localhost:8000/react/${id}/`);
+      await axios.delete(`http://127.0.0.1:8000/ /${id}`);
       // Delete the item from the list and the backend when the user presses the delete button for that item
       // Use filter to create a new list that filters out the item with the id that had been deleted
       const updatedList = list.filter((item) => item.id !== id);

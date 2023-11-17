@@ -1,61 +1,30 @@
-# from .models import *
-# from .serializer import *
-# from rest_framework import generics
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
-
-# # from rest_framework.views import exception_handler
-
-# class ReactView(generics.ListCreateAPIView):
-#     queryset = React.objects.all()
-#     serializer_class = ReactSerializer
-
-# class ReactView(APIView):
-#     queryset = React.objects.all()
-#     serializer_class = ReactSerializer
-
-# # TODO: Add a delete function
-
-#     @api_view(['GET', 'DELETE'])
-#     def post_element(request, pk):
-#         try:
-#             queryset = React.objects.get(pk=pk)
-#         except React.DoesNotExist:
-#             return Response(status=404)
-
-#         if request.method == 'GET':
-#             serializer = React.Serializer(queryset)
-#             return Response(serializer.data)
-
-#         elif request.method == 'DELETE':
-#             React.delete()
-#             return Response(status=204)
-
 from .models import React
 from .serializer import ReactSerializer
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import status
+from rest_framework.views import APIView, View
+from rest_framework import status, permissions
+from django.shortcuts import get_object_or_404
 
-class ReactView(APIView):
+# CRUD: create, read, update, delete
+# Read
+class ReactView(View):
     queryset = React.objects.all()
     serializer_class = ReactSerializer
+    
+    permission_classes = [permissions.AllowAny]
 
-    def get(self, request, id):
-        try:
-            react_object = React.objects.get(id=id)
-            serializer = ReactSerializer(react_object)
-            return Response(serializer.data)
-        except React.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+# Update/create
+def post(self, request, *args, **kwargs):
+    serializer = ReactSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, id):
-        try:
-            react_object = React.objects.get(id=id)
-            react_object.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except React.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+# Delete
+def delete(request, id):
+    data = get_object_or_404(id=id) 
+    data.delete()
+    return Response(request)
 
-
-# TODO: Add a feature where restarts the id from one when an entry is deleted.
+# TODO: Add a feature that restarts the id from one when an entry is deleted.
