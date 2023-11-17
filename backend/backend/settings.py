@@ -63,7 +63,8 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ],
+    ], 
+    # 'EXCEPTION_HANDLER': ['rest_framework.views.exception_handler']
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -139,7 +140,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

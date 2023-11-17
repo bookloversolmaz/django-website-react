@@ -9,6 +9,7 @@ const Todo = () => {
   // The list itself, initialised to an empty array
   const [list, setList] = useState([]);
   
+  // Mount the page
   // Fetch existing data from the backend when the component mounts, before the user updates the list
   // UseEffect is a React Hook that lets you synchronize a component with an external system.
   useEffect(() => {
@@ -48,7 +49,7 @@ const Todo = () => {
   const handleDeleteTodo = async (id) => {
     try {
       // Make a DELETE request to the backend API with the specific task ID
-      await axios.delete(`http://localhost:8000/app/${id}`);
+      await axios.delete(`http://localhost:8000/react/${id}/`);
       // Delete the item from the list and the backend when the user presses the delete button for that item
       // Use filter to create a new list that filters out the item with the id that had been deleted
       const updatedList = list.filter((item) => item.id !== id);
