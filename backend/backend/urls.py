@@ -14,21 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include, re_path
-from app.views import ReactView
 
+from django.contrib import admin
+from django.urls import path, include
+from todo.views import ReactView
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    # path('app/', ReactView.as_view(), name='todo-list'),
-    # path('app/<int:pk>/', ReactView.as_view(), name='todo_detail'),
-    # # The following pattern might represent the deletion endpoint for a specific React object.
-    # path('app/delete/<int:pk>/', ReactView.as_view(), name='todo-delete'),  # Example: '/app/delete/1/' for deletion
-
     path('admin/', admin.site.urls),
-    path('app/', include('/app')),
-    path(' ', ReactView.as_view(url='app/')),  # Redirect root URL to '/app/' or any desired URL
+    path('todo/', include('todo.urls')),
+    path('', ReactView.as_view(), name='todo'),  # Redirect the empty path to the 'todo/' URL
 ]
 
 

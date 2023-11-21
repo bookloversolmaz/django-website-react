@@ -1,30 +1,35 @@
 from .models import React
 from .serializer import ReactSerializer
 from rest_framework.response import Response
-from rest_framework.views import APIView, View
-from rest_framework import status, permissions
+from rest_framework.views import APIView
+from rest_framework import status, permissions, generics
 from django.shortcuts import get_object_or_404
 
+# (generics.ListCreateAPIView):
 # CRUD: create, read, update, delete
 # Read
-class ReactView(View):
+class ReactView(generics.ListCreateAPIView):
     queryset = React.objects.all()
     serializer_class = ReactSerializer
-    
-    permission_classes = [permissions.AllowAny]
 
-# Update/create
-def post(self, request, *args, **kwargs):
-    serializer = ReactSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, request, id):
+        instance = get_object_or_404(React, id=id)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
-# Delete
-def delete(request, id):
-    data = get_object_or_404(id=id) 
-    data.delete()
-    return Response(request)
+    def get(self, request):
+        request = [{"item": request.item}
+                  for request in React.objects.all()]
+        return Response(request)
 
-# TODO: Add a feature that restarts the id from one when an entry is deleted.
+    # def post(self, request):
+    #     serializer = ReactSerializer(data=request.data)
+    #     if serializer.is_valid(raise_exception=True):
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, id):
+        instance = get_object_or_404(React, id=id)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

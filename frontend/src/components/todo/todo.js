@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 // Create a to do list that is connected via the backend database using axios. The list must be editable, whereby the user can read, update and delete items
 // CRUD: create, read, update, delete
-const Todo = () => {
+const ToDo = () => {
   // Each item in the list
   const [inputItem, setInputItem] = useState('');
   // The list itself, initialised to an empty array
@@ -66,7 +66,7 @@ const Todo = () => {
   };
 
   return (
-    <div className="Todo">
+    <div className="ToDo">
       <h1>To do list</h1>
 
       <div className="Top">
@@ -94,4 +94,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default ToDo;

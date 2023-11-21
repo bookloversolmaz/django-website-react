@@ -3,20 +3,20 @@ import React from 'react';
 import ToDo from '../todo/todo';
 
 
-const App = () => {
+const Home = () => {
   return (
-    <div className = "App">
+    <div className = "ToDo">
       <ToDo/>
     </div>
 
 
     // <Routes>
-    //   <Route path="/app" element={<todo navigate={todo()} />} />
+    //   <Route path="/todo" element={<ToDo navigate={ToDo()} />} />
 
     // </Routes>
   );
 };
 
-export default App;
+export default Home;
 
   
