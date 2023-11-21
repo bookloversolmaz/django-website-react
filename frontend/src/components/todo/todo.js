@@ -20,7 +20,7 @@ const ToDo = () => {
   // Render item on screen, the data for the list is obtained from the database using the axios API: read
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/');
+      const response = await axios.get('http://127.0.0.1:8000/todo/');
       setList(response.data); // Update the list with data from the backend
       // A promise that catches an error if the promise is unfulfilled
     } catch (error) {
@@ -32,7 +32,7 @@ const ToDo = () => {
   const handleAddTodo = async () => {
     if (inputItem.trim() !== '') {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/', {
+        const response = await axios.post('http://127.0.0.1:8000/todo/', {
           id: Math.random(),
           item: inputItem,
         });
@@ -50,7 +50,7 @@ const ToDo = () => {
   const handleDeleteTodo = async (id) => {
     try {
       // Make a DELETE request to the backend API with the specific task ID
-      await axios.delete(`http://127.0.0.1:8000/ /${id}`);
+      await axios.delete(`http://127.0.0.1:8000/todo/${id}/`);
       // Delete the item from the list and the backend when the user presses the delete button for that item
       // Use filter to create a new list that filters out the item with the id that had been deleted
       const updatedList = list.filter((item) => item.id !== id);

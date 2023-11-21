@@ -70,6 +70,22 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOWED_ORIGINS = [
+    # Add frontend URL here (e.g., 'http://localhost:3000')
+    'http://127.0.0.1',
+    'http://172.21.43.216:3000',
+    # Add other allowed origins if needed
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
