@@ -2,6 +2,9 @@ import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
 
+// RECTIFY PROBLEM! Check the urls
+// Frontend cannot read, update or delete items
+
 // Create a to do list that is connected via the backend database using axios. The list must be editable, whereby the user can read, update and delete items
 // CRUD: create, read, update, delete
 const ToDo = () => {
@@ -17,12 +20,12 @@ const ToDo = () => {
     fetchData(); 
   }, []);
 
-  // RECTIFY PROBLEM! Check the urls
+
 
   // Render item on screen, the data for the list is obtained from the database using the axios API: read
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/todo');
+      const response = await axios.get('http://127.0.0.1:8000/todo/');
       setList(response.data); // Update the list with data from the backend
       // A promise that catches an error if the promise is unfulfilled
     } catch (error) {
