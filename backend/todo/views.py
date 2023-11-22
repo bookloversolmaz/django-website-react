@@ -1,48 +1,60 @@
-# from .models import React
-# from .serializer import ReactSerializer
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
-# from rest_framework import status, permissions, generics
-# from django.shortcuts import get_object_or_404
-
-# # (generics.ListCreateAPIView):
-
-# # CRUD: create, read, update, delete
-# # Read
-
-# class ReactView(generics.RetrieveDestroyAPIView):
-#     queryset = React.objects.all()
-#     serializer_class = ReactSerializer
-
-#     def post(self, request):
-#         serializer = ReactSerializer(data=request.data)
-#         if serializer.is_valid(raise_exception=True):
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#     def delete(self, request, id):
-#         instance = get_object_or_404(React, id=id)
-#         instance.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)
-
-from rest_framework import generics
+from todo.models import React
+from todo.serializer import ReactSerializer
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework import status
-from .models import React
-from .serializer import ReactSerializer
+from django.shortcuts import get_object_or_404
 
-class ReactListView(generics.ListAPIView):
-    queryset = React.objects.all()
+# CRUD: create, read, update, delete
+# Problems: unable to submit items in backend
+# Unable to read existing items from database
+# Unable to create get post in views
+
+class ReactView(APIView):
+    # List items or create a new item
     serializer_class = ReactSerializer
-    lookup_url_kwarg = 'id'  # Specify the URL parameter name for the object ID
 
-class ReactDeleteView(generics.DestroyAPIView):
-    queryset = React.objects.all()
-    serializer_class = ReactSerializer
-    lookup_url_kwarg = 'id'  # Specify the URL parameter name for the object ID
+    def get(self, request):
+        list_item = React.objects.all()
+        serializer = ReactSerializer(list_item, many=True)
+        return Response(serializer.data)
 
-    def delete(self, request, *args, **kwargs):
-        instance = self.get_object()  # Get the object based on the provided ID
-        self.perform_destroy(instance)  # Perform object deletion
-        return Response(status=status.HTTP_204_NO_CONTENT)  # Return success response
+    def post(self, request):
+        serializer = ReactSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        instance = get_object_or_404(React, pk)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+# Create instance view, retrieve, update or delete an item instance.
+
+class ReactDetail(APIView):
+
+    def get_object(self, pk):
+        try:
+            return React.objects.get(pk=pk)
+        except React.DoesNotExist:
+            raise status.HTTP_400_BAD_REQUEST
+
+    def get(self, request, pk, format=None):
+        list_item = self.get_object(pk)
+        serializer = ReactSerializer(list_item)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        list_item = self.get_object(pk)
+        serializer = ReactSerializer(list_item, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        list_item = self.get_object(pk)
+        list_item.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

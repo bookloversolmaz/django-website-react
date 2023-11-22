@@ -17,13 +17,14 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from todo.views import ReactListView, ReactDeleteView
+# from todo.views import ReactView, ReactDetail
+from todo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('home/', Home(), name='Home'),
-    path('todo/', ReactListView.as_view(), name='todo-list'),  # Handle GET requests for listing todos
-    path('todo/<int:id>/', ReactDeleteView.as_view(), name='todo-delete'),  # Handle DELETE requests for a specific todo
-    path('', ReactListView.as_view(), name='default-view'),
+    path('', views.ReactView.as_view()),
+    path('todo/', views.ReactView.as_view()),  # Handle GET requests for listing todos
+    path('todo/<int:pk>/', views.ReactDetail.as_view()),  # Handle DELETE requests for a specific todo
 ]
 

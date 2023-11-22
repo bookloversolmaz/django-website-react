@@ -17,10 +17,12 @@ const ToDo = () => {
     fetchData(); 
   }, []);
 
+  // RECTIFY PROBLEM! Check the urls
+
   // Render item on screen, the data for the list is obtained from the database using the axios API: read
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/todo/');
+      const response = await axios.get('http://127.0.0.1:8000/todo');
       setList(response.data); // Update the list with data from the backend
       // A promise that catches an error if the promise is unfulfilled
     } catch (error) {
@@ -95,3 +97,6 @@ const ToDo = () => {
 };
 
 export default ToDo;
+
+// Problems unable to submit items in frontend
+// Unable to read existing items in database
