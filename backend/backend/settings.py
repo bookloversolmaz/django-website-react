@@ -57,21 +57,18 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-# Below line stops the react framework from being blocked and enabling react to interact with django
-# REST_FRAMEWORK: {'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.AllowAny']}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ], 
-    # 'EXCEPTION_HANDLER': ['rest_framework.views.exception_handler']
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOWED_ORIGINS = [
     # Add frontend URL here (e.g., 'http://localhost:3000')
+    'http://localhost:3000',
     'http://127.0.0.1',
     'http://172.21.43.216:3000',
     # Add other allowed origins if needed

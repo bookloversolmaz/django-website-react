@@ -6,9 +6,6 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 
 # CRUD: create, read, update, delete
-# Problems: unable to submit items in backend
-# Unable to read existing items from database
-# Unable to create get post in views
 
 class ReactView(APIView):
     # List items or create a new item

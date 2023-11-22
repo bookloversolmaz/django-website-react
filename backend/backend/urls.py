@@ -17,7 +17,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-# from todo.views import ReactView, ReactDetail
+from rest_framework.urlpatterns import format_suffix_patterns
+from todo.views import ReactView, ReactDetail
 from todo import views
 
 urlpatterns = [
@@ -27,4 +28,7 @@ urlpatterns = [
     path('todo/', views.ReactView.as_view()),  # Handle GET requests for listing todos
     path('todo/<int:pk>/', views.ReactDetail.as_view()),  # Handle DELETE requests for a specific todo
 ]
+
+
+urlpatterns = format_suffix_patterns(urlpatterns)
 
