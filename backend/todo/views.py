@@ -1,5 +1,5 @@
-from todo.models import React
-from todo.serializer import ReactSerializer
+from .models import React
+from .serializer import ReactSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
