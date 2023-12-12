@@ -2,7 +2,7 @@ from django.test import TestCase
 from ..models import React
 from ..views import ReactView, ReactDetail
 from todo.serializer import ReactSerializer
-from django.urls import reverse, include, path
+from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from rest_framework.test import APITestCase
 from rest_framework import status
@@ -25,18 +25,20 @@ class ReactViewTestCase(APITestCase):
         url = reverse('todo')
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # Add more assertions based on your application's behavior after a successful POST request
+    
+    def test_delete(self):
+        # Retrieve the created React instance
+        react_instance = React.objects.get(item='Test item')
 
-        # item_instance = get_object_or_404(ItemInstance, pk=pk)
-        # # If this is a POST request then process the Form data
-        # if request.method == 'POST':
-        #     # Create a form instance and populate it with data from the request (binding):
-        #     todo_list = ReactSerializer(request.POST)
-        #     # Check if the form is valid:
-        #     if form.is_valid():
-        #     # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-        #         item_instance = form.cleaned_data['Hoover room']
-        #         item_instance.save()
+        # Get the URL for the ReactDetail view for the specific instance
+        url = reverse('todo', kwargs={'pk': react_instance.pk})
+        # Ensure 'todo-detail' corresponds to the correct URL name in your urls.py
 
-        #     # redirect to a new URL:
-        #     return HttpResponseRedirect(reverse('Hoover room'))
+        # Send a DELETE request to the specified URL
+        response = self.client.delete(url)
+
+        # Check if the response status code is 204 (No Content) upon successful deletion
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+        # Check if the instance has been deleted from the database
+        self.assertFalse(React.objects.filter(item='Test item').exists())
