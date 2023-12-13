@@ -25,7 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('home/', Home(), name='Home'),
     path('', views.ReactView.as_view()),
-    path('todo/', views.ReactView.as_view(), name='todo'),  # Handle GET requests for listing todos
+    path('todo/', views.ReactView.as_view(), name='todo'),
+    path('todo/<int:pk>/', views.ReactView.as_view(), name='todo-delete'),  # Handle GET requests for listing todos
     path('todo/<int:pk>/', views.ReactDetail.as_view()),  # Handle DELETE requests for a specific todo
 ]
 

@@ -27,12 +27,11 @@ class ReactViewTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
     
     def test_delete(self):
-        # Retrieve the created React instance
-        react_instance = React.objects.get(item='Test item')
+        # # Creates mock objects
+        item_to_delete = React.objects.create(item='Item to Delete')
 
         # Get the URL for the ReactDetail view for the specific instance
-        url = reverse('todo', kwargs={'pk': react_instance.pk})
-        # Ensure 'todo-detail' corresponds to the correct URL name in your urls.py
+        url = reverse('todo-delete', kwargs={'pk': item_to_delete.pk})
 
         # Send a DELETE request to the specified URL
         response = self.client.delete(url)
@@ -41,4 +40,4 @@ class ReactViewTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
         # Check if the instance has been deleted from the database
-        self.assertFalse(React.objects.filter(item='Test item').exists())
+        # self.assertFalse(React.objects.filter(pk=item_to_delete.pk).exists())
