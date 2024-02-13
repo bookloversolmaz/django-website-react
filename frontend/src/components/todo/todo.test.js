@@ -7,6 +7,7 @@ import ToDo from './todo.js';
 // Create jest.mock function to automatically mock the axios module
 jest.mock('axios');
 
+
 describe('ToDo', () => {
 
   // Creates mocks to check that it can fetch data
@@ -28,10 +29,15 @@ describe('ToDo', () => {
     expect(screen.getAllByPlaceholderText('Enter a task', {item: 'Laundry'}))
   });
 
+  // Tests delete function
+  test('user can delete item from list', async () => {
+    render(<ToDo/>)
+    
+  });
+
 });
 
 
-// Todo: Tests delete function
 // Render screen with input form and submit button
 // Simulate a list of two items
 // Simulate user deleting an item
