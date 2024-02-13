@@ -29,17 +29,4 @@ describe('ToDo', () => {
     expect(screen.getAllByPlaceholderText('Enter a task', {item: 'Laundry'}))
   });
 
-  // Tests delete function
-  test('user can delete item from list', async () => {
-    render(<ToDo/>)
-    
   });
-
-});
-
-
-// Render screen with input form and submit button
-// Simulate a list of two items
-// Simulate user deleting an item
-// Assert that item deleted from list
-// Simulate new list with one item, the one that was not deleted
