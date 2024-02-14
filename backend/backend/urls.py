@@ -18,20 +18,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from todo.views import ReactView, ReactDetail
-from todo import views
-from home import views
+from todo import views as todo_views
+from home import views as home_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('home/', Home(), name='Home'),
-    path('', views.index, name='index'),
-    path('todo/', views.ReactView.as_view(), name='todo'),
-    path('todo/<int:pk>/', views.ReactView.as_view(), name='todo-delete'),  # Handle GET requests for listing todos
-    path('todo/<int:pk>/', views.ReactDetail.as_view()),  # Handle DELETE requests for a specific todo
-    path('home/', views.ReactView.as_view(), name='home'),
+    path('todo/', todo_views.TodoListView.as_view(), name='todo'),
+    path('todo/<int:pk>/', todo_views.TodoListView.as_view(), name='todo-delete'),  # Handle GET requests for listing todos
+    path('todo/<int:pk>/', todo_views.TodoDetailView.as_view()),  # Handle DELETE requests for a specific todo
+    path('', home_views.HomeView.as_view(), name='home'),
 ]
 
-
 urlpatterns = format_suffix_patterns(urlpatterns)
-

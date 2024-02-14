@@ -19,4 +19,8 @@ const Home = () => {
 
 export default Home;
 
+// we can use the name parameter to link to our home page from any other page by adding the following link in a template
+// This is reversed URL mapping
+{/* <a href="{% url 'index' %}">Home</a>. */}
+
   

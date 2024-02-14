@@ -1,5 +1,5 @@
-from .models import React
-from .serializer import ReactSerializer
+from todo.models import React
+from todo.serializer import ReactSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 
 # CRUD: create, read, update, delete
 
-class ReactView(APIView):
+class TodoListView(APIView):
     # List items or create a new item
     serializer_class = ReactSerializer
 
@@ -30,7 +30,7 @@ class ReactView(APIView):
 
 # Create instance view, retrieve, update or delete an item instance.
 
-class ReactDetail(APIView):
+class TodoDetailView(APIView):
 
     def get_object(self, pk):
         try:
