@@ -21,6 +21,9 @@ export default Home;
 
 // we can use the name parameter to link to our home page from any other page by adding the following link in a template
 // This is reversed URL mapping
-{/* <a href="{% url 'index' %}">Home</a>. */}
-
-  
+return (
+  <div className="home">
+  <h1>Homepage</h1>
+  <a href="{% url 'home' %}">Home</a>.
+  </div>
+);
