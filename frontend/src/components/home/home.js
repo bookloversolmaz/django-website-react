@@ -1,29 +1,32 @@
 // import axios from 'axios';
 import React from 'react';
-import ToDo from '../todo/todo';
+import {Link} from "react-router-dom";
 
 
-const Home = () => {
-  return (
-    <div className = "ToDo">
-      <ToDo/>
-    </div>
+// function Home() {
+//   return (
+//     <div className = "Home">
+//       <Link to="/todo"> To do page</Link>
 
+//     </div>
+//   );
+// };
 
-    // <Routes>
-    //   <Route path="/todo" element={<ToDo navigate={ToDo()} />} />
+// export default Home;
 
-    // </Routes>
-  );
-};
+// // we can use the name parameter to link to our home page from any other page by adding the following link in a template
+// // This is reversed URL mapping
 
+ 
+const Home = ({ to }) => {
+ 
+    return (
+        <Link to={`/${to}`}>
+            <button className="my-button">
+                Take me to {to === '' ? "To do list" : to}
+            </button>
+        </Link>
+    )
+}
+ 
 export default Home;
-
-// we can use the name parameter to link to our home page from any other page by adding the following link in a template
-// This is reversed URL mapping
-return (
-  <div className="home">
-  <h1>Homepage</h1>
-  <a href="{% url 'home' %}">Home</a>.
-  </div>
-);
