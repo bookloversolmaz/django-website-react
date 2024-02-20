@@ -1,19 +1,15 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from todo.models import React
+from django.urls import reverse
 
 class HomeView(APIView):
     def get(self, request):
+        # Get the URL for the to-do list page
+        todo_page_url = reverse('todo')
 
-        # Display links to to do list, software projects and writing
-        # TODO: Create link to todo page
-
-        todo_page = React
-        
         # The below dictionary is the data inserted into the response
         response_data = {
-            'todo_page': "/todo/",  # Link to the todo page
-            # "software_projects": "/software_projects/",  # Link to software projects page
-            # "writing": "/writing/"  # Link to writing page
+            'todo_page': todo_page_url,  # URL to the todo page
+            # Add more links if needed
         }
         return Response(response_data)

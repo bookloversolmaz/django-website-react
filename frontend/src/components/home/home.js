@@ -1,32 +1,27 @@
-// import axios from 'axios';
-import React from 'react';
-import {Link} from "react-router-dom";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
-
-// function Home() {
-//   return (
-//     <div className = "Home">
-//       <Link to="/todo"> To do page</Link>
-
-//     </div>
-//   );
-// };
-
-// export default Home;
-
-// // we can use the name parameter to link to our home page from any other page by adding the following link in a template
-// // This is reversed URL mapping
-
- 
-const Home = ({ to }) => {
- 
+  const Home = () => {
+    const [todoPageUrl, setTodoPageUrl] = useState('');
+    
+    // useEffect: This hook is called when the component mounts (because of the empty dependency array []). It triggers the fetching of data from the home url in the backend
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/todo') // Assuming this is the URL for the HomeView endpoint
+        .then(response => response.json())
+        .then(data => {
+          setTodoPageUrl(data.todo_page);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }, []);
+  
     return (
-        <Link to={`/${to}`}>
-            <button className="my-button">
-                Take me to {to === '' ? "To do list" : to}
-            </button>
-        </Link>
-    )
-}
- 
-export default Home;
+      <div>
+        <h1>Welcome to the Homepage</h1>
+        <p>Click the link below to go to the to do list page:</p>
+        <a href={todoPageUrl}>To do list</a>
+        {/* Add more links if needed */}
+      </div>
+    );
+  }
+  
+  export default Home;
