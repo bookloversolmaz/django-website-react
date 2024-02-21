@@ -1,17 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './components/app/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
+// document.getElementById('root') is a JavaScript DOM manipulation method that retrieves the DOM element with the id attribute set to 'root'. 
+// In this case, it is index.html
+createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <React.StrictMode>
       <App />
     </React.StrictMode>
   </BrowserRouter>,
-  document.getElementById('root')
 );
 
 reportWebVitals();
