@@ -5,14 +5,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from '../home/home.js';
-import Todo from '../components/todo/todo.js';
+import Todo from '../todo/todo.js';
 
 const App = () => {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route path="/todo" element={<Todo />} />
-      <Route path="*" element={<NotFound />} />  {/* Use path="*" for the NotFound route */}
     </Routes>
   );
 };
