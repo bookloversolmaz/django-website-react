@@ -13,9 +13,13 @@ const ToDo = () => {
   // Mount the page: create
   // Fetch existing data from the backend when the component mounts, before the user updates the list
   // UseEffect is a React Hook that lets you synchronize a component with an external system.
+
   useEffect(() => {
-    fetchData(); 
-  }, []);
+    // Update the document title using the browser API
+    let config = {
+        method: 'get',
+        url: 'http://127.0.0.1:8000/todo/',
+  }});
 
   // Render item on screen, the data for the list is obtained from the database using the axios API: read
 
@@ -23,8 +27,8 @@ const ToDo = () => {
     try {
       const response = await axios.get('http://127.0.0.1:8000/todo/');
       console.log('Response:', response); 
-      if (response && response.status === 200) {
-        setList(response.data); // Update the list with data from the backend
+      if (response.status === 200) {
+        setList(response); // Update the list with data from the backend
       } else {
         console.error('Error fetching data: Response is undefined or status is not 200');
       };
