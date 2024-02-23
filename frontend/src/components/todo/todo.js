@@ -18,13 +18,18 @@ const ToDo = () => {
   }, []);
 
   // Render item on screen, the data for the list is obtained from the database using the axios API: read
+
   const fetchData = async () => {
     try {
       const response = await axios.get('http://127.0.0.1:8000/todo/');
-      setList(response.data); // Update the list with data from the backend
-      // A promise that catches an error if the promise is unfulfilled
+      console.log('Response:', response); 
+      if (response && response.status === 200) {
+        setList(response.data); // Update the list with data from the backend
+      } else {
+        console.error('Error fetching data: Response is undefined or status is not 200');
+      };
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching data:', error.message);
     }
   };
   

@@ -1,12 +1,14 @@
-import {render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import axios from 'axios';
 import ToDo from './todo.js';
 
+// Extend Jest's expect with DOM element matchers
+import '@testing-library/jest-dom/extend-expect';
+
 // Create jest.mock function to automatically mock the axios module
 jest.mock('axios');
-
 
 describe('ToDo', () => {
 
@@ -24,9 +26,9 @@ describe('ToDo', () => {
 
   // Checks that the user can add item
   test('user can add item to list', async () => {
-    render(<ToDo/>)    
-    userEvent.type(screen.getByRole(/textbox/i, 'Laundry'))    
-    expect(screen.getAllByPlaceholderText('Enter a task', {item: 'Laundry'}))
+    render(<ToDo/>); // Render the ToDo component
+    const inputField = screen.getByPlaceholderText('Enter a task'); // Get the input field by its placeholder text
+    userEvent.type(inputField, 'Laundry'); // Simulate typing 'Laundry' into the input field
+    expect(inputField).toHaveValue('Laundry'); // Verify that the input field value is 'Laundry'
   });
-
-  });
+});
