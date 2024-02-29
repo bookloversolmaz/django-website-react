@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo',
     'home',
+    'blog',
     'rest_framework',
     'corsheaders',
 ]
