@@ -3,10 +3,9 @@
 
 from rest_framework import serializers
 from .models import Blog
-from .models import Blog
 
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ['id', 'title', 'publication_date', 'description', 'body_text']
+        fields = ('id', 'title', 'publication_date', 'description', 'body_text')
         fields = '__all__'
