@@ -1,10 +1,12 @@
+import axios from "axios";
 import React from "react";
 
   // Format of blogs: title, publication_date (check django format), description, body_text
   // Only admin can add, change, or delete blogs via Django admin
 
-const Blog = () => {
-  // Fetch list of blogs, show title, pub data and description
+const Blog = async () => {
+  const [post, setPost] = useState({});
+
 };
 
 // User can click on a blog, redirected to the full blog
