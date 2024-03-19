@@ -1,47 +1,47 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Blog = () => {
-  const [post, setPost] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/blog/');
+        const response = await axios.get("http://127.0.0.1:8000/blog/");
         if (response.status === 200) {
-          setPost(response.data); // Set post to response data once Promise is resolved
+          setPosts(response.data);
         } else {
-          console.error("Error fetching post");
+          console.error("Error fetching posts:", response.statusText);
         }
       } catch (error) {
-        console.error("Error", error.message);
+        console.error("Error:", error.message);
       }
     };
 
-    fetchPost();
+    fetchPosts();
   }, []);
 
-  // Render loading indicator while post is null (i.e., Promise is pending)
-  if (post === null) {
-    return <div>Loading...</div>;
-  }
-
-  // Render post details once Promise is resolved
   return (
     <div className="Blog">
       <h1>Blog</h1>
-      <header className="details_header">
-        <h1 className="details_heading">{post.title}</h1>
-        <div className="post_details">
-          <div>
-            <p className="details_date">Posted on {post.publication_date}</p>
-          </div>
-          <div>
-            <p className="details_date">{post.description}</p>
-          </div>
+      {posts.length === 0 ? (
+        <div>Loading...</div>
+      ) : (
+        <div>
+          {/* The purpose of this code is to dynamically generate HTML elements for each 
+          blog post retrieved from the database (posts array). By mapping over each post in the array and rendering 
+          its properties (title, publication_date, description, body_text), you can display the posts on the frontend of your application. 
+          The key attribute is essential for efficient rendering and managing the component's state in React. */}
+          {posts.map((post) => (
+            <div key={post.id}>
+              <h2>{post.title}</h2>
+              <p>{post.publication_date}</p>
+              <p>{post.description}</p>
+              <p>{post.body_text}</p>
+            </div>
+          ))}
         </div>
-      </header>
-      <main className="details_body">{post.body_text}</main>
+      )}
     </div>
   );
 };
