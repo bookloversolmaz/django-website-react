@@ -6,7 +6,7 @@ import React from "react";
 import {Routes, Route } from "react-router-dom";
 import Home from '../home/home.js';
 import Todo from '../todo/todo.js';
-import Blog from "../blog/blog.js";
+import Blog from '../blog/blog.js';
 
 const App = () => {
   return (

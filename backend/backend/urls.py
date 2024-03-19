@@ -28,7 +28,7 @@ urlpatterns = [
     path('todo/', todo_views.TodoListView.as_view(), name='todo'),
     path('todo/<int:pk>/', todo_views.TodoListView.as_view(), name='todo-delete'),  # Handle GET requests for listing todos
     path('todo/<int:pk>/', todo_views.TodoDetailView.as_view()),  # Handle DELETE requests for a specific todo
-    path('blog', blog_views.BlogView.as_view(), name='blog'),
+    path('blog/', blog_views.BlogView.as_view(), name='blog'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
