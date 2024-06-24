@@ -7,6 +7,7 @@ import {Routes, Route } from "react-router-dom";
 import Home from '../home/home.js';
 import Todo from '../todo/todo.js';
 import Blog from '../blog/blog.js';
+import Header from '../header/header.js';
 
 const App = () => {
   return (
@@ -16,6 +17,8 @@ const App = () => {
           <Route path="/todo" element={<Todo />} />
           <Route path="/blog" element={<Blog />} />
         </Routes>
+        <Header />
+        {/* Other components or content */}
     </div>
   );
 };
