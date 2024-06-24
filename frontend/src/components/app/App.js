@@ -12,13 +12,12 @@ import Header from '../header/header.js';
 const App = () => {
   return (
     <div className="App">
+      <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/todo" element={<Todo />} />
           <Route path="/blog" element={<Blog />} />
         </Routes>
-        <Header />
-        {/* Other components or content */}
     </div>
   );
 };
