@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'blog',
+    'tictactoe',
     'todo',
     'home',
     'rest_framework',
