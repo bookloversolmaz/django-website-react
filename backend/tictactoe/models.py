@@ -34,22 +34,20 @@ class Game(models.Model):
     player_one = models.CharField(max_length=1, default='X')
     player_two = models.CharField(max_length=1, default='O')
     board = models.OneToOneField(Board, on_delete=models.CASCADE)
+    winner = models.CharField(max_length=1, blank=True, null=True)
+
+    def get_board(self):
+        return [
+            self.board.grid_1, self.board.grid_2, self.board.grid_3,
+            self.board.grid_4, self.board.grid_5, self.board.grid_6,
+            self.board.grid_7, self.board.grid_8, self.board.grid_9
+        ]
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if not self.board:
             self.board = Board.objects.create()
-
-    def validate_move(self, move):
-        field_name = f'grid_{move}'
-        return hasattr(self.board, field_name) and getattr(self.board, field_name) == ' '
-
-    def make_move(self, move, player):
-        if self.validate_move(move):
-            setattr(self.board, f'grid_{move}', player)
-            self.board.save()
-            return True
-        return False
 
     def check_winner(self, player):
         win_combinations = [
