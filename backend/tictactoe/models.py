@@ -43,12 +43,6 @@ class Game(models.Model):
             self.board.grid_7, self.board.grid_8, self.board.grid_9
         ]
 
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if not self.board:
-            self.board = Board.objects.create()
-
     def check_winner(self, player):
         win_combinations = [
             [1, 2, 3], [4, 5, 6], [7, 8, 9],  # rows
@@ -62,4 +56,3 @@ class Game(models.Model):
 
     def check_tie(self):
         return ' ' not in [getattr(self.board, f'grid_{i}') for i in range(1, 10)]
-
