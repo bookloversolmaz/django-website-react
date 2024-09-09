@@ -7,8 +7,7 @@ function Header() {
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/todo">Todo</a></li>
-                    <li><a href="/tictactoe">Tic-tac-toe</a></li>
+                    <li><a href="/todo">To do list</a></li>
                 </ul>
             </nav>
         </header>

@@ -7,7 +7,6 @@ import {Routes, Route } from "react-router-dom";
 import Home from '../home/home.js';
 import Todo from '../todo/todo.js';
 import Header from '../header/header.js';
-import TicTacToe from '../tictactoe/tictactoe.js';
 
 const App = () => {
   return (
@@ -16,7 +15,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/todo" element={<Todo />} />
-          <Route path="/tictactoe" element={<TicTacToe />} />
         </Routes>
     </div>
   );

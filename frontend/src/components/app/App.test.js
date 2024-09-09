@@ -24,14 +24,3 @@ test('renders todo page when navigating to /todo', () => {
   const todoHeading = screen.getByRole('heading', { name: /To do list/i });
   expect(todoHeading).toBeInTheDocument();
 });
-
-test('renders blog page when navigating to /blog', () => {
-  render(
-    <MemoryRouter initialEntries={['/blog']}>
-      <App />
-    </MemoryRouter>
-  );
-
-  const todoHeading = screen.getByRole('heading', { name: /Blog/i });
-  expect(todoHeading).toBeInTheDocument();
-});
