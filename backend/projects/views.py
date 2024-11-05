@@ -1,7 +1,10 @@
-from django.shortcuts import render, HttpResponse
 from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Project
+from .serializer import ProjectSerializer
 
-class ProjectView(APIView):
-    def get(request):
-        return HttpResponse
-
+class ProjectListView(APIView):
+    def get(self, request):
+        projects = Project.objects.all()
+        serializer = ProjectSerializer(projects, many=True)
+        return Response(serializer.data)
