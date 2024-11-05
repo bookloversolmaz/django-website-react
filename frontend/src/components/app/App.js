@@ -8,8 +8,8 @@ import Home from '../home/home.js';
 import Todo from '../todo/todo.js';
 import Header from '../header/header.js';
 import Projects from '../projects/projects.js'
-import Writing from '../writing/writing.js'
-
+import WritingLandingPage from '../writing/writinglandingpage.js'
+import PostDetail from "../writing/postdetail.js";
 const App = () => {
   return (
     <div className="App">
@@ -18,7 +18,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/todo" element={<Todo />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/writing" element={<Writing/>} />
+          <Route path="/writing" element={<WritingLandingPage/>} />
+          <Route path="/writing/:postId" element={<PostDetail />} />
         </Routes>
     </div>
   );

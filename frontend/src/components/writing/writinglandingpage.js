@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Correctly import useNavigate
 
-const Writing = () => {
+// This is the writing landing page, which contains all of the blogs with the first 100 words of the body text.
+// The user can then click on the title of each blog and they are then taken to the post detail page
+const WritingLandingPage = () => {
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
+
   const getPostData = async () => {
     try {
       const response = await axios.get('http://127.0.0.1:8000/writing/');
@@ -22,7 +27,7 @@ const Writing = () => {
 
   // Function to handle post click
   const handlePostClick = (postId) => {
-    postId.push(`/writing/${postId}`); // Redirect to the detailed view of the post
+    navigate(`/writing/${postId}`); // Redirect to the detailed view of the post
   };
 
   return (
@@ -53,4 +58,4 @@ const Writing = () => {
   );
 };
 
-export default Writing;
+export default WritingLandingPage;
