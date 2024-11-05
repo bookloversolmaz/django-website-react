@@ -7,6 +7,7 @@ import {Routes, Route } from "react-router-dom";
 import Home from '../home/home.js';
 import Todo from '../todo/todo.js';
 import Header from '../header/header.js';
+import Projects from '../projects/projects.js'
 
 const App = () => {
   return (

@@ -20,6 +20,7 @@ from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 from todo import views as todo_views
 from home import views as home_views
+from projects import views as projects_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,7 @@ urlpatterns = [
     path('todo/', todo_views.TodoListView.as_view(), name='todo'),
     path('todo/<int:pk>/', todo_views.TodoListView.as_view(), name='todo-delete'),  # Handle GET requests for listing todos
     path('todo/<int:pk>/', todo_views.TodoDetailView.as_view()),  # Handle DELETE requests for a specific todo
+    path('projects', projects_views.ProjectView.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

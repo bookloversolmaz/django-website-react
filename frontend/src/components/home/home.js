@@ -14,7 +14,7 @@ function Home() {
         <h1>Solmaz Purser</h1>
         <h2>Software developer</h2>
         <p>Click the link below to go to the other pages</p>
-        <Link to="/todo">To do page</Link>
+        <p><Link to="/todo">To do page</Link></p>
         <Link to="/projects">Projects</Link>
       </div>
   );

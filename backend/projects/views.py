@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
+from rest_framework.views import APIView
 
-# Create your views here.
+class ProjectView(APIView):
+    def get(request):
+        return HttpResponse
+
