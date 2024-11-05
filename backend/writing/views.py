@@ -1,20 +1,26 @@
 from django.shortcuts import render
-from .models import Post
-# Views are Python functions or classes that receive a web request and return a web response
+from writing.models import Post
+from writing.serializer import PostSerializer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
 
-# Below will display a list of all of the posts
-def writing_index(request):
-    posts = Post.objects.all().order_by("-created_on") # A Queryset is a collection of all the objects in the database that match the query
-    context = {
-        "posts": posts,
-    }
-    return render(request, "writing/index.html", context)
+class WritingListView(APIView):
+    # List items or create a new item
+    serializer_class = PostSerializer
 
-#  Display the full post
-def writing_detail(request, pk):
-    post = Post.objects.get(pk=pk) # Takes a primary key value, pk, as an argument and retrieves the object with the given pk. Pk is unique identifier of entry in database
-    context = {
-        "post": post,
-    }
+    # Display a list of all the posts
+    def get(self, request):
+        posts = Post.objects.all().order_by("publication_date")  # Get all posts
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-    return render(request, "blog/detail.html", context)
+class WritingEntireView(APIView):
+    # Display the full post
+    def get(self, request, pk):
+        try:
+            post = Post.objects.get(pk=pk)  # Retrieve the post by primary key
+            serializer = PostSerializer(post)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Post.DoesNotExist:
+            return Response({'error': 'Post not found'}, status=status.HTTP_404_NOT_FOUND)
