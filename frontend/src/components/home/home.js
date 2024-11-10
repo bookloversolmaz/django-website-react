@@ -12,8 +12,8 @@ function Home() {
     return (
       <div>
         <h1>Solmaz Purser</h1>
-        <h2>Software developer</h2>
-        <p>Click the link below to go to the other pages</p>
+        <h2>Software developer and writer</h2>
+        <p>Passionate about all things technology</p>
         <p><Link to="/todo">To do page</Link></p>
         <p><Link to="/projects">Projects</Link></p>
         <p><Link to="/writing">Writing</Link></p>

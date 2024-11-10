@@ -10,6 +10,7 @@ function Header() {
                     <li><a href="/todo">To do list</a></li>
                     <li><a href="/projects">Projects</a></li>
                     <li><a href="/writing">Writing</a></li>
+                    {/* Add links to github homepage and LinkedIn */}
                 </ul>
             </nav>
         </header>

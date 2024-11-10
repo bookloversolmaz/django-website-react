@@ -33,7 +33,12 @@ const PostDetail = () => {
   return (
     <div>
       <h1>{post.title}</h1> {/* Display post title */}
-      <p>{new Date(post.publication_date).toLocaleDateString('en-GB', {
+      <p>Publication date: {new Date(post.publication_date).toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+      })}</p> {/* Display publication date */}
+      <p>Created on: {new Date(post.created_on).toLocaleDateString('en-GB', {
         day: '2-digit',
         month: 'long',
         year: 'numeric',
@@ -42,6 +47,7 @@ const PostDetail = () => {
         <p key={index}>{paragraph}</p> // Render each paragraph in its own <p> tag
       ))}
     </div>
+    
   );
 };
 

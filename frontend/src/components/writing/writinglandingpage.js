@@ -42,7 +42,12 @@ const WritingLandingPage = () => {
               <h2 style={{ cursor: 'pointer' }} onClick={() => handlePostClick(post.id)}>
                 {post.title}
               </h2>
-              <p>{new Date(post.publication_date).toLocaleDateString('en-GB', {
+              <p>Publication date: {new Date(post.publication_date).toLocaleDateString('en-GB', {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric',
+              })}</p>
+              <p>Created on: {new Date(post.created_on).toLocaleDateString('en-GB', {
               day: '2-digit',
               month: 'long',
               year: 'numeric',

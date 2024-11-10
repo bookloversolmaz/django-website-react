@@ -1,4 +1,7 @@
 from django.shortcuts import render
+
+# Create your views here.
+from django.shortcuts import render
 from writing.models import Post
 from writing.serializer import PostSerializer
 from rest_framework.response import Response
