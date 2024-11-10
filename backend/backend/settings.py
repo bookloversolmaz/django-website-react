@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'todo',
     'home',
     'projects',
-    # 'writing',
+    'writing',
     'rest_framework',
     'corsheaders',
 ]

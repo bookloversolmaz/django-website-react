@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 // This is the page that contains the entire post
 const PostDetail = () => {
   const { postId } = useParams(); // Extract postId from URL parameters
   const [post, setPost] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -30,8 +31,17 @@ const PostDetail = () => {
   // !== '': This part checks if the trimmed paragraph is not equal to an empty string. If the result of trim() is not an empty string, 
   // it means that the paragraph contains some actual content (i.e., it's not just whitespace).
 
+    // Handle go back to the previous page
+    const handleGoBack = () => {
+      navigate(-1);  // This goes back one page in history
+    };
+
+
   return (
     <div>
+      <div>
+      <button onClick={handleGoBack}>Return to Previous Page</button>
+    </div>
       <h1>{post.title}</h1> {/* Display post title */}
       <p>Publication date: {new Date(post.publication_date).toLocaleDateString('en-GB', {
         day: '2-digit',
