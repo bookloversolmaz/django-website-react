@@ -31,11 +31,25 @@ const PostDetail = () => {
   // trim method removes whitespace from both the beginning and the end of the string
   // !== '': This part checks if the trimmed paragraph is not equal to an empty string. If the result of trim() is not an empty string, 
   // it means that the paragraph contains some actual content (i.e., it's not just whitespace).
-    
-  // Sanitises the data passed onto it from dangerouslysetinnerhtml.Removes any potentially malicious scripts before rendering.
-  // The below is a function
-  const paragraphs = SplitParagraphs.map(paragraph =>
-    DOMPurify.sanitize(paragraph)
+
+  // Sanitize and modify links to open in a new tab
+  //  The map() method requires a function to process each element in SplitParagraphs, and the arrow function (paragraph => ...) is passed as the argument to map().
+  // The parentheses around the arrow function are necessary because you're passing the arrow function as an argument to the map() method.
+  // 
+  const sanitizedParagraphs = SplitParagraphs.map(paragraph =>
+    DOMPurify.sanitize(paragraph, {
+      ADD_ATTR: ['target'], // Allow target attribute By default, sanitizers often strip attributes like target for security reasons.
+      // This option explicitly allows the target attribute, enabling us to later modify links to open in a new tab.
+      FORBID_TAGS: ['script'], // Disallow script tags for security. Prevents <script> tags from being included in the sanitized output, as they could execute harmful JavaScript code.
+    // Add target="_blank" to links. Ensures that any <a> tag in the sanitized HTML has the target="_blank" attribute, which makes the link open in a new tab.
+    }).replace(
+      // Matches any <a> tag that does not already have a target attribute. <a\s+ matches the <a> tag with at least one space after it.
+      // (?!.*target) is a negative lookahead that ensures the target attribute is not present anywhere in the tag.
+      // The /g flag means this replacement will be applied globally (to all <a> tags in the string).
+      /<a\s+(?!.*target)/g,
+      // Adds the target="_blank" attribute to the <a> tag.
+      '<a target="_blank" '
+    )
   );
 
     // Handle go back to the previous page
@@ -65,7 +79,7 @@ const PostDetail = () => {
           })}
         </p>
         {/* Render each paragraph with dangerouslySetInnerHTML */}
-        {paragraphs.map((paragraphs, index) => (
+        {sanitizedParagraphs.map((paragraphs, index) => (
           <p
             key={index}
             dangerouslySetInnerHTML={{__html: paragraphs}}

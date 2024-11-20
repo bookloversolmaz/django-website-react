@@ -26,7 +26,9 @@ const WritingLandingPage = () => {
   }, []);
   
   // Sort posts by 'created_on' date, with newest at the top
-  // 
+  // The sortedPosts variable uses the Array.sort() method to sort the posts array by the created_on date in ascending order (oldest first).
+  // new Date(a.created_on): Converts the created_on string into a JavaScript Date object for comparison.
+  // Ascending Order: Subtracts a.created_on from b.created_on. To reverse the order, you could subtract b.created_on from a.created_on.
   const sortedPosts = [...posts].sort((a, b) => new Date(b.created_on) - new Date(a.created_on));
 
   // Function to handle post click
