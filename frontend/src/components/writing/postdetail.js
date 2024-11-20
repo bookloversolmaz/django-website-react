@@ -37,28 +37,39 @@ const PostDetail = () => {
     };
 
 
-  return (
-    <div>
+    return (
       <div>
-      <button onClick={handleGoBack}>Return to Previous Page</button>
-    </div>
-      <h1>{post.title}</h1> {/* Display post title */}
-      <p>Publication date: {new Date(post.publication_date).toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric',
-      })}</p> {/* Display publication date */}
-      <p>Created on: {new Date(post.created_on).toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric',
-      })}</p> {/* Display publication date */}
+        <button onClick={handleGoBack}>Return to Writing Page</button>
+        <h1>{post.title}</h1>
+        <p>
+          Publication date:{' '}
+          {new Date(post.publication_date).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric',
+          })}
+        </p>
+        <p>
+          Created on:{' '}
+          {new Date(post.created_on).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric',
+          })}
+        </p>
+        {/* Render each paragraph with dangerouslySetInnerHTML */}
         {paragraphs.map((paragraph, index) => (
-        <p key={index}>{paragraph}</p> // Render each paragraph in its own <p> tag
-      ))}
-    </div>
-    
-  );
-};
+          <p
+            key={index}
+            dangerouslySetInnerHTML={{ __html: paragraph }}
+            // To create the link in django admin, use this format 
+            // <a href="https://www.axelos.com/resource-hub/blog/itil-4-foundation-7-tips-to-prepare" target="_blank">here</a>.
+            // React dangerouslySetInnerHTML react replacement for innerHTML. It makes react aware of HTML tags in rich text editor
+            // i.e. django admin interface, and renders them properly.
+          ></p>
+        ))}
+      </div>
+    );
+  };
 
 export default PostDetail;
