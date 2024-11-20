@@ -24,6 +24,10 @@ const WritingLandingPage = () => {
   useEffect(() => {
     getPostData();
   }, []);
+  
+  // Sort posts by 'created_on' date, with newest at the top
+  // 
+  const sortedPosts = [...posts].sort((a, b) => new Date(b.created_on) - new Date(a.created_on));
 
   // Function to handle post click
   const handlePostClick = (postId) => {
@@ -33,11 +37,11 @@ const WritingLandingPage = () => {
   return (
     <div>
       <h1>Writing</h1>
-      {posts.length === 0 ? (
+      {sortedPosts.length === 0 ? (
         <div>Loading...</div>
       ) : (
         <div>
-          {posts.map((post) => (
+          {sortedPosts.map((post) => (
             <div key={post.id}>
               <h2 style={{ cursor: 'pointer' }} onClick={() => handlePostClick(post.id)}>
                 {post.title}
