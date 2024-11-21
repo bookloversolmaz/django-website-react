@@ -12,13 +12,21 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import environ
-from decouple import config
+import os
 
-# Initialise environment variables
+
+# Initialize environ
 env = environ.Env()
-environ.Env.read_env()
-# Your secret key
-SECRET_KEY = env("SECRET_KEY")
+
+# Read the .env file, assuming it is in the root directory
+env_file_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+
+# Ensure the .env file is read
+if os.path.exists(env_file_path):
+    environ.Env.read_env(env_file_path)
+
+# Now, you can access the variables from .env
+SECRET_KEY = env('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,13 +133,13 @@ DATABASES = {
         'PORT': env("DATABASE_PORT"),
     }
 }
-
+from decouple import config
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='default_email@example.com')  # Replace with your email
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='default_email@example.com')  # Replace with default for debugging
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Loaded securely from .env
 
 
@@ -158,7 +166,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'UTC'
 
@@ -176,3 +184,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+print(SECRET_KEY)
