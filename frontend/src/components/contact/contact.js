@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './contact.css'
 
 function ContactPage() {
@@ -20,7 +21,7 @@ function ContactPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://127.0.0.1:8000/send-email/', {
+            const response = await axios.get('http://127.0.0.1:8000/contact/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

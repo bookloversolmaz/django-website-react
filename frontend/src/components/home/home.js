@@ -17,6 +17,7 @@ function Home() {
         <p><Link to="/todo">To do page</Link></p>
         <p><Link to="/projects">Projects</Link></p>
         <p><Link to="/writing">Writing</Link></p>
+        <p><Link to="/contact">Contact</Link></p>
       </div>
   );
 };

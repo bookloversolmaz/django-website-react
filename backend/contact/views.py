@@ -1,29 +1,22 @@
-from django.shortcuts import render
-from django.core.mail import send_mail
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from contact.models import Contact
+from contact.serializer import ContactSerializer
+from rest_framework.views import APIView
 
-@csrf_exempt
-def send_contact_email(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        name = data.get('name')
-        email = data.get('email')
-        message = data.get('message')
+class ContactView(APIView):
+    def get(self, request):
+        # List all contact messages
+        contacts = Contact.objects.all()
+        serializer = ContactSerializer(contacts, many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        # Create a new contact message
+        serializer = ContactSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        # Compose email
-        subject = f"New Contact Form Submission from {name}"
-        email_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
-
-        # Send email to your personal email address
-        send_mail(
-            subject,
-            email_message,
-            'yourwebsite@example.com',  # Replace with your sender email (must be registered in settings)
-            ['yourpersonalemail@example.com'],  # Replace with your personal email address
-        )
-
-        return JsonResponse({"message": "Email sent successfully!"}, status=200)
-
-    return JsonResponse({"error": "Invalid request"}, status=400)
