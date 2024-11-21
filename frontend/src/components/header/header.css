@@ -1,27 +1,65 @@
+/* Basic styling */
 header {
-    background-color: #f4f4f4;
-    padding: 20px;
+    background-color: #f8f9fa;
+    padding: 1rem;
 }
 
 .nav-list {
     list-style: none;
-    display: flex;
-    gap: 15px;
-    justify-content: center; /* Center the navigation links */
     padding: 0;
-    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
-.nav-list li {
-    display: inline;
+/* Dropdown styling */
+.dropdown {
+    position: relative; /* Position for dropdown menu */
 }
 
-.nav-list a {
-    text-decoration: none;
-    color: #333;
+.dropdown-button {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
     font-weight: bold;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    color: #007bff;
 }
 
-.nav-list a:hover {
+.dropdown-button:hover {
+    color: #0056b3;
+}
+
+.dropdown-menu {
+    position: absolute; /* Place dropdown below the button */
+    top: 100%; /* Align directly below */
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    list-style: none;
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+.dropdown-menu li {
+    padding: 0.5rem 1rem;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
     color: #007bff;
+    display: block;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+    color: #0056b3;
+}
+
+/* Social links section */
+.social-links {
+    margin-left: auto; /* Push to the right */
+    display: flex;
+    gap: 1rem; /* Add space between links */
 }

@@ -22,6 +22,7 @@ from todo import views as todo_views
 from home import views as home_views
 from writing import views as writing_views
 from projects import views as project_views
+from contact import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +33,7 @@ urlpatterns = [
     path('writing/', writing_views.WritingListView.as_view()),
     path('writing/<int:pk>/', writing_views.WritingEntireView.as_view(), name='writing_detail'),
     path('projects/', project_views.ProjectListView.as_view(), name='project-list'),
+    path('send-email/', views.send_contact_email, name='send_contact_email'),
     ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

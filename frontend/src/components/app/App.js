@@ -10,6 +10,8 @@ import Header from '../header/header.js';
 import Projects from '../projects/projects.js'
 import WritingLandingPage from '../writing/writinglandingpage.js'
 import PostDetail from "../writing/postdetail.js";
+import ContactPage from "../contact/contact.js";
+// Add about page
 const App = () => {
   return (
     <div className="App">
@@ -20,6 +22,8 @@ const App = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/writing" element={<WritingLandingPage/>} />
           <Route path="/writing/:postId" element={<PostDetail />} />
+          <Route path="/writing/:postId" element={<PostDetail />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
     </div>
   );

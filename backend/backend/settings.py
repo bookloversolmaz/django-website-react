@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import environ
+from decouple import config
+
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'home',
     'projects',
     'writing',
+    'contact',
     'rest_framework',
     'corsheaders',
 ]
@@ -122,6 +125,15 @@ DATABASES = {
         'PORT': env("DATABASE_PORT"),
     }
 }
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='default_email@example.com')  # Replace with your email
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Loaded securely from .env
+
 
 
 # Password validation
