@@ -16,22 +16,25 @@ const Projects = () => {
 
         fetchProjects();
     }, []);
-
     return (
-        <div>
-            <h1>Projects</h1>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-                {projects.map((project) => (
-                    <div key={project.id} style={{ cursor: 'pointer', textAlign: 'center' }}>
-                        <a href={project.github_url} target="_blank" rel="noopener noreferrer">
-                            <img src={project.thumbnail} alt={project.name} style={{ width: '150px', height: '150px' }} />
-                            <p>{project.name}</p>
-                        </a>
-                    </div>
-                ))}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+          {projects.map((project) => (
+            <div key={project.name} style={{ cursor: 'pointer', textAlign: 'center' }}>
+              {/* Only the project name is wrapped in an anchor tag */}
+              <a href={project.github_url} target="_blank" rel="noopener noreferrer">
+                <p>{project.name}</p> {/* This will now be a clickable link */}
+              </a>
+              {/* The image and description are not clickable */}
+              <img
+                src={project.image}
+                alt={project.name}
+                style={{ width: '300px', height: '150px' }}
+              />
+              <p>{project.description}</p>
             </div>
+          ))}
         </div>
-    );
-};
-
-export default Projects;
+      );
+    };
+    
+    export default Projects;
