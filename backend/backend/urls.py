@@ -33,7 +33,8 @@ urlpatterns = [
     path('writing/', writing_views.WritingListView.as_view()),
     path('writing/<int:pk>/', writing_views.WritingEntireView.as_view(), name='writing_detail'),
     path('projects/', project_views.ProjectListView.as_view(), name='project-list'),
-    path('contact/', contact_views.ContactView.as_view(), name='contact'),
+    path('contact/', contact_views.ContactView.as_view(), name='contact-list'),  # For GET and POST
+    path('contact/<int:message_id>/', contact_views.ContactView.as_view(), name='delete-contact'),  # For DELETE
     ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
