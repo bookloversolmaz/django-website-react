@@ -19,7 +19,7 @@ function ContactPage() {
     // The setFormData updates the formData state to reflect the new value of the field that was changed. This is done by spreading 
     // the existing formData and updating the specific field based on its name.
     const handleChange = (event) => { // event represents all of the actions taken by the user
-        const { name, value } = event.target;
+        const { name, value } = event.target;   // event.target refers to the DOM element (html) that triggered the event i.e. the form field completed by user. the event.target is deconstructed to name of field, and value inputted.
         setFormData({
             ...formData,
             [name]: value,
