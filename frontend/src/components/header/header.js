@@ -25,10 +25,11 @@ function Header() {
                         {dropdownOpen && (
                             <ul className="dropdown-menu">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/todo">To do list</a></li>
+                                <li><a href="/about">About</a></li>
                                 <li><a href="/projects">Projects</a></li>
                                 <li><a href="/writing">Writing</a></li>
                                 <li><a href="/contact">Contact</a></li>
+                                <li><a href="/todo">To do list</a></li>
                             </ul>
                         )}
                     </li>

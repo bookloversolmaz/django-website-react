@@ -14,9 +14,6 @@ As this is a web application, the user will not be required to download any spec
 ## What the program does
 A professional displaying my software development and other professional skills. I plan on also adding blogs, such as my career change into software from publishing, some of the things I have learned during my journey and perhaps some basics on computer and software.
 
-## Edge cases
-
-## Tests
 
 ## Contributions and thanks
 Myself
