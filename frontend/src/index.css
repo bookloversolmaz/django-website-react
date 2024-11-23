@@ -3,7 +3,7 @@
 h1, h2, h3 {
   font-family: 'Inter', sans-serif;
   font-weight: 300; /* Semi-bold for headings */
-  color: rgb(13, 41, 93);
+  color: #000000;
   text-align: center;
   font-size: 40px;
 }
@@ -17,6 +17,15 @@ body {
   font-size: 16px; /* Default size for body text */
   font-weight: 300;
 }
+
+p {
+  margin: 1.5rem 0; /* Add space above and below paragraphs */
+  margin-right: 2rem;
+  margin-left: 2rem;
+  line-height: 1.6; /* Improve readability with increased line spacing */
+  color: #000000; /* Optional: Adjust paragraph text color */
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -31,7 +40,7 @@ h2 {
 }
 
 header {
-  background-color: #2759cf;
+  background-color: #000000;
   padding: 10px 20px;
   color: white;
   display: flex;

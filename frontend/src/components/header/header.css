@@ -12,9 +12,12 @@ body {
 
 header {
     background-color: #f8f9fa;
-    padding: 1rem;
+    padding: 0.5rem 2rem; /* Reduced padding for less depth */
     font-size: 18px;
     font-weight: 600; /* Semi-bold for header */
+    display: flex; /* Flexbox for easier layout control */
+    justify-content: space-between; /* Spread out the navigation and social links */
+    align-items: center; /* Vertically center the content */
 }
 
 .nav-list {
@@ -24,6 +27,7 @@ header {
     align-items: center;
     font-size: 16px;
     font-weight: 400; /* Regular weight for nav links */
+    gap: 2rem; /* Add some space between the nav links */
 }
 
 .dropdown {
@@ -36,6 +40,7 @@ header {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    padding: 0.5rem; /* Add some padding for better clickable area */
 }
 
 .dropdown-button:hover {
@@ -55,16 +60,18 @@ header {
     z-index: 10;
     display: none;
 }
-
+/* Targets list elements inside the dropdown list. li represents a list item */
 .dropdown-menu li {
     padding: 0.5rem 1rem;
+    width: 100%; /* Ensure links span the full width of the menu */
 }
-
+/* Targets the <a> tag (hyperlink) inside each list item of the dropdown menu */
 .dropdown-menu li a {
     text-decoration: none;
     color: #000000;
     display: block;
     transition: background-color 0.2s ease-in-out;
+    width: 100%; /* Ensure the link takes up the entire width */
 }
 
 .dropdown-menu li a:hover {
@@ -78,10 +85,10 @@ header {
 }
 
 .social-links {
-    font-size: 12px;
-    margin-left: auto;
+    font-size: 14px;
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
+    align-items: center; /* Vertically align the icons */
 }
 
 .social-links li a {
