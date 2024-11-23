@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
 body {
     margin: 0;
@@ -6,14 +6,15 @@ body {
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 16px; /* Default size for body text */
+    font-size: 16px;
+    font-weight: 300; /* Light weight by default */
 }
 
 header {
     background-color: #f8f9fa;
     padding: 1rem;
-    font-size: 18px; /* Slightly larger header text */
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 600; /* Semi-bold for header */
 }
 
 .nav-list {
@@ -21,31 +22,77 @@ header {
     padding: 0;
     display: flex;
     align-items: center;
-    font-size: 16px; /* Matches default body text */
+    font-size: 16px;
+    font-weight: 400; /* Regular weight for nav links */
+}
+
+.dropdown {
+    position: relative;
 }
 
 .dropdown-button {
-    font-size: 16px; /* Matches body size */
-    font-weight: bold;
-    color: #007bff;
+    font-size: 16px;
+    font-weight: 300;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-button:hover {
+    color: #0056b3;
 }
 
 .dropdown-menu {
-    position: absolute; /* Place dropdown below the button */
-    top: 100%; /* Align directly below */
+    position: absolute;
+    top: 100%;
     left: 0;
     background-color: white;
-    border: none; /* Remove the border */
-    box-shadow: none; /* Remove the shadow */
-    border-radius: 0; /* Remove rounded corners */
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
     padding: 0.5rem 0;
     list-style: none;
-    z-index: 10; /* Ensure it appears above other elements */
+    z-index: 10;
+    display: none;
+}
+
+.dropdown-menu li {
+    padding: 0.5rem 1rem;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #e0e0e0;
+    color: #0056b3;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: block;
 }
 
 .social-links {
-    font-size: 14px; /* Smaller for icons or links */
+    font-size: 12px;
     margin-left: auto;
     display: flex;
     gap: 1rem;
+}
+
+.social-links li a {
+    text-decoration: none; /* Remove underlining */
+    display: inline-flex; /* Ensure the icons are inline */
+    justify-content: center;
+    align-items: center;
+    transition: color 0.2s ease, transform 0.2s ease; /* Smooth transition */
+    font-size: 12px;
+}
+
+.social-links li a:hover {
+    transform: scale(1.1); /* Optional: icon grows slightly on hover */
 }

@@ -1,5 +1,6 @@
 import './header.css';
 import React, { useState } from 'react';
+import { SocialIcon } from 'react-social-icons'
 
 function Header() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -42,7 +43,8 @@ function Header() {
                                 target="_blank" 
                                 rel="noopener noreferrer"
                             >
-                                GitHub
+                                <SocialIcon network="github" style={{ height: 30, width: 30 }} />
+                            
                             </a>
                         </li>
                         <li>
@@ -51,7 +53,7 @@ function Header() {
                                 target="_blank" 
                                 rel="noopener noreferrer"
                             >
-                                LinkedIn
+                                <SocialIcon network="linkedin" style={{ height: 30, width: 30 }} />
                             </a>
                         </li>
                     </div>
