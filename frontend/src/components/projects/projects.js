@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
@@ -17,7 +18,9 @@ const Projects = () => {
         fetchProjects();
     }, []);
     return (
+      // Finish link to do page. Include gif of list in action, along with description after finishing styling.
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+          <Link to="/todo">To do list</Link> 
           {projects.map((project) => (
             <div key={project.name} style={{ cursor: 'pointer', textAlign: 'center' }}>
               {/* Only the project name is wrapped in an anchor tag */}
