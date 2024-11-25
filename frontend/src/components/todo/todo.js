@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import './todo.css'
 
 // Create a to do list that is connected via the backend database using axios. The list must be editable, whereby the user can read, update and delete items
 // CRUD: create, read, update, delete

@@ -78,9 +78,9 @@ function ContactPage() {
     if (submitted) {
         return (
             <div className="thank-you">
-                <h2>Thank you for reaching out!</h2>
+                <h2>Thank you for contacting me</h2>
                 <p>I have received your message and will get back to you shortly.</p>
-                <button onClick={handleReset}>Submit Another Message</button>
+                <button onClick={handleReset}>Submit another message</button>
             </div>
         );
     }

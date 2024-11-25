@@ -49,3 +49,72 @@ header {
   justify-content: space-between;
   align-items: center;
  }
+
+/* Global Button Style */
+button {
+  padding: 0.75rem 1.5rem; /* Consistent padding for all buttons */
+  font-family: 'Inter', sans-serif; /* Use the same font as the website */
+  font-size: 1rem; /* Default font size */
+  font-weight: 400; /* Regular font weight */
+  border: none; /* Remove default button border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  background-color: #007bff; /* Primary color (blue) */
+  color: white; /* White text color */
+  text-align: center; /* Center align text */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
+}
+
+/* Button Hover Effect */
+button:hover {
+  background-color: #0056b3; /* Darker blue when hovered */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Button Active Effect (When Clicked) */
+button:active {
+  background-color: #004085; /* Even darker blue when clicked */
+  transform: translateY(1px); /* Slight push down effect when clicked */
+}
+
+/* Disabled Button */
+button:disabled {
+  background-color: #cccccc; /* Light gray for disabled state */
+  color: #666666; /* Darker gray text */
+  cursor: not-allowed; /* Indicating it's not clickable */
+  transform: none; /* No transformation effect */
+}
+
+/* Global Button for Links (in case you have links styled as buttons) */
+a.button-link {
+  display: inline-block; /* Treat links as buttons */
+  padding: 0.75rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none; /* Remove underline from links */
+  background-color: #007bff; /* Primary color */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover and Active Effects for Button Links */
+a.button-link:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+a.button-link:active {
+  background-color: #004085;
+  transform: translateY(1px);
+}
+
+a.button-link:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  transform: none;
+}

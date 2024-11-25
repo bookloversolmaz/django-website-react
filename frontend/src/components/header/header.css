@@ -42,10 +42,10 @@ header {
     cursor: pointer;
     padding: 0.5rem; /* Add some padding for better clickable area */
 }
-
+/* 
 .dropdown-button:hover {
     color: #0056b3;
-}
+} */
 
 .dropdown-menu {
     position: absolute;
@@ -73,11 +73,11 @@ header {
     transition: background-color 0.2s ease-in-out;
     width: 100%; /* Ensure the link takes up the entire width */
 }
-
+/* 
 .dropdown-menu li a:hover {
     background-color: #e0e0e0;
     color: #0056b3;
-}
+} */
 
 .dropdown:hover .dropdown-menu,
 .dropdown:focus-within .dropdown-menu {
