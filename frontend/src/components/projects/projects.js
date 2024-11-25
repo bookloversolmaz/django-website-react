@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './projects.css'; // External CSS
+import './projects.css'; // Page-specific styles (loaded last)
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
@@ -29,16 +29,33 @@ const Projects = () => {
 
     return (
         <div className="projects-container">
-          <div>
-          <Link to="/todo" className="todo-link">
-                To do list
-            </Link>
-          </div>
-            {projects.map((project) => (
-                <div key={project.name} className="project-card">
+            {/* To Do List Block */}
+            <div className="project-block">
+                <Link
+                    to="/todo"
+                    className="project-title"
+                    aria-label="Navigate to To Do List application"
+                >
+                    <p>To Do List</p>
+                </Link>
+                <img
+                    src="todo-placeholder.jpg" // Replace with your To-Do list image URL
+                    alt="To Do List"
+                    className="project-image"
+                />
+                <p className="project-description">
+                    Interactive to do list application. This was the first component that I developed for this website. It was a large learning curve and required learning 
+                    and using Django, PostGreSQL, React and axios API.
 
+                </p>
+            </div>
+
+            {/* Dynamically loaded projects */}
+            {projects.map((project, index) => (
+                <div key={project.name} className="project-block" data-priority={index + 2}>
                     <a
                         href={project.github_url}
+                        className='project-title'
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Visit GitHub page for ${project.name}`}
@@ -46,15 +63,14 @@ const Projects = () => {
                         <p>{project.name}</p>
                     </a>
                     <img
-                        src={project.image || 'placeholder-image.jpg'}
+                        src={project.image}
                         alt={project.name}
                         className="project-image"
                     />
-                    <p>{project.description || 'No description available.'}</p>
+                    <p>{project.description}</p>
                 </div>
             ))}
         </div>
     );
 };
-
 export default Projects;
