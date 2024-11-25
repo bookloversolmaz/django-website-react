@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Correctly import useNavigate
+import './writing.css'
 
 // This is the writing landing page, which contains all of the blogs with the first 100 words of the body text.
 // The user can then click on the title of each blog and they are then taken to the post detail page
@@ -44,8 +45,8 @@ const WritingLandingPage = () => {
       ) : (
         <div>
           {sortedPosts.map((post) => (
-            <div key={post.id}>
-              <h2 style={{ cursor: 'pointer' }} onClick={() => handlePostClick(post.id)}>
+            <div className="writing-block" key={post.id}>
+              <h2 className='writing-title' style={{ cursor: 'pointer' }} onClick={() => handlePostClick(post.id)}>
                 {post.title}
               </h2>
               <p>Publication date: {new Date(post.publication_date).toLocaleDateString('en-GB', {

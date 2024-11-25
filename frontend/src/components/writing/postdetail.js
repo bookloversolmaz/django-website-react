@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
+import './writing.css'
 
 // This is the page that contains the entire post
 const PostDetail = () => {
@@ -60,7 +61,7 @@ const PostDetail = () => {
 
     return (
       <div>
-        <button onClick={handleGoBack}>Return to Writing Page</button>
+        <button className="return-button" onClick={handleGoBack}>Return to Writing Page</button>
         <h1>{post.title}</h1>
         <p>
           Publication date:{' '}

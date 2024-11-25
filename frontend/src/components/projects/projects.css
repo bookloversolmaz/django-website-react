@@ -27,11 +27,10 @@
 /* Title Styling for other projects (wrapped in p tags) */
 .project-title p {
     text-decoration: none;
-    font-size: 18px !important;
+    font-size: 20px !important;
     font-weight: bold;
     display: block;
     margin-bottom: 10px;
-    /* Space below the title */
 }
 
 
@@ -45,7 +44,6 @@
 
 /* Project Description Styling */
 .project-description {
-    font-size: 14px; /* Smaller font size */
     line-height: normal; /* Reduced line height */
     margin: 0.5rem 0; /* Less space around paragraphs */
     color: #000000;

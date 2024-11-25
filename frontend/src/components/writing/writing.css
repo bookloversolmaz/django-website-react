@@ -1,0 +1,61 @@
+p {
+    margin: 1.5rem 0; /* Add space above and below paragraphs */
+    margin-right: 2rem;
+    margin-left: 2rem;
+    line-height: 1.6; /* Improve readability with increased line spacing */
+    font-size: 18px !important; /* Default size for body text */
+    color: #000000; /* Optional: Adjust paragraph text color */
+  }
+
+.writing-title{
+    font-weight: bold;
+  }
+.writing-title:hover {
+    transform: scale(1.05);
+}
+
+.writing-block {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    color: #000000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add this to your writing.css */
+
+.return-button {
+    background-color: #f8f9fa;
+    color: black; /* White text color */
+    font-size: 15px; /* Ensure it matches the font size of other buttons */
+    font-weight: 300; /* Ensure consistency with other text styles */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Indicate the button is clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+.return-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+.return-button:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Custom focus state */
+  }
+
+/* .writing-block:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+} */
+
+/* 
+@media {
+
+}
+   */
