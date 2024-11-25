@@ -31,6 +31,13 @@ const Projects = () => {
         <div className="projects-container">
             {/* To Do List Block */}
             <div className="project-block">
+                <div className="project-image-container">
+                    <img
+                        src="todo-placeholder.jpg" // Replace with your To-Do list image URL
+                        alt="To Do List"
+                        className="project-image"
+                    />
+                </div>
                 <Link
                     to="/todo"
                     className="project-title"
@@ -38,39 +45,36 @@ const Projects = () => {
                 >
                     <p>To Do List</p>
                 </Link>
-                <img
-                    src="todo-placeholder.jpg" // Replace with your To-Do list image URL
-                    alt="To Do List"
-                    className="project-image"
-                />
                 <p className="project-description">
-                    Interactive to do list application. This was the first component that I developed for this website. It was a large learning curve and required learning 
-                    and using Django, PostGreSQL, React and axios API.
-
+                    Interactive to do list application. This was the first component that I developed for this website. It was a large learning curve and required learning
+                    and using Django, PostGreSQL, React, and axios API.
                 </p>
             </div>
 
             {/* Dynamically loaded projects */}
             {projects.map((project, index) => (
                 <div key={project.name} className="project-block" data-priority={index + 2}>
+                    <div className="project-image-container">
+                        <img
+                            src={project.image}
+                            alt={project.name}
+                            className="project-image"
+                        />
+                    </div>
                     <a
                         href={project.github_url}
-                        className='project-title'
+                        className="project-title"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Visit GitHub page for ${project.name}`}
                     >
                         <p>{project.name}</p>
                     </a>
-                    <img
-                        src={project.image}
-                        alt={project.name}
-                        className="project-image"
-                    />
-                    <p>{project.description}</p>
+                    <p className="project-description">{project.description}</p>
                 </div>
             ))}
         </div>
     );
 };
+
 export default Projects;

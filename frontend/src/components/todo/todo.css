@@ -1,10 +1,92 @@
+/* Centering the entire to-do list on the page */
+.ToDo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem; /* Add padding to create space under the fixed header */
+    background-color: #f5f5f5;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh; /* Ensure it covers the full screen height */
+    box-sizing: border-box;
+}
 
+/* Heading styles */
+.ToDo h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Centering the input form */
+.Top {
+    display: flex;
+    align-items: center; /* Align input and button vertically */
+    justify-content: center; /* Ensure content is horizontally centered */
+    gap: 1rem; /* Space between input box and button */
+    margin-bottom: 2rem;
+}
+
+/* Input field styles */
 .input {
     background-color: white;
-    width: 25%;
+    width: 300px; /* Set a fixed width for consistency */
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
-    margin: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Submit button styles */
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* List styling */
+ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove padding from the list */
+    margin: 0;
+    width: 300px; /* Align list width with input */
+}
+
+/* Individual task styling */
+.task {
+    display: flex;
+    justify-content: space-between; /* Space between text and delete button */
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+}
+
+/* Delete button styling */
+.task button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.task button:hover {
+    background-color: #c82333;
 }

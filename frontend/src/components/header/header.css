@@ -34,19 +34,6 @@ header {
     position: relative;
 }
 
-.dropdown-button {
-    font-size: 16px;
-    font-weight: 300;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem; /* Add some padding for better clickable area */
-}
-/* 
-.dropdown-button:hover {
-    color: #0056b3;
-} */
-
 .dropdown-menu {
     position: absolute;
     top: 100%;
