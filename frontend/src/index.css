@@ -3,7 +3,7 @@
 h1, h2, h3 {
   font-family: 'Inter', sans-serif;
   font-weight: 300; /* Semi-bold for headings */
-  color: #000000;
+  color: black;
   text-align: center;
   font-size: 40px;
 }
@@ -21,8 +21,8 @@ body {
   margin-left: 2rem;
   line-height: 1.6; /* Improve readability with increased line spacing */
   font-size: 18px; /* Default size for body text */
-  color: #000000; /* Optional: Adjust paragraph text color */
-  background-image: url("paper.gif");
+  color: black; /* Optional: Adjust paragraph text color */
+  background-color: #f8f9f9;
 }
 
 p {
@@ -31,7 +31,7 @@ p {
   margin-left: 2rem;
   line-height: 1.6; /* Improve readability with increased line spacing */
   font-size: 18px; /* Default size for body text */
-  color: #000000; /* Optional: Adjust paragraph text color */
+  color: black; /* Optional: Adjust paragraph text color */
 }
 
 code {
@@ -56,7 +56,7 @@ button {
   border: none; /* Remove default button border */
   border-radius: 4px; /* Rounded corners */
   cursor: pointer; /* Pointer cursor on hover */
-  background-color: #007bff; /* Primary color (blue) */
+  background-color: #35bdcb; /* Primary color (blue) */
   color: white; /* White text color */
   text-align: center; /* Center align text */
   transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
