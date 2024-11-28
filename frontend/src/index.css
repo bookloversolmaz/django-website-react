@@ -14,9 +14,14 @@ body {
       'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   font-weight: 300;
   letter-spacing: normal;
+  margin: 1.5rem 0; /* Add space above and below paragraphs */
+  margin-right: 2rem;
+  margin-left: 2rem;
+  line-height: 1.6; /* Improve readability with increased line spacing */
+  font-size: 18px; /* Default size for body text */
+  color: #000000; /* Optional: Adjust paragraph text color */
 }
 
 p {

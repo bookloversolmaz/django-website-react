@@ -1,0 +1,9 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.home-container {
+    margin-top: 50px; /* Adjust depending on the height of your header */
+    text-align: center;
+}

@@ -12,6 +12,7 @@ import WritingLandingPage from '../writing/writinglandingpage.js'
 import PostDetail from "../writing/postdetail.js";
 import ContactPage from "../contact/contact.js";
 import About from "../about/about.js"
+import '../../index.css';
 
 const App = () => {
   return (
