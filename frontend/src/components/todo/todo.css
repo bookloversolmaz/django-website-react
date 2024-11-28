@@ -4,7 +4,6 @@
     flex-direction: column;
     align-items: center;
     padding-top: 2rem; /* Add padding to create space under the fixed header */
-    background-color: #f5f5f5;
     font-family: 'Inter', sans-serif;
     min-height: 100vh; /* Ensure it covers the full screen height */
     box-sizing: border-box;

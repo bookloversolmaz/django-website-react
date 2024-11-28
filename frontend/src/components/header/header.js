@@ -1,6 +1,6 @@
-import './header.css';
 import React, { useState } from 'react';
 import { SocialIcon } from 'react-social-icons';
+import './header.css';
 
 function Header() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -30,7 +30,7 @@ function Header() {
                                 <li><a href="/projects">Projects</a></li>
                                 <li><a href="/writing">Writing</a></li>
                                 <li><a href="/contact">Contact</a></li>
-                                <li><a href="/todo">To-Do List</a></li>
+                                <li><a href="/todo">To do list</a></li>
                             </ul>
                         )}
                     </li>
