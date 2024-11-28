@@ -17,12 +17,12 @@ header {
 
 /* Ensure the main body content is not hidden under the fixed header */
 body {
-    margin-top: 4.5rem; /* Adjust this depending on the height of your header */
+    margin-top: 5rem; /* Adjust this depending on the height of your header */
 }
 
 .nav-list {
     list-style: none;
-    padding: 0;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     font-size: 16px;
@@ -42,15 +42,16 @@ body {
     border: none;
     box-shadow: none;
     border-radius: 0;
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem;
     list-style: none;
     z-index: 10;
     display: none;
+    width: auto;
 }
 /* Targets list elements inside the dropdown list. li represents a list item */
 .dropdown-menu li {
-    padding: 0.5rem 1rem;
-    width: 100%; /* Ensure links span the full width of the menu */
+    padding: 0.5rem 0.5rem;
+    width: 100%;
 }
 /* Targets the <a> tag (hyperlink) inside each list item of the dropdown menu */
 .dropdown-menu li a {
@@ -58,7 +59,7 @@ body {
     color: #000000;
     display: block;
     transition: background-color 0.2s ease-in-out;
-    width: 100%; /* Ensure the link takes up the entire width */
+    width: auto;
 }
 
 .dropdown:hover .dropdown-menu,

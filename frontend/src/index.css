@@ -22,6 +22,7 @@ body {
   line-height: 1.6; /* Improve readability with increased line spacing */
   font-size: 18px; /* Default size for body text */
   color: #000000; /* Optional: Adjust paragraph text color */
+  background-image: url("paper.gif");
 }
 
 p {
