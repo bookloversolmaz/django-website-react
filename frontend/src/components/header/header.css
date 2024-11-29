@@ -17,7 +17,7 @@ header {
 
 /* Ensure the main body content is not hidden under the fixed header */
 body {
-    margin-top: 5rem; /* Adjust this depending on the height of your header */
+    margin-top: 5.5rem; /* Adjust this depending on the height of your header */
 }
 
 .nav-list {

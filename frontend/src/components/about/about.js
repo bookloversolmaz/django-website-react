@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './about.css'
 
 function About() {
     return (
       <div>
         <h1>About</h1>
-        <p> I am a software developer based in London, UK. I recently graduated from Makers software development bootcamp 
+        <p className='about-me'> I am a software developer based in London, UK. I recently graduated from Makers software development bootcamp 
             and have been further developing my skills via projects, coding challenges and volunteering with Unify Giving.
             Before my career change, I was an editor and writer for several years. You can find examples of my work in 
             the <Link to="/writing">writing</Link> page, where you can also read my musings on tech, books and other topics. 

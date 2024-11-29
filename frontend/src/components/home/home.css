@@ -1,24 +1,20 @@
 .home-container {
-  text-align: center;
-  padding: 2rem;
+  position: relative; /* Set a relative container for absolute positioning */
+  height: 100vh; /* Ensure the container spans the full viewport height */
+  width: 100%; /* Ensure full-width container */
+  overflow: hidden; /* Prevent bubbles from overflowing */
   font-family: 'Inter', sans-serif; /* Ensure consistent font */
 }
 
-.links-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* 3 columns */
-  gap: 2rem; /* Space between bubbles */
-  justify-items: center; /* Center bubbles horizontally */
-  margin-top: 2rem;
-}
-
+/* Individual link bubbles */
 .link-bubble {
+  position: absolute; /* Allow free placement on the page */
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   color: black;
-  background-color: #85c1e9 ; /* Default color */
+  background-color: #85c1e9; /* Default color */
   border-radius: 50%; /* Circular shape */
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
@@ -29,30 +25,11 @@
 }
 
 /* Default sizes for each bubble */
-.link1 {
-  width: 80px;
-  height: 80px;
-}
-
-.link2 {
-  width: 100px;
-  height: 100px;
-}
-
-.link3 {
-  width: 120px;
-  height: 120px;
-}
-
-.link4 {
-  width: 90px;
-  height: 90px;
-}
-
-.link5 {
-  width: 110px;
-  height: 110px;
-}
+.link1 { width: 160px; height: 160px; top: 10%; left: 15%; }
+.link2 { width: 120px; height: 120px; top: 30%; left: 60%; }
+.link3 { width: 140px; height: 140px; top: 50%; left: 40%; }
+.link4 { width: 120px; height: 120px; top: 70%; left: 20%; }
+.link5 { width: 110px; height: 110px; top: 20%; left: 80%; }
 
 /* Hover effect for bubbles */
 .link-bubble:hover {
@@ -63,5 +40,6 @@
 /* Click-to-expand effect */
 .link-bubble:active {
   transform: scale(1.5); /* Expand on click */
-  background-color: #324857; /* Even darker*/
+  background-color: #324857; /* Even darker */
 }
+
