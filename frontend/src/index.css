@@ -22,7 +22,7 @@ body {
   line-height: 1.6; /* Improve readability with increased line spacing */
   font-size: 18px; /* Default size for body text */
   color: black; /* Optional: Adjust paragraph text color */
-  background-color: #f8f9f9;
+  background-color: white;
 }
 
 p {
@@ -115,3 +115,6 @@ a.button-link:disabled {
   cursor: not-allowed;
   transform: none;
 }
+
+
+/* colours: main header #cb4335, second: #35bdcb, darker colour #21767f, very light #e6f7f9 */
