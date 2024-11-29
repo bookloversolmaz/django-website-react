@@ -6,46 +6,62 @@
 
 .links-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* 3 columns, equal width */
-  grid-template-rows: repeat(2, auto); /* 2 rows */
-  gap: 2rem; /* Space between squares */
-  justify-items: center; /* Center the items horizontally */
+  grid-template-columns: 1fr 1fr 1fr; /* 3 columns */
+  gap: 2rem; /* Space between bubbles */
+  justify-items: center; /* Center bubbles horizontally */
   margin-top: 2rem;
 }
 
-.link-box {
-  display: block;
-  padding: 1rem 1.5rem; /* Adjust padding to reduce size */
-  background-color: #35bdcb;
-  color: white;
+.link-bubble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
-  border-radius: 8px;
+  color: black;
+  background-color: #85c1e9 ; /* Default color */
+  border-radius: 50%; /* Circular shape */
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
   text-align: center;
-  font-size: 1rem; /* Adjust text size if necessary */
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth grow/shrink effect */
+  cursor: pointer;
 }
-  
-/* Specific positioning for the boxes */
+
+/* Default sizes for each bubble */
 .link1 {
-  grid-column: 1; /* First column */
-  grid-row: 1;    /* First row */
+  width: 80px;
+  height: 80px;
 }
 
 .link2 {
-  grid-column: 1; /* First column */
-  grid-row: 2;    /* Second row */
+  width: 100px;
+  height: 100px;
 }
 
 .link3 {
-  grid-column: 2; /* Middle column */
-  grid-row: 1;    /* Only spans the first row */
+  width: 120px;
+  height: 120px;
 }
 
 .link4 {
-  grid-column: 3; /* Last column */
-  grid-row: 1;    /* First row */
+  width: 90px;
+  height: 90px;
 }
 
 .link5 {
-  grid-column: 3; /* Last column */
-  grid-row: 2;    /* Second row */
+  width: 110px;
+  height: 110px;
+}
+
+/* Hover effect for bubbles */
+.link-bubble:hover {
+  background-color: #6491af; /* Slightly darker on hover */
+  transform: scale(1.1); /* Slight grow effect */
+}
+
+/* Click-to-expand effect */
+.link-bubble:active {
+  transform: scale(1.5); /* Expand on click */
+  background-color: #324857; /* Even darker*/
 }

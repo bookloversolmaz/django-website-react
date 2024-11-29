@@ -22,7 +22,7 @@ body {
   line-height: 1.6; /* Improve readability with increased line spacing */
   font-size: 18px; /* Default size for body text */
   color: black; /* Optional: Adjust paragraph text color */
-  background-color: white;
+  background-color: #ecf0f1  ;
 }
 
 p {
@@ -56,21 +56,21 @@ button {
   border: none; /* Remove default button border */
   border-radius: 4px; /* Rounded corners */
   cursor: pointer; /* Pointer cursor on hover */
-  background-color: #35bdcb; /* Primary color (blue) */
-  color: white; /* White text color */
+  background-color: #ec7063;
+  color: black; /* White text color */
   text-align: center; /* Center align text */
   transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
 }
 
 /* Button Hover Effect */
 button:hover {
-  background-color: #0056b3; /* Darker blue when hovered */
+  background-color: #b1544a; /* Darker when hovered */
   transform: translateY(-2px); /* Slight lift effect on hover */
 }
 
 /* Button Active Effect (When Clicked) */
 button:active {
-  background-color: #004085; /* Even darker blue when clicked */
+  background-color: #763832; /* Even darker when clicked */
   transform: translateY(1px); /* Slight push down effect when clicked */
 }
 
@@ -92,7 +92,7 @@ a.button-link {
   border-radius: 4px;
   text-align: center;
   text-decoration: none; /* Remove underline from links */
-  background-color: #007bff; /* Primary color */
+  background-color: #85c1e9 ; /* Primary color */
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -100,12 +100,12 @@ a.button-link {
 
 /* Hover and Active Effects for Button Links */
 a.button-link:hover {
-  background-color: #0056b3;
+  background-color: #6491af;
   transform: translateY(-2px);
 }
 
 a.button-link:active {
-  background-color: #004085;
+  background-color: #324857;
   transform: translateY(1px);
 }
 
