@@ -2,8 +2,10 @@
   position: relative; /* Set a relative container for absolute positioning */
   height: 100vh; /* Ensure the container spans the full viewport height */
   width: 100%; /* Ensure full-width container */
-  overflow: hidden; /* Prevent bubbles from overflowing */
+  overflow: hidden !important; /* Prevent bubbles from overflowing */
   font-family: 'Inter', sans-serif; /* Ensure consistent font */
+  margin: 0;
+  padding: 0;
 }
 
 /* Individual link bubbles */
@@ -18,18 +20,46 @@
   border-radius: 50%; /* Circular shape */
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  font-weight: 600;
   text-align: center;
   transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth grow/shrink effect */
   cursor: pointer;
 }
 
-/* Default sizes for each bubble */
-.link1 { width: 160px; height: 160px; top: 10%; left: 15%; }
-.link2 { width: 120px; height: 120px; top: 30%; left: 60%; }
-.link3 { width: 140px; height: 140px; top: 50%; left: 40%; }
-.link4 { width: 120px; height: 120px; top: 70%; left: 20%; }
-.link5 { width: 110px; height: 110px; top: 20%; left: 80%; }
+/* Default sizes and positions for each bubble */
+.link1 {
+  width: 120px;
+  height: 120px;
+  top: 10%;
+  left: 10%;
+}
+
+.link2 {
+  width: 120px;
+  height: 120px;
+  top: 30%;
+  left: 65%;
+}
+
+.link3 {
+  width: 140px;
+  height: 140px;
+  top: 50%;
+  left: 45%;
+}
+
+.link4 {
+  width: 100px;
+  height: 100px;
+  top: 45%;
+  left: 20%;
+}
+
+.link5 {
+  width: 110px;
+  height: 110px;
+  top: 50%; /* Further down */
+  left: 85%; /* Offset to the right */
+}
 
 /* Hover effect for bubbles */
 .link-bubble:hover {
@@ -42,4 +72,3 @@
   transform: scale(1.5); /* Expand on click */
   background-color: #324857; /* Even darker */
 }
-

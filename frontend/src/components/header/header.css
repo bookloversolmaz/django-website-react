@@ -1,6 +1,6 @@
 header {
     background-color: #85c1e9;
-    padding: 0.75rem 2rem; /* Reduced padding for less depth but keep left and right padding */
+    padding: 0.50rem 2rem; /* Reduced padding for less depth but keep left and right padding */
     width: 100%; /* Ensure it spans the full width */
     font-size: 18px;
     font-weight: 600; /* Semi-bold for header */
@@ -17,7 +17,7 @@ header {
 
 /* Ensure the main body content is not hidden under the fixed header */
 body {
-    margin-top: 5.5rem; /* Adjust this depending on the height of your header */
+    margin-top: 5rem; /* Adjust this depending on the height of your header */
 }
 
 .nav-list {
@@ -38,8 +38,9 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #ecf0f1;
-    border: none;
+    background-color: #f0f7fc;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     box-shadow: none;
     border-radius: 0;
     padding: 0.5rem 1rem;

@@ -2,7 +2,7 @@
 
 h1, h2, h3 {
   font-family: 'Inter', sans-serif;
-  font-weight: 300; /* Semi-bold for headings */
+  font-weight: 400; /* Semi-bold for headings */
   color: black;
   text-align: center;
   font-size: 40px;
@@ -22,15 +22,15 @@ body {
   line-height: 1.6; /* Improve readability with increased line spacing */
   font-size: 18px; /* Default size for body text */
   color: black; /* Optional: Adjust paragraph text color */
-  background-color: #ecf0f1  ;
+  background-color: #f0f7fc;
 }
 
 p {
-  margin: 1.5rem 0; /* Add space above and below paragraphs */
   margin-right: 2rem;
   margin-left: 2rem;
   line-height: 1.6; /* Improve readability with increased line spacing */
   font-size: 18px; /* Default size for body text */
+  font-weight: 300;
   color: black; /* Optional: Adjust paragraph text color */
 }
 
@@ -88,7 +88,6 @@ a.button-link {
   padding: 0.75rem 1.5rem;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  font-weight: 400;
   border-radius: 4px;
   text-align: center;
   text-decoration: none; /* Remove underline from links */
