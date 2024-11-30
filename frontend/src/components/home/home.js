@@ -1,5 +1,6 @@
 import React from 'react';
 import './home.css';
+import macbookImage from '../images/gummy-macbook.png';
 
 function Home() {
     return (
@@ -13,6 +14,17 @@ function Home() {
                 <a href="/contact" className="link-bubble link4">Contact</a>
                 <a href="/todo" className="link-bubble link5">To do list</a>
             </div>
+            {/* Image with attribution */}
+            <div className="image-container">
+                <img 
+                    src={macbookImage} 
+                    alt="MacBook Illustration" 
+                    className="home-image" 
+                />
+            </div>
+            <footer className="attribution">
+                Illustration by <a href="https://icons8.com/illustrations/author/SH5qVUiWnjy4" target="_blank" rel="noopener noreferrer">Vijay Verma Ouch!</a> 
+            </footer>
         </div>
     );
 }

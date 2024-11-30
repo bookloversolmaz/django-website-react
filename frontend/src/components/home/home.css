@@ -1,11 +1,16 @@
 .home-container {
-  position: relative; /* Set a relative container for absolute positioning */
-  height: 100vh; /* Ensure the container spans the full viewport height */
-  width: 100%; /* Ensure full-width container */
-  overflow: hidden !important; /* Prevent bubbles from overflowing */
-  font-family: 'Inter', sans-serif; /* Ensure consistent font */
-  margin: 0;
-  padding: 0;
+  position: static; /* Ensure it aligns naturally at the top of the page */
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full-width container */
+  padding: 0; /* Match global padding defined in index.css */
+}
+
+.home-container h1 {
+  margin-top: 0; /* Remove additional margin */
+}
+
+.home-container h2 {
+  margin-top: 1rem; /* Spacing below h1 */
 }
 
 /* Individual link bubbles */
@@ -27,15 +32,15 @@
 
 /* Default sizes and positions for each bubble */
 .link1 {
-  width: 120px;
-  height: 120px;
-  top: 10%;
+  width: 100px;
+  height: 100px;
+  top: 20%;
   left: 10%;
 }
 
 .link2 {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   top: 30%;
   left: 65%;
 }
@@ -48,8 +53,8 @@
 }
 
 .link4 {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   top: 45%;
   left: 20%;
 }
@@ -71,4 +76,46 @@
 .link-bubble:active {
   transform: scale(1.5); /* Expand on click */
   background-color: #324857; /* Even darker */
+}
+.home-container {
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.image-container {
+  position: absolute; /* Position the container relative to the page */
+  right: 0; /* Align the image to the right edge */
+  top: 50%; /* Vertically center the image */
+  transform: translateY(-50%); /* Offset the image to achieve perfect centering */
+  z-index: -1; /* Push the image behind other content if necessary */
+  overflow: hidden; /* Prevent accidental overflow */
+}
+
+.home-image {
+  max-width: 40%; /* Set a responsive width */
+  height: auto; /* Maintain aspect ratio */
+  border: none; /* Ensure no borders */
+  box-shadow: none; /* Remove shadows */
+  opacity: 0.9; /* Slight transparency to blend into the background */
+  pointer-events: none; /* Ensure it doesn't interfere with clicks */
+}
+
+.attribution {
+  position: absolute; /* Position the footer relative to the viewport */
+  bottom: 10px; /* Distance from the bottom edge of the page */
+  right: 10px; /* Distance from the right edge of the page */
+  font-size: 0.8rem; /* Slightly smaller text for subtlety */
+  color: #555; /* Neutral color for less prominence */
+}
+
+.attribution a {
+  color: #007bff; /* Link color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.attribution a:hover {
+  color: #0056b3; /* Darker blue on hover */
 }
