@@ -6,11 +6,13 @@
 }
 
 .home-container h1 {
-  margin-top: 0; /* Remove additional margin */
+  font-size: 40px; /* Match size defined in index.css */
+  margin-top: -2rem; /* Remove additional margin */
 }
 
 .home-container h2 {
-  margin-top: 1rem; /* Spacing below h1 */
+  font-size: 25px; /* Match size defined in index.css */
+  margin-top: -1.5rem; /* Spacing below h1 */
 }
 
 /* Individual link bubbles */
@@ -104,7 +106,7 @@
 
 .attribution {
   position: absolute; /* Position the footer relative to the viewport */
-  bottom: 10px; /* Distance from the bottom edge of the page */
+  bottom: 0px; /* Distance from the bottom edge of the page */
   right: 10px; /* Distance from the right edge of the page */
   font-size: 0.8rem; /* Slightly smaller text for subtlety */
   color: #555; /* Neutral color for less prominence */
