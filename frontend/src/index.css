@@ -9,21 +9,19 @@ h1, h2, h3 {
 }
 
 body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: 300;
-  letter-spacing: normal;
-  margin: 1.5rem 0;
-  margin-right: 2rem;
-  margin-left: 2rem;
-  line-height: 1.6;
-  font-size: 18px;
-  color: black;
-  background-image: url('../public/pexels-padrinan-255379.jpg');
-  background-size: cover;
-  background-position: center;
+  height: 100%; /* Makes sure both html and body take up the full height */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  font-family: 'Inter', sans-serif; /* Set font family */
+  font-size: 18px; /* Set font size */
+  line-height: 1.6; /* Set line height for readability */
+  color: black; /* Set text color */
+  background-image: url('../public/pexels-padrinan-255379.jpg'); /* Set background image */
+  background-size: cover; /* Make sure the background image covers the whole viewport */
+  background-position: center; /* Center the background image */
+  min-height: 100vh; /* Ensure body takes at least full viewport height */
+  overflow-x: hidden; /* Disable horizontal scrolling */
+  overflow-y: auto; /* Enable vertical scrolling when needed */
 }
 
 p {
