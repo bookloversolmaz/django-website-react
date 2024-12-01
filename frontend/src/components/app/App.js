@@ -16,7 +16,7 @@ import Header from '../header/header.js';  //Header component
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App" style={{backgroundImage: "url('images/pexels-padrinan-255379.jpg')" }}>
       <Header />
         <Routes>
           <Route path="/" element={<Home />} />
