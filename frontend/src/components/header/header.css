@@ -32,6 +32,7 @@ body {
     font-size: 16px;
     font-weight: 400; /* Regular weight for nav links */
     gap: 0.5rem; /* Add some space between the nav links */
+    gap: 2.5rem
 }
 
 .dropdown {
@@ -76,7 +77,7 @@ body {
 .social-links {
     font-size: 14px;
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
     align-items: center; /* Vertically align the icons */
 }
 
