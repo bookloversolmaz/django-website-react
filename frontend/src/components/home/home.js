@@ -15,7 +15,7 @@ function Home() {
                 <a href="/todo" className="link-bubble link5">To do list</a>
             </div>
             {/* Image with attribution */}
-            <div className="image-container">
+            <div className="home-image-container">
                 <img 
                     src={macbookImage} 
                     alt="MacBook Illustration" 

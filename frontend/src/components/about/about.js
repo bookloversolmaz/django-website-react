@@ -6,7 +6,7 @@ import aboutImage from '../images/pixeltrue-idea-1.png';
 function About() {
     return (
       <div>
-        <h1>About</h1>
+        <h1 className='about-heading'>About</h1>
         <p className='about-me'> I am a software developer based in London, UK. I recently graduated from Makers software development bootcamp 
             and have been further developing my skills via projects, coding challenges and volunteering with Unify Giving.
             Before my career change, I was an editor and writer for several years. You can find examples of my work in 
@@ -16,7 +16,7 @@ function About() {
             You can also contact me <Link to="/contact">here.</Link>
         </p>
         {/* Image with attribution */}
-        <div className="image-container">
+        <div className="about-image-container">
           <img 
             src={aboutImage} 
             alt="Woman Illustration" 
