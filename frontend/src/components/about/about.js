@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './about.css'
+import aboutImage from '../images/pixeltrue-idea-1.png';
 
 function About() {
     return (
@@ -14,8 +15,16 @@ function About() {
             rel="noopener noreferrer">LinkedIn</a> and <a href="https://github.com/bookloversolmaz" target="_blank" rel="noopener noreferrer">GitHub</a>. 
             You can also contact me <Link to="/contact">here.</Link>
         </p>
+        {/* Image with attribution */}
+        <div className="image-container">
+          <img 
+            src={aboutImage} 
+            alt="Woman Illustration" 
+            className="about-image" 
+          />
+        </div>
         <footer className="attribution">
-                Homepage illustration by <a href="https://icons8.com/illustrations/author/SH5qVUiWnjy4" target="_blank" rel="noopener noreferrer">Vijay Verma Ouch!</a> 
+                Illustrations by <a href="https://icons8.com/illustrations" target="_blank" rel="noopener noreferrer">Icons8</a> 
         </footer>
       </div>
   );
