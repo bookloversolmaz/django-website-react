@@ -14,6 +14,9 @@ function About() {
             rel="noopener noreferrer">LinkedIn</a> and <a href="https://github.com/bookloversolmaz" target="_blank" rel="noopener noreferrer">GitHub</a>. 
             You can also contact me <Link to="/contact">here.</Link>
         </p>
+        <footer className="attribution">
+                Homepage illustration by <a href="https://icons8.com/illustrations/author/SH5qVUiWnjy4" target="_blank" rel="noopener noreferrer">Vijay Verma Ouch!</a> 
+        </footer>
       </div>
   );
 };
