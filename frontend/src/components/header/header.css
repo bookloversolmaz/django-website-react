@@ -13,11 +13,15 @@ header {
     right: 0; /* Ensure it ends at the very right */
     z-index: 1000; /* Ensure it stays on top of other content */
     margin: 0; /* Remove any margin */
+    height: 3rem;
 }
 
 /* Ensure the main body content is not hidden under the fixed header */
 body {
     margin-top: 5rem; /* Adjust this depending on the height of your header */
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent scrollbars */
 }
 
 .nav-list {

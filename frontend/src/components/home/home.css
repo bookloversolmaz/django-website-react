@@ -1,24 +1,52 @@
 .home-container {
-  position: static; /* Ensure it aligns naturally at the top of the page */
-  height: 100vh; /* Full viewport height */
-  width: 100%; /* Full-width container */
-  padding: 0; /* Match global padding defined in index.css */
+  position: relative;
+  text-align: center;
+  padding: 1rem; /* Adjust padding for compactness */
+  font-family: 'Inter', sans-serif;
+  height: calc(100vh - 3rem); /* Full viewport minus header height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
 }
 
 .home-container h1 {
-  font-size: 40px; /* Match size defined in index.css */
-  margin-top: -2rem; /* Remove additional margin */
+  font-size: 40px; /* Keep the font size */
+  margin-top: -1rem; /* Adjust the space from the top */
+  margin-bottom: 0.5rem; /* Reduce space below h1 */
 }
 
 .home-container h2 {
-  font-size: 25px; /* Match size defined in index.css */
-  margin-top: -1.5rem; /* Spacing below h1 */
+  font-size: 25px; /* Keep the font size */
+  margin-top: 0; /* Remove extra space above h2 */
+}
+
+.image-container {
+  position: relative; /* Keep positioning flexible */
+  max-width: 150%; /* Increase width by 50% */
+  max-height: calc(100vh - 5rem); /* Adjust height to fit within the viewport */
+  height: auto; /* Maintain aspect ratio */
+  margin: -4rem auto 0; /* Center with smaller margin */
+  opacity: 0.9; /* Keep slight transparency */
+  pointer-events: none; /* Non-interactive */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center image */
+}
+
+.home-image {
+  width: 100%; /* Ensure responsiveness */
+  max-width: 600px; /* Increase absolute maximum width by 50% */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Prevent distortion */
+  display: block; /* Ensure proper block-level behavior */
 }
 
 /* Individual link bubbles */
 .link-bubble {
   position: absolute; /* Allow free placement on the page */
   display: flex;
+  font-size: 18px !important; /* Default size for body text */
   justify-content: center;
   align-items: center;
   text-decoration: none;
@@ -34,37 +62,37 @@
 
 /* Default sizes and positions for each bubble */
 .link1 {
-  width: 100px;
-  height: 100px;
-  top: 20%;
-  left: 10%;
+  width: 110px;
+  height: 110px;
+  top: 10%;
+  left: 3%;
 }
 
 .link2 {
-  width: 80px;
-  height: 80px;
-  top: 30%;
-  left: 65%;
+  width: 100px;
+  height: 100px;
+  top: 20%;
+  left: 20%;
 }
 
 .link3 {
-  width: 140px;
-  height: 140px;
-  top: 50%;
-  left: 45%;
+  width: 100px;
+  height: 100px;
+  top: 15%;
+  left: 70%;
 }
 
 .link4 {
-  width: 80px;
-  height: 80px;
-  top: 45%;
-  left: 20%;
+  width: 90px;
+  height: 90px;
+  top: 40%;
+  left: 10%;
 }
 
 .link5 {
   width: 110px;
   height: 110px;
-  top: 50%; /* Further down */
+  top: 30%; /* Further down */
   left: 85%; /* Offset to the right */
 }
 
@@ -78,30 +106,6 @@
 .link-bubble:active {
   transform: scale(1.5); /* Expand on click */
   background-color: #324857; /* Even darker */
-}
-.home-container {
-  position: relative;
-  text-align: center;
-  padding: 2rem;
-  font-family: 'Inter', sans-serif;
-}
-
-.image-container {
-  position: absolute; /* Position the container relative to the page */
-  right: 0; /* Align the image to the right edge */
-  top: 50%; /* Vertically center the image */
-  transform: translateY(-50%); /* Offset the image to achieve perfect centering */
-  z-index: -1; /* Push the image behind other content if necessary */
-  overflow: hidden; /* Prevent accidental overflow */
-}
-
-.home-image {
-  max-width: 40%; /* Set a responsive width */
-  height: auto; /* Maintain aspect ratio */
-  border: none; /* Ensure no borders */
-  box-shadow: none; /* Remove shadows */
-  opacity: 0.9; /* Slight transparency to blend into the background */
-  pointer-events: none; /* Ensure it doesn't interfere with clicks */
 }
 
 .attribution {
@@ -120,4 +124,65 @@
 
 .attribution a:hover {
   color: #0056b3; /* Darker blue on hover */
+}
+
+/* For medium screens (tablets, ~768px width) */
+@media (max-width: 768px) {
+  header {
+      padding: 0.5rem 1rem;
+      font-size: 16px;
+  }
+
+  .home-container {
+      padding: 1rem;
+  }
+
+  .image-container {
+    max-width: 60%; /* Smaller width for tablets */
+    max-height: calc(100vh - 12rem); /* Adjust height to avoid overflow */
+  }
+
+  .link-bubble {
+      width: 70px;
+      height: 70px;
+      font-size: 0.7rem;
+  }
+
+  .social-links {
+      gap: 0.8rem; /* Reduce gap for smaller space */
+  }
+}
+
+/* For small screens (mobile, ~480px width and below) */
+@media (max-width: 480px) {
+  header {
+      padding: 0.5rem;
+      font-size: 14px;
+  }
+
+  .home-container {
+      flex-direction: column; /* Stack elements vertically */
+      padding: 0.5rem;
+  }
+
+  .image-container {
+    max-width: 80%; /* Further reduction for mobile */
+    max-height: calc(100vh - 15rem); /* More height adjustment for smaller devices */
+  }
+  .link-bubble {
+      width: 60px;
+      height: 60px;
+      font-size: 0.6rem;
+  }
+
+  .social-links {
+      font-size: 10px;
+      gap: 0.5rem; /* Smaller gap */
+  }
+
+  .attribution {
+      font-size: 0.6rem; /* Smaller text */
+      bottom: 0.3rem;
+      right: 0.5rem;
+  }
 }
