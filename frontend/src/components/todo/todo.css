@@ -11,9 +11,10 @@
 
 /* Heading styles */
 .ToDo h1 {
-    font-size: 36px;
+    font-size: 40px;
     text-align: center;
     margin-bottom: 2rem;
+    margin-top: -1rem;
     color: #333;
 }
 
