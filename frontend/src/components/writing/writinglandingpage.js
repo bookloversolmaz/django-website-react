@@ -39,7 +39,7 @@ const WritingLandingPage = () => {
 
   return (
     <div>
-      <h1>Writing</h1>
+      <h1 className='landing-page-heading'>Writing</h1>
       {sortedPosts.length === 0 ? (
         <div>Loading...</div>
       ) : (

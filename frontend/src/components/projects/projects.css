@@ -1,9 +1,14 @@
+.project-header {
+    margin-top: 4rem;
+}
 .projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
     margin: 0 auto;
+    margin: -2rem auto 0; /* Add a top margin to push content below the header */
+    max-width: 1200px; /* Optional: limit the width for better appearance */
 }
 
 .project-block {

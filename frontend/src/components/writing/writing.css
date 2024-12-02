@@ -7,6 +7,16 @@ p {
     color: #000000; /* Optional: Adjust paragraph text color */
   }
 
+.landing-page-heading {
+  margin-top: 4rem;
+  margin-bottom: 0.5rem;
+
+  }
+
+.return-button {
+  margin-top: 4.5rem;
+}
+
 .writing-title{
     font-weight: bold;
   }

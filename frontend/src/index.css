@@ -7,21 +7,24 @@ h1, h2, h3 {
   text-align: center;
   font-size: 40px;
 }
-
+html, body {
+  height: 100%;  /* Ensure the elements take the full viewport height */
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-image: url('../public/pexels-padrinan-255379.jpg'); /* Path to your image */
+  background-size: cover; /* Cover the entire viewport */
+  background-repeat: no-repeat; /* Avoid tiling the background */
+  background-attachment: fixed; /* Ensure background stays fixed during scroll */
+  background-position: center; /* Center the image */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto;
+}
+/* Additional styles for other elements */
 body {
-  height: 100%; /* Makes sure both html and body take up the full height */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  font-family: 'Inter', sans-serif; /* Set font family */
-  font-size: 18px; /* Set font size */
-  line-height: 1.6; /* Set line height for readability */
-  color: black; /* Set text color */
-  background-image: url('../public/pexels-padrinan-255379.jpg'); /* Set background image */
-  background-size: cover; /* Make sure the background image covers the whole viewport */
-  background-position: center; /* Center the background image */
-  min-height: 100vh; /* Ensure body takes at least full viewport height */
-  overflow-x: hidden; /* Disable horizontal scrolling */
-  overflow-y: auto; /* Enable vertical scrolling when needed */
+  line-height: 1.6;
+  font-size: 18px;
+  color: black;
 }
 
 p {
@@ -114,5 +117,18 @@ a.button-link:disabled {
   transform: none;
 }
 
+@media (max-width: 768px) {
+  html, body {
+    background-attachment: scroll; /* Use scrollable background on smaller screens */
+  }
+  .section {
+    grid-template-columns: 1fr; /* Stack sections on smaller screens */
+  }
+}
 
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+}
 /* colours: main header #cb4335, second: #35bdcb, darker colour #21767f, very light #e6f7f9 */

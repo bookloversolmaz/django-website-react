@@ -22,9 +22,6 @@ function Home() {
                     className="home-image" 
                 />
             </div>
-            <footer className="attribution">
-                Illustrations by <a href="https://icons8.com/illustrations/author/SH5qVUiWnjy4" target="_blank" rel="noopener noreferrer">Icons8</a> 
-            </footer>
         </div>
     );
 }

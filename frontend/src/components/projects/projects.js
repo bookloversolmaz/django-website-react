@@ -28,6 +28,8 @@ const Projects = () => {
     if (error) return <p>{error}</p>;
 
     return (
+        <div className='projects-page'>
+            <h1 className='project-header'>Projects</h1>
         <div className="projects-container">
             {/* To Do List Block */}
             <div className="project-block">
@@ -74,6 +76,7 @@ const Projects = () => {
                 </div>
             ))}
         </div>
+    </div>
     );
 };
 

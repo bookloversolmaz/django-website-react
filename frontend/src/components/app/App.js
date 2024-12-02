@@ -11,7 +11,6 @@ import WritingLandingPage from '../writing/writinglandingpage.js'
 import PostDetail from "../writing/postdetail.js";
 import ContactPage from "../contact/contact.js";
 import About from "../about/about.js"
-import '../../index.css';  //Global styles
 import Header from '../header/header.js';  //Header component
 
 const App = () => {
