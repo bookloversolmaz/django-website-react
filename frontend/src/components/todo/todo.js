@@ -71,9 +71,8 @@ const ToDo = () => {
   };
 
   return (
+    <div> <h1 className='todo-header'>To do list</h1>
     <div className="ToDo">
-      <h1>To do list</h1>
-
       <div className="Top">
         <input
           className="input"
@@ -96,6 +95,7 @@ const ToDo = () => {
         ))}
       </ul>
     </div>
+  </div>
   );
 };
 

@@ -29,10 +29,10 @@ body {
     padding: 0.5rem;
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 15px; /* Slightly smaller font size */
     font-weight: 400; /* Regular weight for nav links */
-    gap: 0.5rem; /* Add some space between the nav links */
-    gap: 2.5rem
+    gap: 1.5rem; /* Reduce spacing between links */
+    white-space: nowrap; /* Prevent links from wrapping to the next line */
 }
 
 .dropdown {
@@ -75,9 +75,9 @@ body {
 }
 
 .social-links {
-    font-size: 14px;
+    font-size: 12px; /* Smaller font size for social links */
     display: flex;
-    gap: 2.5rem;
+    gap: 1rem; /* Reduce gap between icons */
     align-items: center; /* Vertically align the icons */
 }
 

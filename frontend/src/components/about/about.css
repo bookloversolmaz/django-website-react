@@ -2,11 +2,12 @@
     margin-right: 15rem !important;
     margin-left: 15rem !important;
     font-size: 18px !important; /* Default size for body text */
+    margin-top: 0.4rem;
 }
 
 .about-heading {
     font-size: 40px; /* Keep the font size */
-    margin-top: 4rem; /* Adjust the space from the top */
+    margin-top: 3rem; /* Adjust the space from the top */
     margin-bottom: 0.5rem; /* Reduce space below h1 */
 }
 

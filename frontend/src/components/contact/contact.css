@@ -1,3 +1,8 @@
+/* Apply box-sizing globally for consistent behavior */
+* {
+    box-sizing: border-box;
+}
+
 .contact-page {
     max-width: 100%; /* Ensure it can stretch to 100% of the container */
     width: 100%;
@@ -8,9 +13,8 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Ensures padding doesn't exceed width */
     overflow-y: auto; /* Allows scrolling if the content exceeds the height */
-    max-height: 90vh; /* Set a maximum height to prevent the form from being too long */
+    max-height: 90vh; /* Prevent the form from being too long */
 }
 
 .contact-page h1 {
@@ -45,7 +49,6 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
-    box-sizing: border-box; /* Prevents the input from overflowing */
 }
 
 .contact-form input:focus,
@@ -91,11 +94,12 @@
     .contact-page {
         padding: 1rem; /* Reduce padding on smaller screens */
         margin: 1rem; /* Reduce margin */
+        font-size: 0.9rem; /* Slightly smaller text for mobile */
     }
 
     .contact-form input,
     .contact-form textarea {
-        font-size: 0.9rem; /* Slightly smaller text for mobile */
+        font-size: 0.9rem; /* Slightly smaller input and textarea font size */
     }
 
     .contact-form button {

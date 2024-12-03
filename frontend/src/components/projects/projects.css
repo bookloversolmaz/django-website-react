@@ -1,5 +1,6 @@
 .project-header {
-    margin-top: 4rem;
+    margin-top: 3rem;
+    margin-bottom: 0.5rem;
 }
 .projects-container {
     display: grid;
@@ -7,7 +8,7 @@
     gap: 20px;
     padding: 20px;
     margin: 0 auto;
-    margin: -2rem auto 0; /* Add a top margin to push content below the header */
+    margin: -0.4rem auto 0; /* Add a top margin to push content below the header */
     max-width: 1200px; /* Optional: limit the width for better appearance */
 }
 

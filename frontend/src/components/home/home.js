@@ -4,9 +4,9 @@ import macbookImage from '../images/gummy-macbook.png';
 
 function Home() {
     return (
+        <div> <h1>Solmaz Purser</h1>
+        <h2>Software developer and writer</h2>
         <div className="home-container">
-            <h1>Solmaz Purser</h1>
-            <h2>Software developer and writer</h2>
             <div className="links-container">
                 <a href="/about" className="link-bubble link1">About</a>
                 <a href="/projects" className="link-bubble link2">Projects</a>
@@ -22,6 +22,7 @@ function Home() {
                     className="home-image" 
                 />
             </div>
+        </div>
         </div>
     );
 }

@@ -3,19 +3,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 2rem; /* Add padding to create space under the fixed header */
+    padding-top: 1rem; /* Add padding to create space under the fixed header */
     font-family: 'Inter', sans-serif;
     min-height: 100vh; /* Ensure it covers the full screen height */
     box-sizing: border-box;
 }
 
-/* Heading styles */
-.ToDo h1 {
-    font-size: 40px;
-    text-align: center;
-    margin-bottom: 2rem;
-    margin-top: -1rem;
-    color: #333;
+.todo-header {
+    margin-bottom: 0.5rem;
+    margin-top: 3rem;
 }
 
 /* Centering the input form */
