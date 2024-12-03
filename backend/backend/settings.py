@@ -88,6 +88,7 @@ CORS_ALLOW_HEADERS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
+    'https://solmazpurser.com',
     'http://localhost:3000',
     'http://127.0.0.1',
     'http://172.21.43.216:3000',
