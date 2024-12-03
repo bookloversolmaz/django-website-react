@@ -116,7 +116,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+ASGI_APPLICATION = 'backend.asgi.application'
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
