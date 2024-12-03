@@ -2,7 +2,7 @@ databases:
   - name: website
     plan: free
     databaseName: website
-    user: postgres
+    user: website
 
 services:
   - type: web
