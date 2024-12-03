@@ -29,7 +29,7 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 
 # Database settings
 DATABASES = {
-    'default': {
+    'default': dj_database_url.config ({
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config("DATABASE_NAME"),
         'TEST': {
@@ -41,6 +41,7 @@ DATABASES = {
         'PORT': config("DATABASE_PORT"),
         'URL': config("DATABASE_URL"),
     }
+    )
 }
 
 # Application definition
@@ -90,6 +91,9 @@ CORS_ALLOW_HEADERS = [
 
 CORS_ALLOWED_ORIGINS = [
     'https://solmazpurser.com',
+    'http://localhost:3000',  # React frontend during development
+    'http://127.0.0.1:3000',  # React frontend during development
+    'http://localhost:8000',  # Django backend in development
 ]
 
 CORS_ALLOW_METHODS = [
