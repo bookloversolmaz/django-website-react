@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './projects.css'; // Page-specific styles (loaded last)
+import todoListGif from '../images/todo_list_demo.gif';
 
 const Projects = () => {
     const [projects, setProjects] = useState([]);
@@ -35,7 +36,7 @@ const Projects = () => {
             <div className="project-block">
                 <div className="project-image-container">
                     <img
-                        src="todo-placeholder.jpg" // Replace with your To-Do list image URL
+                        src={todoListGif} // Replace with your To-Do list image URL
                         alt="To Do List"
                         className="project-image"
                     />
