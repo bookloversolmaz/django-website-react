@@ -27,22 +27,20 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'  # SendGrid username is always 'apikey'
 EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 
-# Database settings
 DATABASES = {
-    'default': dj_database_url.config ({
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config("DATABASE_NAME"),
-        'TEST': {
-            'NAME': config("DATABASE_TEST"),
-        },
         'USER': config("DATABASE_USER"),
         'PASSWORD': config("DATABASE_PASSWORD"),
         'HOST': config("DATABASE_HOST"),
         'PORT': config("DATABASE_PORT"),
-        'URL': config("DATABASE_URL"),
+        'TEST': {
+            'NAME': config("DATABASE_TEST"),
+        }
     }
-    )
 }
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -52,9 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'todo',
     'home',
     'projects',
+    'todo',
     'writing',
     'contact',
     'rest_framework',
