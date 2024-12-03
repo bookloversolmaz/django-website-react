@@ -6,12 +6,12 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # Set your secret key from the .env file
 SECRET_KEY = config('SECRET_KEY')
 
 # Allowed hosts
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'your-local-ip-address']
+ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com']
 
 # Email settings for SendGrid
 SENDGRID_API_KEY = config('SENDGRID_API_KEY')
@@ -27,6 +27,7 @@ EMAIL_HOST_USER = 'apikey'  # SendGrid username is always 'apikey'
 EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 
 # Database settings
+import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -38,6 +39,7 @@ DATABASES = {
         'PASSWORD': config("DATABASE_PASSWORD"),
         'HOST': config("DATABASE_HOST"),
         'PORT': config("DATABASE_PORT"),
+        'URL': config("DATABASE_URL"),
     }
 }
 
@@ -130,6 +132,31 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files
-STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'build/static',  # Path to the React static files (after build)
+]
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            BASE_DIR / 'frontend/build',  # React build index.html
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
