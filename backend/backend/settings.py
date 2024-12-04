@@ -7,10 +7,8 @@ import dj_database_url
 # env.read_env()
 
 import environ
-
-# Initialize environment variables
 env = environ.Env()
-env.read_env()  # Reads .env file
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,14 +49,33 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 #     } 
 # }
 
-DATABASES = {
-    'default': env.db(
-        # Replace this value with your local database's connection string.
-        default=env.db('DATABASE_URL'),
-        conn_max_age=600
-    ),
-} 
+# DATABASES = {
+#     'default': env.db(
+#         # Replace this value with your local database's connection string.
+#         default=env.db('DATABASE_URL'),
+#         conn_max_age=600
+#     )
+# } 
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=env('DATABASE_URL')
+    )
+}
+
+# Additional settings can be added separately
+DATABASES['default'].update({
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': env('DATABASE_NAME'),
+    'USER': env('DATABASE_USER'),
+    'PASSWORD': env('DATABASE_PASSWORD'),
+    'HOST': env('DATABASE_HOST'),
+    'PORT': env('DATABASE_PORT'),
+    'TEST': {
+        'NAME': env('DATABASE_TEST'),
+    },
+    'CONN_MAX_AGE': 600,  # This sets the database connection max age
+})
 STORAGE = {
     "default":{
         "BACKEND": "django.core.files.storage.FileSystemStorage",
