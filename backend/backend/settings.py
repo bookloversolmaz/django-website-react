@@ -139,7 +139,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
 
 # Static files directory to collect all static files (for production)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR/'staticfiles'
 
 # Directory where React static files are located (during development)
 STATICFILES_DIRS = [
