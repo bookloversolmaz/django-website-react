@@ -1,5 +1,4 @@
 from pathlib import Path
-from decouple import config
 import os
 import dj_database_url
 
@@ -9,16 +8,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 # Set your secret key from the .env file
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ('SECRET_KEY')
 
 # Allowed hosts
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost']
 
 # Email settings for SendGrid
-SENDGRID_API_KEY = config('SENDGRID_API_KEY')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
-REPLY_TO_EMAIL = config('DEFAULT_FROM_EMAIL')
-SENDGRID_SANDBOX_MODE_IN_DEBUG = config('SENDGRID_SANDBOX_MODE_IN_DEBUG', default=False, cast=bool)
+SENDGRID_API_KEY = os.environ('SENDGRID_API_KEY')
+DEFAULT_FROM_EMAIL = os.environ('DEFAULT_FROM_EMAIL')
+REPLY_TO_EMAIL = os.environ('DEFAULT_FROM_EMAIL')
+SENDGRID_SANDBOX_MODE_IN_DEBUG = os.environ('SENDGRID_SANDBOX_MODE_IN_DEBUG', default=False, cast=bool)
 
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
@@ -29,15 +28,15 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 
 DATABASES = {
     'default': {
-        'URL': config("DATABASE_URL"),
+        'URL': os.environ("DATABASE_URL"),
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config("DATABASE_NAME"),
-        'USER': config("DATABASE_USER"),
-        'PASSWORD': config("DATABASE_PASSWORD"),
-        # 'HOST': config("DATABASE_HOST"),
-        # 'PORT': config("DATABASE_PORT"),
+        'NAME': os.environ("DATABASE_NAME"),
+        'USER': os.environ("DATABASE_USER"),
+        'PASSWORD': os.environ("DATABASE_PASSWORD"),
+        # 'HOST': os.environ("DATABASE_HOST"),
+        # 'PORT': os.environ("DATABASE_PORT"),
         'TEST': {
-            # 'NAME': config("DATABASE_TEST"),
+            # 'NAME': os.environ("DATABASE_TEST"),
         }
     } 
 }
