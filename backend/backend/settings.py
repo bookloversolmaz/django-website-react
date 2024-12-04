@@ -132,17 +132,20 @@ LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+# Base directory for project
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Path to React build static files
+# Static files settings
+STATIC_URL = '/static/'
+
+# Static files directory to collect all static files (for production)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Directory where React static files are located (during development)
 STATICFILES_DIRS = [
-    BASE_DIR / 'frontend/build/static',  # Path to React static files (after build)
+    BASE_DIR / 'frontend/build/static',  # Path to React build output
 ]
 
-# Where Django collects all static files
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# The URL prefix to serve static files from
-STATIC_URL = '/static/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
