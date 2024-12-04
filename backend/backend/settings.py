@@ -12,7 +12,7 @@ DEBUG = False
 SECRET_KEY = config('SECRET_KEY')
 
 # Allowed hosts
-ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com']
+ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost']
 
 # Email settings for SendGrid
 SENDGRID_API_KEY = config('SENDGRID_API_KEY')
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'backend',
     'home',
     'projects',
     'todo',
@@ -132,15 +133,13 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files
 STATICFILES_DIRS = [
     BASE_DIR / 'build/static',  # Path to the React static files (after build)
 ]
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Static files
+STATIC_URL = 'build/static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'build/static')
 
 
 TEMPLATES = [
