@@ -10,7 +10,7 @@ import environ
 
 # Initialize environment variables
 env = environ.Env()
-environ.Env.read_env()  # Read the .env file if available
+env.read_env()  # Reads .env file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,7 +52,7 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 # }
 
 DATABASES = {
-    'default': dj_database_url.config(
+    'default': env.db(
         # Replace this value with your local database's connection string.
         default=env.db('DATABASE_URL'),
         conn_max_age=600
