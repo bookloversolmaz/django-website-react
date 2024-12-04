@@ -38,6 +38,14 @@ DATABASES = {
         'TEST': {
             'NAME': config("DATABASE_TEST"),
         }
+    } 
+}
+STORAGE = {
+    "default":{
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"
     }
 }
 
