@@ -41,7 +41,7 @@ pycparser==2.22
 PyGObject==3.42.1
 PyJWT==2.3.0
 pyparsing==2.4.7
-python-apt==2.4.0+ubuntu3
+python-apt==2.4.0+ubuntu4
 python-decouple==3.8
 python-dotenv==1.0.1
 python-http-client==3.3.7
