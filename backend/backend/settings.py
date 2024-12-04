@@ -29,14 +29,15 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 
 DATABASES = {
     'default': {
+        'URL': config("DATABASE_URL"),
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config("DATABASE_NAME"),
         'USER': config("DATABASE_USER"),
         'PASSWORD': config("DATABASE_PASSWORD"),
-        'HOST': config("DATABASE_HOST"),
-        'PORT': config("DATABASE_PORT"),
+        # 'HOST': config("DATABASE_HOST"),
+        # 'PORT': config("DATABASE_PORT"),
         'TEST': {
-            'NAME': config("DATABASE_TEST"),
+            # 'NAME': config("DATABASE_TEST"),
         }
     } 
 }
