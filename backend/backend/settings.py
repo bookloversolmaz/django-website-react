@@ -51,22 +51,12 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 #     } 
 # }
 
-# Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
         default=env.db('DATABASE_URL'),
         conn_max_age=600
     ),
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': env("DATABASE_NAME"),
-    'USER': env("DATABASE_USER"),
-    'PASSWORD': env("DATABASE_PASSWORD"),
-    'HOST': env("DATABASE_HOST"),
-    'PORT': env("DATABASE_PORT"),
-    'TEST': {
-        'NAME': env("DATABASE_TEST"),
-    }
 } 
 
 STORAGE = {
