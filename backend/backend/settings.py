@@ -133,15 +133,16 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Path to React build static files
 STATICFILES_DIRS = [
-    BASE_DIR / 'build/static',  # Path to the React static files (after build)
+    BASE_DIR / 'frontend/build/static',  # Path to React static files (after build)
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# Static files
-STATIC_URL = 'build/static/'
 
+# Where Django collects all static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-
+# The URL prefix to serve static files from
+STATIC_URL = '/static/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
