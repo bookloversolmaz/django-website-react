@@ -91,7 +91,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django-environ',
+    'environ',
     'backend',
     'home',
     'projects',
@@ -174,8 +174,6 @@ LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-# Base directory for project
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Static files settings
 STATIC_URL = '/static/'
