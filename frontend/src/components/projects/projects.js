@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AxiosInstance from 'axiosinstance';
+import AxiosInstance from '../../axiosinstance'; 
 import { Link } from 'react-router-dom';
 import './projects.css'; // Page-specific styles (loaded last)
 import todoListGif from '../images/todo_list_demo.gif';

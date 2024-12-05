@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AxiosInstance from 'axiosinstance';
+import AxiosInstance from '../../axiosinstance'; 
 import { useParams, useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import './writing.css'
