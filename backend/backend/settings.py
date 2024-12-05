@@ -12,9 +12,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = False
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
+SECURE_SSL_REDIRECT = True
+
 
 # Allowed hosts
-ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com']
 
 # Email settings for SendGrid
 SENDGRID_API_KEY = env('SENDGRID_API_KEY')
@@ -28,29 +30,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'  # SendGrid username is always 'apikey'
 EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-
-# DATABASES = {
-#     'default': env.db('DATABASE_URL') {
-#         'URL': env("DATABASE_URL"),
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': env("DATABASE_NAME"),
-#         'USER': env("DATABASE_USER"),
-#         'PASSWORD': env("DATABASE_PASSWORD"),
-#         'HOST': env("DATABASE_HOST"),
-#         'PORT': env("DATABASE_PORT"),
-#         'TEST': {
-#             'NAME': env("DATABASE_TEST"),
-#         }
-#     } 
-# }
-
-# DATABASES = {
-#     'default': env.db(
-#         # Replace this value with your local database's connection string.
-#         default=env.db('DATABASE_URL'),
-#         conn_max_age=600
-#     )
-# } 
 
 DATABASES = {
     'default': dj_database_url.config(
