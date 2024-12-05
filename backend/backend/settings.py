@@ -59,20 +59,6 @@ DATABASES = {
     )
 }
 
-# Additional settings can be added separately
-# DATABASES['default'].update({
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': env('DATABASE_NAME'),
-#     'USER': env('DATABASE_USER'),
-#     'PASSWORD': env('DATABASE_PASSWORD'),
-#     'HOST': env('DATABASE_HOST'),
-#     'PORT': env('DATABASE_PORT'),
-#     'TEST': {
-#         'NAME': env('DATABASE_TEST'),
-#     },
-#     'CONN_MAX_AGE': 600,  # This sets the database connection max age
-# })
-
 STORAGE = {
     "default":{
         "BACKEND": "django.core.files.storage.FileSystemStorage",
