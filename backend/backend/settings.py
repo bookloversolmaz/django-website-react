@@ -33,7 +33,7 @@ EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=env('postgresql://postgres:postgres@localhost:5432/websitedatabase'),
+        default='postgresql://postgres:postgres@localhost:5432/websitedatabase',
         conn_max_age=600
     )
 }
