@@ -11,7 +11,7 @@ const WritingLandingPage = () => {
 
   const getPostData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/writing/');
+      const response = await AxiosInstance.get('/writing/');
       if (response.status === 200) {
         setPosts(response.data);
       } else {

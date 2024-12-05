@@ -34,7 +34,7 @@ function ContactPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/contact/', formData, {
+            const response = await AxiosInstance.post('/contact/', formData, {
                 headers: {
                     'object': 'formobject',
                 },
