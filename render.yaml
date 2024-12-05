@@ -2,7 +2,7 @@ databases:
   - name: website
     plan: free
     databaseName: website
-    user: postgres
+    user: spurser_user
 
 services:
   - type: web
