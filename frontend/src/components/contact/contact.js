@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import AxiosInstance from 'axiosinstance';
 import './contact.css';
 
 // State initialisation: formData holds the data entered by the user in the below fields. setFormData updates the fields with the user's input
