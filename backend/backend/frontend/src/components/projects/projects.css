@@ -1,0 +1,81 @@
+.project-header {
+    margin-top: 3rem;
+    margin-bottom: 0.5rem;
+}
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    margin: -0.4rem auto 0; /* Add a top margin to push content below the header */
+    max-width: 1200px; /* Optional: limit the width for better appearance */
+}
+
+.project-block {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f7fc;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    color: #000000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-block:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Title Styling for other projects (wrapped in p tags) */
+.project-title p {
+    text-decoration: none;
+    font-size: 20px !important;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Container for the image */
+.project-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    margin: 10px 0;
+}
+.project-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+/* Project Description Styling */
+.project-description {
+    line-height: normal; /* Reduced line height */
+    margin: 0.5rem 0; /* Less space around paragraphs */
+    color: #000000;
+}
+
+p {
+    font-size: 14px !important;
+    line-height: normal !important;
+    margin: 0 !important;
+    margin: 0.5rem 0 !important; /* Add space above and below paragraphs */
+    color: #000000; /* Optional: Adjust paragraph text color */
+}
+
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+}
