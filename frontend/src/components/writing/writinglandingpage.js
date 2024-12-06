@@ -9,18 +9,29 @@ const WritingLandingPage = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
-  const getPostData = async () => {
-    try {
-      const response = await AxiosInstance.get('/writing/');
-      if (response.status === 200) {
-        setPosts(response.data);
-      } else {
-        console.error('Error fetching data: Response is undefined or status is not 200');
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error.message);
-    }
-  };
+import axios from 'axios';
+
+const getPostData = async () => {
+  try {
+    const response = await axios.get('https://django-website-react-1.onrender.com/writing/');
+    console.log(response.data);
+  } catch (error) {
+    console.error("Axios direct request error:", error.message);
+  }
+};
+
+  // const getPostData = async () => {
+  //   try {
+  //     const response = await AxiosInstance.get('/writing/');
+  //     if (response.status === 200) {
+  //       setPosts(response.data);
+  //     } else {
+  //       console.error('Error fetching data: Response is undefined or status is not 200');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error.message);
+  //   }
+  // };
 
   useEffect(() => {
     getPostData();
