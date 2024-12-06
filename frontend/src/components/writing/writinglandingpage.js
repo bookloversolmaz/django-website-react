@@ -84,20 +84,21 @@ const WritingLandingPage = () => {
   const getPostData = async () => {
     try {
       const response = await AxiosInstance.get('/writing/');
-      if (response.status === 200) {
-        // Ensure that every post has a 'body' field
-        const postsWithValidBody = response.data.map(post => ({
+      console.log('Fetched response:', response.data);
+      if (response.data && response.data.posts && Array.isArray(response.data.posts)) {
+        const postsWithValidBody = response.data.posts.map(post => ({
           ...post,
           body: post.body || '', // Provide a fallback for 'body' if it's undefined
         }));
         setPosts(postsWithValidBody);
       } else {
-        console.error('Error fetching data: Response is undefined or status is not 200');
+        console.error('Error: The posts data is not an array or is missing.');
       }
     } catch (error) {
       console.error('Error fetching data:', error.message);
     }
   };
+  
 
   useEffect(() => {
     getPostData();
