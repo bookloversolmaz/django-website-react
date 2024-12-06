@@ -14,10 +14,10 @@ DEBUG = False
 SECRET_KEY = env('SECRET_KEY')
 
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
-# SECURE_SSL_REDIRECT = True  
+SECURE_SSL_REDIRECT = True  
 
 # SET BELOW TO FALSE WHEN RUNNING IN DEVELOPMENT
-SECURE_SSL_REDIRECT = False
+# SECURE_SSL_REDIRECT = False
 
 
 # Allowed hosts
@@ -162,29 +162,11 @@ STATICFILES_DIRS = [
 ]
 
 # Set the directory for React's index.html
-# TEMPLATES = [
-#     {
-#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-#         'DIRS': [
-#             os.path.join(BASE_DIR, 'frontend/build'),  # React's index.html
-#         ],
-#         'APP_DIRS': True,
-#         'OPTIONS': {
-#             'context_processors': [
-#                 'django.template.context_processors.debug',
-#                 'django.template.context_processors.request',
-#                 'django.contrib.auth.context_processors.auth',
-#                 'django.contrib.messages.context_processors.messages',
-#             ],
-#         },
-#     },
-# ]
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'frontend', 'build'),  # Add this to locate the React build directory
+            os.path.join(BASE_DIR, 'frontend/build'),  # React's index.html
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -197,6 +179,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
