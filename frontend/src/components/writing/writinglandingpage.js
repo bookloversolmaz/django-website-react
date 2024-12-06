@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import AxiosInstance from '../../axiosinstance'; 
 import { useNavigate } from 'react-router-dom'; // Correctly import useNavigate
 import './writing.css'
-import axios from 'axios';
 
 // This is the writing landing page, which contains all of the blogs with the first 100 words of the body text.
 // The user can then click on the title of each blog and they are then taken to the post detail page
@@ -10,28 +9,18 @@ const WritingLandingPage = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
-
-const getPostData = async () => {
-  try {
-    const response = await axios.get('http://127.0.0.1:8000/writing/');
-    console.log(response.data);
-  } catch (error) {
-    console.error("Axios direct request error:", error.message);
-  }
-};
-
-  // const getPostData = async () => {
-  //   try {
-  //     const response = await AxiosInstance.get('/writing/');
-  //     if (response.status === 200) {
-  //       setPosts(response.data);
-  //     } else {
-  //       console.error('Error fetching data: Response is undefined or status is not 200');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error.message);
-  //   }
-  // };
+  const getPostData = async () => {
+    try {
+      const response = await AxiosInstance.get('/writing/');
+      if (response.status === 200) {
+        setPosts(response.data);
+      } else {
+        console.error('Error fetching data: Response is undefined or status is not 200');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+    }
+  };
 
   useEffect(() => {
     getPostData();
