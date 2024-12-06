@@ -154,16 +154,19 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Directory where React static files are located (during development)
+import os
+
+# Set up static file locations
 STATICFILES_DIRS = [
-    BASE_DIR / "frontend" / "build" / "static",
+    os.path.join(BASE_DIR, 'frontend/build/static'),  # React's static files
 ]
 
-
+# Set the directory for React's index.html
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'frontend/build',  # React build index.html
+            os.path.join(BASE_DIR, 'frontend/build'),  # React's index.html
         ],
         'APP_DIRS': True,
         'OPTIONS': {
