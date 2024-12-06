@@ -53,9 +53,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # Serve the React frontend (index.html) at the root URL
-    urlpatterns = [
-    path('', TemplateView.as_view(template_name="index.html"), name='home'),  # Serve React index.html
-]
+    path('', TemplateView.as_view(template_name="index.html"), name='home'),
+
 
     # Admin URL
     path('admin/', admin.site.urls),
