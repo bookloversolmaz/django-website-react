@@ -1,0 +1,108 @@
+/* Apply box-sizing globally for consistent behavior */
+* {
+    box-sizing: border-box;
+}
+
+.contact-page {
+    max-width: 100%; /* Ensure it can stretch to 100% of the container */
+    width: 100%;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+    background-color: #f0f7fc;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Allows scrolling if the content exceeds the height */
+    max-height: 90vh; /* Prevent the form from being too long */
+}
+
+.contact-page h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adds space between form groups */
+}
+
+.contact-form .form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%; /* Make inputs take up the full width */
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #ec7063;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.contact-form button {
+    background-color: #ec7063;
+    color: black;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Make the button take up the full width */
+}
+
+.contact-form button:hover {
+    background-color: #b1544a;
+}
+
+/* Thank You Section */
+.thank-you {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.thank-you h2 {
+    margin-bottom: 1rem;
+}
+
+.thank-you p {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 600px) {
+    .contact-page {
+        padding: 1rem; /* Reduce padding on smaller screens */
+        margin: 1rem; /* Reduce margin */
+        font-size: 0.9rem; /* Slightly smaller text for mobile */
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 0.9rem; /* Slightly smaller input and textarea font size */
+    }
+
+    .contact-form button {
+        padding: 0.75rem; /* Adjust button padding */
+    }
+}
