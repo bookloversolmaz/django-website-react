@@ -45,7 +45,6 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 from todo import views as todo_views
-from home import views as home_views
 from writing import views as writing_views
 from projects import views as project_views
 from contact import views as contact_views
@@ -62,7 +61,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Other API or views
-    path('', home_views.HomeView.as_view(), name='home'),
     path('todo/', todo_views.TodoListView.as_view(), name='todo'),
     path('todo/<int:pk>/', todo_views.TodoDetailView.as_view(), name='todo-detail'),  # Corrected name
     path('writing/', writing_views.WritingListView.as_view(), name='writing-list'),
