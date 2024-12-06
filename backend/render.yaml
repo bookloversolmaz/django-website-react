@@ -9,7 +9,7 @@ services:
     plan: free
     name: website
     runtime: python
-    buildCommand: "backend/build.sh"
+    buildCommand: "./build.sh"
     startCommand: "python3 -m gunicorn backend.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
