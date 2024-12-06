@@ -12,8 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = False
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
+
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
 # SECURE_SSL_REDIRECT = True  
+
 # SET BELOW TO FALSE WHEN RUNNING IN DEVELOPMENT
 SECURE_SSL_REDIRECT = False
 
