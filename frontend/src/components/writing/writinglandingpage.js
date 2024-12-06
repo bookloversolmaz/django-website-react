@@ -1,84 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import AxiosInstance from '../../axiosinstance'; 
-import { useNavigate } from 'react-router-dom'; // Correctly import useNavigate
-import './writing.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Correctly import useNavigate
+import './writing.css';
 
-// This is the writing landing page, which contains all of the blogs with the first 100 words of the body text.
-// The user can then click on the title of each blog and they are then taken to the post detail page
 const WritingLandingPage = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
-
-const getPostData = async () => {
-  try {
-    const response = await axios.get('https://django-website-react-1.onrender.com/writing/');
-    console.log(response.data);
-  } catch (error) {
-    console.error("Axios direct request error:", error.message);
-  }
-};
-
-  // const getPostData = async () => {
-  //   try {
-  //     const response = await AxiosInstance.get('/writing/');
-  //     if (response.status === 200) {
-  //       setPosts(response.data);
-  //     } else {
-  //       console.error('Error fetching data: Response is undefined or status is not 200');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error.message);
-  //   }
-  // };
+  const getPostData = async () => {
+    try {
+      const response = await axios.get('https://django-website-react-1.onrender.com/writing/');
+      console.log("Fetched posts:", response.data); // Inspect response structure
+      setPosts(Array.isArray(response.data) ? response.data : []); // Update state
+    } catch (error) {
+      console.error("Axios direct request error:", error.message);
+      setPosts([]); // Fallback to empty array
+    }
+  };
 
   useEffect(() => {
     getPostData();
   }, []);
-  
-  // Sort posts by 'created_on' date, with newest at the top
-  // The sortedPosts variable uses the Array.sort() method to sort the posts array by the created_on date in ascending order (oldest first).
-  // new Date(a.created_on): Converts the created_on string into a JavaScript Date object for comparison.
-  // Ascending Order: Subtracts a.created_on from b.created_on. To reverse the order, you could subtract b.created_on from a.created_on.
-  const sortedPosts = [...posts].sort((a, b) => new Date(b.created_on) - new Date(a.created_on));
 
-  // Function to handle post click
+  const sortedPosts = Array.isArray(posts)
+    ? [...posts].sort((a, b) => new Date(b.created_on) - new Date(a.created_on))
+    : [];
+
   const handlePostClick = (postId) => {
     navigate(`/writing/${postId}`); // Redirect to the detailed view of the post
   };
 
   return (
     <div>
-      <h1 className='landing-page-heading'>Writing</h1>
-      {sortedPosts.length === 0 ? (
-        <div>Loading...</div>
-      ) : (
+      <h1 className="landing-page-heading">Writing</h1>
+      {Array.isArray(sortedPosts) && sortedPosts.length > 0 ? (
         <div>
           {sortedPosts.map((post) => (
             <div className="writing-block" key={post.id}>
-              <h2 className='writing-title' style={{ cursor: 'pointer' }} onClick={() => handlePostClick(post.id)}>
+              <h2
+                className="writing-title"
+                style={{ cursor: 'pointer' }}
+                onClick={() => handlePostClick(post.id)}
+              >
                 {post.title}
               </h2>
-              <p>Publication date: {new Date(post.publication_date).toLocaleDateString('en-GB', {
-              day: '2-digit',
-              month: 'long',
-              year: 'numeric',
-              })}</p>
-              <p>Created on: {new Date(post.created_on).toLocaleDateString('en-GB', {
-              day: '2-digit',
-              month: 'long',
-              year: 'numeric',
-              })}</p>
               <p>
-                {post.body.length > 100 ? `${post.body.substring(0, 100)}...` : post.body}
+                Publication date:{' '}
+                {new Date(post.publication_date).toLocaleDateString('en-GB', {
+                  day: '2-digit',
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </p>
+              <p>
+                Created on:{' '}
+                {new Date(post.created_on).toLocaleDateString('en-GB', {
+                  day: '2-digit',
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </p>
+              <p>
+                {post.body.length > 100
+                  ? `${post.body.substring(0, 100)}...`
+                  : post.body}
               </p>
             </div>
           ))}
         </div>
+      ) : (
+        <div>Loading or no data available...</div>
       )}
     </div>
   );
 };
 
 export default WritingLandingPage;
+
