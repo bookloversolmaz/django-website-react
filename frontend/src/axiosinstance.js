@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'development') {
 // Create an Axios instance with the dynamic baseURL
 const AxiosInstance = axios.create({
     withCredentials: true,
-    baseURL: 'https://django-website-react-1.onrender.com',
+    baseURL: baseURL, // Use the dynamic baseURL variable here
     timeout: 10000, // Optional: Set a timeout for requests
     headers: {
         'Content-Type': 'application/json',
