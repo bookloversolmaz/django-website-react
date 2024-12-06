@@ -106,6 +106,8 @@ CORS_ALLOW_METHODS = [
     'DELETE', 'GET', 'OPTIONS', 'PATCH', 'POST', 'PUT',
 ]
 
+CORS_ALLOW_CREDENTIALS = True  # Allow credentials like cookies or authorization headers
+
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
