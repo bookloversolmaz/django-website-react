@@ -62,6 +62,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Other API or views
+    path('', home_views.HomeView.as_view(), name='home'),
     path('todo/', todo_views.TodoListView.as_view(), name='todo'),
     path('todo/<int:pk>/', todo_views.TodoDetailView.as_view(), name='todo-detail'),  # Corrected name
     path('writing/', writing_views.WritingListView.as_view(), name='writing-list'),
