@@ -150,8 +150,9 @@ STATIC_ROOT = BASE_DIR/'staticfiles'
 
 # Directory where React static files are located (during development)
 STATICFILES_DIRS = [
-    BASE_DIR / './frontend/build/static',  # Path to React build output
+    os.path.join(BASE_DIR, 'frontend', 'build', 'static'),
 ]
+
 
 TEMPLATES = [
     {
