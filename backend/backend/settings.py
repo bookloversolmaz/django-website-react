@@ -153,6 +153,8 @@ STATIC_URL = '/static/'
 # Static files directory to collect all static files (for production)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 # Directory where React static files are located (during development)
 import os
 
