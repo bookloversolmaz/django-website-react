@@ -56,7 +56,7 @@ class ContactView(APIView):
                 logger.error(f"Failed to send contact email for {contact.name} ({contact.email}): {e}")
                 return Response(
                     {"error": "Failed to send email", "details": str(e)}, 
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
             
             return Response(serializer.data, status=status.HTTP_201_CREATED)
