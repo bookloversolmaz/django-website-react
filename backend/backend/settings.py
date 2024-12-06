@@ -146,7 +146,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Static files directory to collect all static files (for production)
-STATIC_ROOT = BASE_DIR/'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Directory where React static files are located (during development)
 STATICFILES_DIRS = [
