@@ -12,7 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = False
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
-SECURE_SSL_REDIRECT = True
+# SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
+# SECURE_SSL_REDIRECT = True  
+# SET BELOW TO FALSE WHEN RUNNING IN DEVELOPMENT
+SECURE_SSL_REDIRECT = False
 
 
 # Allowed hosts
@@ -150,7 +153,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Directory where React static files are located (during development)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend', 'build', 'static'),
+    os.path.join(BASE_DIR, '../frontend/build/static'),
 ]
 
 
