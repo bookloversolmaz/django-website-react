@@ -203,3 +203,8 @@ LOGGING = {
         },
     },
 }
+
+
+import os
+print("BUILD PATH CHECK:", os.path.join(BASE_DIR, 'frontend', 'build', 'index.html'))
+print("FILES IN BUILD DIR:", os.listdir(os.path.join(BASE_DIR, 'frontend', 'build')))
