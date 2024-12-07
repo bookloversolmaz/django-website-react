@@ -5,10 +5,45 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
+import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
+
+BUILD_DIR = os.path.join(PROJECT_ROOT, 'frontend', 'build')
+
+# Check if the build directory exists
+if not os.path.exists(BUILD_DIR):
+    print("WARNING: React build directory not found. Make sure to run `npm run build`.")
+else:
+    print("React build directory found:", BUILD_DIR)
+
+# Template settings
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BUILD_DIR] if os.path.exists(BUILD_DIR) else [],  # Use only if exists
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+# # Static file settings
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [os.path.join(BUILD_DIR, 'static')] if os.path.exists(BUILD_DIR) else []
+
+
+# # Build paths inside the project like this: BASE_DIR / 'subdir'.
+# # BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -117,21 +152,21 @@ CORS_ALLOW_CREDENTIALS = True  # Allow credentials like cookies or authorization
 
 ROOT_URLCONF = 'backend.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_ROOT, 'frontend', 'build')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [os.path.join(PROJECT_ROOT, 'frontend', 'build')],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
+# ]
 
 ASGI_APPLICATION = 'backend.asgi.application'
 
@@ -204,8 +239,6 @@ LOGGING = {
         },
     },
 }
-
-import os
 
 print("PROJECT ROOT:", PROJECT_ROOT)
 print("BUILD PATH CHECK:", os.path.join(PROJECT_ROOT, 'frontend', 'build', 'index.html'))
