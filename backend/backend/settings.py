@@ -8,21 +8,17 @@ environ.Env.read_env()
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT_ROOT = os.path.dirname(BASE_DIR)
+PROJECT_ROOT = os.path.dirname(BASE_DIR)  # Adjust for the root of the repository
 
 BUILD_DIR = os.path.join(PROJECT_ROOT, 'frontend', 'build')
 
-# Check if the build directory exists
 if not os.path.exists(BUILD_DIR):
-    print("WARNING: React build directory not found. Make sure to run `npm run build`.")
-else:
-    print("React build directory found:", BUILD_DIR)
+    print("WARNING: React build directory not found at:", BUILD_DIR)
 
-# Template settings
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BUILD_DIR] if os.path.exists(BUILD_DIR) else [],  # Use only if exists
+        'DIRS': [BUILD_DIR] if os.path.exists(BUILD_DIR) else [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -34,6 +30,12 @@ TEMPLATES = [
         },
     },
 ]
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BUILD_DIR, 'static') if os.path.exists(BUILD_DIR) else ''
+]
+
 
 # # Static file settings
 # STATIC_URL = '/static/'
