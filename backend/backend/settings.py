@@ -5,17 +5,13 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-import os
-
-PORT = os.getenv('PORT', 8000)  # Default to 8000 if PORT is not provided
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'build')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(FRONTEND_DIR)],  # Add React's build directory here
+        'DIRS': [FRONTEND_DIR],  # Ensure this points to the React build directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -27,6 +23,8 @@ TEMPLATES = [
         },
     },
 ]
+
+PORT = os.getenv('PORT', 8000)  # Default to 8000 if PORT is not provided
 
 # Define the URL for accessing static files
 STATIC_URL = '/static/'
