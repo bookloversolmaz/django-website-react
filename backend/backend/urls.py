@@ -53,9 +53,9 @@ import os
 
 urlpatterns = [
     # Serve the React frontend (index.html) at the root URL
-    path('', TemplateView.as_view(template_name=os.path.join('frontend', 'build', 'index.html')), name='home'),
+    # path('', TemplateView.as_view(template_name=os.path.join('frontend', 'build', 'index.html')), name='home'),
     # path('', TemplateView.as_view(template_name="frontend/build/index.html"), name='home'),
-
+    path('', TemplateView.as_view(template_name="index.html")), 
 
     # Admin URL
     path('admin/', admin.site.urls),
