@@ -177,42 +177,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files settings
-STATIC_URL = '/static/'
-
-# Static files directory to collect all static files (for production)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-# Directory where React static files are located (during development)
-import os
-
-# Set up static file locations
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'frontend','build', 'static'),  # React's static files
-]
-
-# Set the directory for React's index.html
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'frontend/build'),  # React's index.html
-        ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGGING = {
@@ -232,7 +196,3 @@ LOGGING = {
         },
     },
 }
-
-print("PROJECT ROOT:", PROJECT_ROOT)
-print("BUILD PATH CHECK:", os.path.join(PROJECT_ROOT, 'frontend', 'build', 'index.html'))
-print("FILES IN BUILD DIR:", os.listdir(os.path.join(PROJECT_ROOT, 'frontend', 'build')))
