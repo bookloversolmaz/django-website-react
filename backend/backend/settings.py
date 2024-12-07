@@ -8,6 +8,7 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -119,7 +120,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [[os.path.join(BASE_DIR, 'frontend', 'build')],],
+        'DIRS': [os.path.join(PROJECT_ROOT, 'frontend', 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -161,7 +162,7 @@ import os
 
 # Set up static file locations
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend/build/static'),  # React's static files
+    os.path.join(PROJECT_ROOT, 'frontend','build', 'static'),  # React's static files
 ]
 
 # Set the directory for React's index.html
@@ -204,7 +205,8 @@ LOGGING = {
     },
 }
 
-
 import os
-print("BUILD PATH CHECK:", os.path.join(BASE_DIR, 'frontend', 'build', 'index.html'))
-print("FILES IN BUILD DIR:", os.listdir(os.path.join(BASE_DIR, 'frontend', 'build')))
+
+print("PROJECT ROOT:", PROJECT_ROOT)
+print("BUILD PATH CHECK:", os.path.join(PROJECT_ROOT, 'frontend', 'build', 'index.html'))
+print("FILES IN BUILD DIR:", os.listdir(os.path.join(PROJECT_ROOT, 'frontend', 'build')))
