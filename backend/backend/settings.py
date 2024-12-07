@@ -7,6 +7,8 @@ environ.Env.read_env()
 
 import os
 
+PORT = os.getenv('PORT', 8000)  # Default to 8000 if PORT is not provided
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'build')
 
@@ -25,7 +27,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 # Define the URL for accessing static files
 STATIC_URL = '/static/'
@@ -206,3 +207,5 @@ LOGGING = {
         },
     },
 }
+
+print(f"Application is running on port {os.getenv('PORT', '8000')}")
