@@ -26,7 +26,17 @@ TEMPLATES = [
     },
 ]
 
-STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'static')]
+
+# Define the URL for accessing static files
+STATIC_URL = '/static/'
+
+# Directory where collectstatic will copy all static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Additional locations of static files (e.g., React build directory's static folder)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '..', 'frontend', 'build', 'static'),  # React's static files
+]
 
 # # Static file settings
 # STATIC_URL = '/static/'
