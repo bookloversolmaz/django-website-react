@@ -26,10 +26,10 @@ DEBUG = False
 SECRET_KEY = env('SECRET_KEY')
 
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
-# SECURE_SSL_REDIRECT = True  
+SECURE_SSL_REDIRECT = True  
 
 # SET BELOW TO FALSE WHEN RUNNING IN DEVELOPMENT
-SECURE_SSL_REDIRECT = False
+# SECURE_SSL_REDIRECT = False
 
 # Allowed hosts
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com']
@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',  # configures django to serve over https ONLY USE IN DEVELOPMENT!
     'backend',
     'home',
     'projects',
