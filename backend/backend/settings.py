@@ -5,13 +5,15 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
+DEBUG=True
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'build')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [FRONTEND_DIR],  # Ensure this points to the React build directory
+        'DIRS': [FRONTEND_DIR, '/build'],  # Ensure this points to the React build directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
