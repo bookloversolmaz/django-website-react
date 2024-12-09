@@ -5,8 +5,6 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-DEBUG=True
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'build')
 
@@ -50,7 +48,7 @@ STATICFILES_DIRS = [
 # PROJECT_ROOT = os.path.dirname(BASE_DIR)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
 
