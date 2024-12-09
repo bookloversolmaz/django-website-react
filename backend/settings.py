@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 import dj_database_url
 import environ
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -18,7 +19,6 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SET BELOW TO FALSE WHEN RUNNING IN DEVELOPMENT
 SECURE_SSL_REDIRECT = False
-
 
 # Allowed hosts
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com']
@@ -153,9 +153,6 @@ STATIC_URL = '/static/'
 # Static files directory to collect all static files (for production)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Directory where React static files are located (during development)
-import os
-
 # Set up static file locations
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/build/static'),  # React's static files
@@ -179,7 +176,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

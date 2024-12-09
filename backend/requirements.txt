@@ -18,6 +18,7 @@ psycopg2==2.9.10
 psycopg2-binary==2.9.10
 python-decouple==3.8
 python-dotenv==1.0.1
+python-environ==0.4.54
 sqlparse==0.5.2
 typing_extensions==4.12.2
 uvicorn==0.32.1
