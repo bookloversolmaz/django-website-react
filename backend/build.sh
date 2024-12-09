@@ -2,13 +2,22 @@
 # Exit on error
 set -o errexit
 
-cd ../frontend
+# Ensure we are in the backend directory
+cd backend
 
-# Modify this line as needed for your package manager (pip, poetry, etc.)
+# Install Python dependencies
 pip install -r requirements.txt
 
-# Convert static asset files
+# Change to the frontend directory and build the React app
+cd ../frontend
+npm install
+npm run build
+
+# Return to the backend directory
+cd ../backend
+
+# Collect static files
 python manage.py collectstatic --no-input
 
-# Apply any outstanding database migrations
+# Apply database migrations
 python manage.py migrate
