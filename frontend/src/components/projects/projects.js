@@ -12,7 +12,7 @@ const Projects = () => {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await 'http://127.0.0.1:8000'.get('/projects/');   
+                const response = await AxiosInstancecd.get('/projects/');   
                 setProjects(response.data);
             } catch (err) {
                 console.error('Error fetching projects:', err);
