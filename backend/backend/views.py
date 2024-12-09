@@ -1,12 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
-
 # Create your views here.
+from django.shortcuts import render
 
+# Serve React's index.html
 def index(request):
-    template = loader.get_template('/index.html')
-    return HttpResponse(template.render(request))
-
-def html(request):
-    return render(request,' /index.html')
+    return render(request, 'index.html')
