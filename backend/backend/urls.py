@@ -15,64 +15,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-# from django.contrib import admin
-# from django.urls import path
-# from rest_framework.urlpatterns import format_suffix_patterns
-# from todo import views as todo_views
-# from home import views as home_views
-# from writing import views as writing_views
-# from projects import views as project_views
-# from contact import views as contact_views
-# from django.views.generic import TemplateView
-
-# urlpatterns = [
-#     path('', TemplateView.as_view(template_name="frontend/build/index.html")),
-#     path('admin/', admin.site.urls),
-#     path('', home_views.HomeView.as_view(), name='home'),
-#     path('todo/', todo_views.TodoListView.as_view(), name='todo'),
-#     path('todo/<int:pk>/', todo_views.TodoListView.as_view(), name='todo-delete'),  # Handle GET requests for listing todos
-#     path('todo/<int:pk>/', todo_views.TodoDetailView.as_view()),  # Handle DELETE requests for a specific todo
-#     path('writing/', writing_views.WritingListView.as_view()),
-#     path('writing/<int:pk>/', writing_views.WritingEntireView.as_view(), name='writing_detail'),
-#     path('projects/', project_views.ProjectListView.as_view(), name='project-list'),
-#     path('contact/', contact_views.ContactView.as_view(), name='contact-list'),  # For GET and POST
-#     path('contact/<int:message_id>/', contact_views.ContactView.as_view(), name='delete-contact'),  # For DELETE
-#     ]
-
-# urlpatterns = format_suffix_patterns(urlpatterns)
-
-# from django.contrib import admin
-# from django.urls import path
-# from rest_framework.urlpatterns import format_suffix_patterns
-# from todo import views as todo_views
-# from writing import views as writing_views
-# from projects import views as project_views
-# from contact import views as contact_views
-# from django.views.generic import TemplateView
-# import os
-
-# urlpatterns = [
-#     # Serve the React frontend (index.html) at the root URL
-#     # path('', TemplateView.as_view(template_name=os.path.join('frontend', 'build', 'index.html')), name='home'),
-#     # path('', TemplateView.as_view(template_name="frontend/build/index.html"), name='home'),
-#     path('', TemplateView.as_view(template_name="index.html")), 
-
-#     # Admin URL
-#     path('admin/', admin.site.urls),
-
-#     # Other API or views
-#     path('todo/', todo_views.TodoListView.as_view(), name='todo'),
-#     path('todo/<int:pk>/', todo_views.TodoDetailView.as_view(), name='todo-detail'),  # Corrected name
-#     path('writing/', writing_views.WritingListView.as_view(), name='writing-list'),
-#     path('writing/<int:pk>/', writing_views.WritingEntireView.as_view(), name='writing-detail'),
-#     path('projects/', project_views.ProjectListView.as_view(), name='project-list'),
-#     path('contact/', contact_views.ContactView.as_view(), name='contact-list'),
-#     path('contact/<int:message_id>/', contact_views.ContactView.as_view(), name='delete-contact'),
-# ]
-
-# # Apply format suffix patterns (for REST API responses like `.json`, `.html`, etc.)
-# urlpatterns = format_suffix_patterns(urlpatterns)
-
 from django.contrib import admin
 from django.urls import path, re_path, include
 from rest_framework.urlpatterns import format_suffix_patterns
@@ -83,7 +25,7 @@ from contact import views as contact_views
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    # Admin URL
+    # Admin URL (ensure this is prioritized)
     path('admin/', admin.site.urls),
 
     # API Endpoints
@@ -97,9 +39,8 @@ urlpatterns = [
 
     # Catch-all route for React frontend
     # This serves the React `index.html` for any unmatched routes.
-    re_path(r'^.*$', TemplateView.as_view(template_name="index.html")),
+    re_path(r'^(?!admin/).*$', TemplateView.as_view(template_name="index.html")),
 ]
 
 # Apply format suffix patterns (for REST API responses like `.json`, `.html`, etc.)
 urlpatterns = format_suffix_patterns(urlpatterns)
-
