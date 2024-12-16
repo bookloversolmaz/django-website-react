@@ -37,27 +37,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '..', 'frontend', 'build', 'static'),  # React's static files
 ]
 
-# # Static file settings
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [os.path.join(BUILD_DIR, 'static')] if os.path.exists(BUILD_DIR) else []
-
-
-# # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# # BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# PROJECT_ROOT = os.path.dirname(BASE_DIR)
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
 
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
 SECURE_SSL_REDIRECT = True  
-
-# SET BELOW TO FALSE WHEN RUNNING IN DEVELOPMENT
-# SECURE_SSL_REDIRECT = False
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allowed hosts
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com']
@@ -90,7 +75,6 @@ STORAGE = {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"
     }
 }
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -153,22 +137,6 @@ CORS_ALLOW_METHODS = [
 CORS_ALLOW_CREDENTIALS = True  # Allow credentials like cookies or authorization headers
 
 ROOT_URLCONF = 'backend.urls'
-
-# TEMPLATES = [
-#     {
-#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-#         'DIRS': [os.path.join(PROJECT_ROOT, 'frontend', 'build')],
-#         'APP_DIRS': True,
-#         'OPTIONS': {
-#             'context_processors': [
-#                 'django.template.context_processors.debug',
-#                 'django.template.context_processors.request',
-#                 'django.contrib.auth.context_processors.auth',
-#                 'django.contrib.messages.context_processors.messages',
-#             ],
-#         },
-#     },
-# ]
 
 ASGI_APPLICATION = 'backend.asgi.application'
 
