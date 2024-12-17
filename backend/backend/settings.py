@@ -28,7 +28,6 @@ PORT = os.getenv('PORT', 8000)  # Default to 8000 if PORT is not provided
 
 # Define the URL for accessing static files
 STATIC_URL = '/static/'
-# STATIC_URL = '/static/admin'
 
 # Directory where collectstatic will copy all static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
