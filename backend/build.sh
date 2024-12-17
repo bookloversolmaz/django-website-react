@@ -7,8 +7,8 @@ pip install -r requirements.txt
 
 # Change to the frontend directory and build the React app
 cd ../frontend
-npm install
-npm run build
+yarn
+yarn build
 
 # Return to the backend directory
 cd ../backend
