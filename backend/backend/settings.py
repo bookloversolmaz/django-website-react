@@ -37,6 +37,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '..', 'frontend', 'build', 'static'),  # React's static files
 ]
 
+DEBUG = False
+# Configure Django to handle static file serving in production
+if not DEBUG:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = False

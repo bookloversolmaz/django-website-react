@@ -27,8 +27,6 @@ from django.views.generic import TemplateView
 urlpatterns = [
     # Admin URL (ensure this is prioritized)
     path('admin/', admin.site.urls),
-
-    # API Endpoints
     path('todo/', todo_views.TodoListView.as_view(), name='todo'),
     path('todo/<int:pk>/', todo_views.TodoDetailView.as_view(), name='todo-detail'),
     path('writing/', writing_views.WritingListView.as_view(), name='writing-list'),
