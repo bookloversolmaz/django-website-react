@@ -39,6 +39,7 @@ STATICFILES_DIRS = [
 
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
+DEBUG = False
 
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
 SECURE_SSL_REDIRECT = True  
