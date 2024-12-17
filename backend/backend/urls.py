@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, re_path, include
+from django.urls import path, re_path
 from rest_framework.urlpatterns import format_suffix_patterns
 from todo import views as todo_views
 from writing import views as writing_views
@@ -39,6 +39,5 @@ urlpatterns = [
     # This serves the React `index.html` for any unmatched routes.
     re_path(r'^(?!admin/).*$', TemplateView.as_view(template_name="index.html")),
 ]
-
 # Apply format suffix patterns (for REST API responses like `.json`, `.html`, etc.)
 urlpatterns = format_suffix_patterns(urlpatterns)
