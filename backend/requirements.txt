@@ -8,7 +8,6 @@ Brotli==1.1.0
 certifi==2020.6.20
 chardet==4.0.0
 click==8.1.7
-cloud-init==24.3.1
 cloud-init-gen==1.2.0
 colorama==0.4.4
 configobj==5.0.6
