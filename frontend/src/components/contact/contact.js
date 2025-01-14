@@ -36,7 +36,8 @@ function ContactPage() {
         try {
             const response = await AxiosInstance.post('/contact/', formData, {
                 headers: {
-                    'object': 'formobject',
+                    // 'object': 'formobject',
+                    'Content-Type': 'application/json',
                 },
             });
             
