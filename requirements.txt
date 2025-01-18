@@ -12,9 +12,11 @@ cffi==1.17.1
 chardet==4.0.0
 charset-normalizer==3.4.1
 click==8.1.7
+cloud-init==24.4
 cloud-init-gen==1.2.0
 cmake==3.31.4
 colorama==0.4.4
+command-not-found==0.3
 configobj==5.0.6
 constantly==15.1.0
 cryptography==3.4.8
@@ -23,6 +25,7 @@ dbus-next==0.2.3
 dbus-python==1.2.18
 distlib==0.3.4
 distro==1.7.0
+distro-info==1.1+ubuntu0.2
 dj-database-url==2.3.0
 Django==5.1.3
 django-cors-headers==4.3.1
@@ -60,6 +63,7 @@ more-itertools==8.10.0
 netifaces==0.11.0
 oauthlib==3.2.0
 packaging==24.2
+pkgconfig==1.5.5
 platformdirs==2.5.1
 psycopg==3.2.3
 psycopg-pool==3.2.4
