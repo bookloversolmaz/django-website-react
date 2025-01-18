@@ -10,6 +10,13 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
     curl \
+    && apt-get clean \
+    pkg-config \
+    libcairo2-dev \
+    cmake \
+    build-essential \
+    libgirepository1.0-dev \
+    gir1.2-gtk-3.0 \
     && apt-get clean
 
 # Set the working directory in the container
