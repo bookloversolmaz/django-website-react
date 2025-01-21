@@ -1,4 +1,6 @@
 import axios from 'axios';
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 // Set the base URL for the deployed Django backend using REACT_APP_URL_DEVELOPMENT and REACT_APP_URL_PRODUCTION
 let baseURL;

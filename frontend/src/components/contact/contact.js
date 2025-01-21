@@ -55,10 +55,10 @@ const ContactPage = () => {
                 });
                 setSubmitted(true);
             } else {
-                console.error('Failed to send message:', response);
+                console.error('Failed to send message:', response.data);
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error:', error.response.data);
         }
     };
 

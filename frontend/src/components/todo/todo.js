@@ -29,7 +29,7 @@ const ToDo = () => {
         console.error('Error fetching data: Response is undefined or status is not 200');
       };
     } catch (error) {
-      console.error('Error fetching data:', error.message);
+      console.error('Error fetching data:', error.response.data);
     }
   };
   
@@ -46,7 +46,7 @@ const ToDo = () => {
         setList([...list, response.data]); // Update the list with the new item
         setInputItem(''); // Reset input field
       } catch (error) {
-        console.error('Error adding task:', error);
+        console.error('Error adding task:', error.response.data);
       }
     }
   };
@@ -61,7 +61,7 @@ const ToDo = () => {
       const updatedList = list.filter((item) => item.id !== id);
       setList(updatedList); // Update the list by removing the deleted task
     } catch (error) {
-      console.error('Error deleting task:', error);
+      console.error('Error deleting task:', error.response.data);
     }
   };
 
