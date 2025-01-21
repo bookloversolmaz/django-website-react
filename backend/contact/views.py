@@ -14,7 +14,7 @@ class ContactView(APIView):
         # List all contact messages
         contacts = Contact.objects.all()
         serializer = ContactSerializer(contacts, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     def post(self, request):
         serializer = ContactSerializer(data=request.data)
@@ -49,14 +49,14 @@ class ContactView(APIView):
                     to=[settings.DEFAULT_FROM_EMAIL], 
                     reply_to=[contact.email]
                 )
-                email.attach_alternative(html_content, "text/html")
                 email.send()
                 logger.info(f"Contact email sent successfully for {contact.name} ({contact.email}).")
             except Exception as e:
                 logger.error(f"Failed to send contact email for {contact.name} ({contact.email}): {e}")
                 return Response(
                     {"error": "Failed to send email", "details": str(e)}, 
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    # status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    serializer.data, status=status.HTTP_201_CREATED,
                 )
             
             return Response(serializer.data, status=status.HTTP_201_CREATED)
