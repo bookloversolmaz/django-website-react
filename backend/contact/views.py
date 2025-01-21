@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import send_mail
 from django.conf import settings
 from .models import Contact
 from .serializer import ContactSerializer
@@ -42,7 +42,7 @@ class ContactView(APIView):
                 </ul>
                 """
                 # Send email with a verified "from" address
-                email = EmailMultiAlternatives(
+                email = send_mail(
                     subject=subject,
                     body=text_content,
                     from_email=settings.DEFAULT_FROM_EMAIL,
