@@ -3,7 +3,7 @@ import AxiosInstance from '../../axiosinstance';
 import './contact.css';
 
 // State initialisation: formData holds the data entered by the user in the below fields. setFormData updates the fields with the user's input
-function ContactPage() {
+const ContactPage = () => {
     const [formData, setFormData] = useState({
         name: '', // The value in the useState here is the initial value. It is blank here as the user has not yet submitted their info.
         email: '',
@@ -145,7 +145,7 @@ function ContactPage() {
             </form>
         </div>
     );
-}
+};
 
 export default ContactPage;
 // Overall:
