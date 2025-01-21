@@ -29,7 +29,7 @@ const ContactPage = () => {
 
     // Called when user clicks submit
     // e.preventDefault() is used to prevent the default form submission behavior, so the page doesn’t reload.
-    // Sends to bakcned via axios
+    // Sends to backend via axios
     // formData is the data that the user has entered in the form, and it’s sent as the body of the POST request
     const handleSubmit = async (e) => {
         e.preventDefault();

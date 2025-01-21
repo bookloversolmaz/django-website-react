@@ -6,9 +6,11 @@ from django.conf import settings
 from .models import Contact
 from .serializer import ContactSerializer
 import logging
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 logger = logging.getLogger(__name__)
 
+@ensure_csrf_cookie
 class ContactView(APIView):
     def get(self, request):
         # List all contact messages

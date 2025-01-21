@@ -136,6 +136,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',  # React frontend during development
     'http://localhost:8000',  # Django backend in development
     'https://django-website-react-1.onrender.com',
+    'https://django-website-react.onrender.com/',
 ]
 
 CORS_ALLOW_METHODS = [
@@ -155,6 +156,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
+
+CSRF_COOKIE_SECURE = True  # HTTPS-only
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'Lax'
 
 # Localization
 LANGUAGE_CODE = 'en-gb'
