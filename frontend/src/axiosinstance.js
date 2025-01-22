@@ -26,7 +26,7 @@
 import axios from 'axios';
 
 const AxiosInstance = axios.create({
-    baseURL: 'http://127.0.0.1:8000', // or your production URL
+    baseURL: 'https://www.solmazpurser.com', // or your production URL
     headers: {
         'Content-Type': 'application/json',
         'X-CSRFToken': getCSRFToken(), // Function to fetch CSRF token
