@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import AxiosInstance from '../../axiosinstance'; 
 import './contact.css';
 
+const SENDGRID_API_KEY = process.env.REACT_APP_SENDGRID_API_KEY;
+
 // State initialisation: formData holds the data entered by the user in the below fields. setFormData updates the fields with the user's input
 const ContactPage = () => {
     const [formData, setFormData] = useState({
