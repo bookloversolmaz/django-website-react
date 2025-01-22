@@ -39,7 +39,6 @@ const ContactPage = () => {
                 headers: {
                     // 'object': 'formobject',
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken(), 
                 },
             });
             
