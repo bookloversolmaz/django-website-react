@@ -47,7 +47,7 @@ class ContactView(APIView):
                 # Send email with a verified "from" address
                 email = send_mail(
                     subject=subject,
-                    body=text_content,
+                    message=text_content,
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     to=[settings.DEFAULT_FROM_EMAIL], 
                     reply_to=[contact.email]
