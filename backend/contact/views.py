@@ -5,13 +5,13 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Contact
 from .serializer import ContactSerializer
-from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 import logging
 
 logger = logging.getLogger(__name__)
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
+@method_decorator(csrf_exempt, name='dispatch')
 class ContactView(APIView):
     def get(self, request):
         # List all contact messages
