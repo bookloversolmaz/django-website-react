@@ -50,6 +50,7 @@ class ContactView(APIView):
                     message=text_content,
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=['recipient@example.com'],
+                    fail_silently=False,
                 )
                 email.send()
                 logger.info(f"Contact email sent successfully for {contact.name} ({contact.email}).")

@@ -59,8 +59,7 @@ DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 REPLY_TO_EMAIL = env('DEFAULT_FROM_EMAIL')
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
-# EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -101,6 +100,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'whitenoise.runserver_nostatic',
+    'sendgrid'
 ]
 
 MIDDLEWARE = [
