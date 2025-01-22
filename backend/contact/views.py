@@ -49,7 +49,7 @@ class ContactView(APIView):
                     subject=subject,
                     message=text_content,
                     from_email=settings.DEFAULT_FROM_EMAIL,
-                    reply_to=[contact.email]
+                    recipient_list=['recipient@example.com'],
                 )
                 email.send()
                 logger.info(f"Contact email sent successfully for {contact.name} ({contact.email}).")
