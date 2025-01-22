@@ -70,7 +70,6 @@ pycairo==1.27.0
 pycparser==2.22
 pycurl==7.44.1
 Pygments==2.11.2
-PyGObject==3.42.2
 PyHamcrest==2.0.2
 pyinotify==0.9.6
 PyJWT==2.3.0
