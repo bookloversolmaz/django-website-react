@@ -67,9 +67,6 @@ class _VariantSignature(object):
         """Return 'v' whenever called."""
         return 'v'
 
-    if is_py2:
-        next = __next__
-
 
 class BusName(object):
     """A base class for exporting your own Named Services across the Bus.
