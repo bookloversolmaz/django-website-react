@@ -6,9 +6,9 @@ from __future__ import absolute_import, division, print_function
 import click
 import os
 import datetime
+from typing import Dict, Optional, Callable
 
-from incremental import Version
-from twisted.python.filepath import FilePath
+from incremental import Version, _findPath, _existing_version
 
 _VERSIONPY_TEMPLATE = '''"""
 Provides {package} version information.
@@ -26,64 +26,27 @@ __all__ = ["__version__"]
 _YEAR_START = 2000
 
 
-def _findPath(path, package):
-
-    cwd = FilePath(path)
-
-    src_dir = cwd.child("src").child(package.lower())
-    current_dir = cwd.child(package.lower())
-
-    if src_dir.isdir():
-        return src_dir
-    elif current_dir.isdir():
-        return current_dir
-    else:
-        raise ValueError(
-            (
-                "Can't find under `./src` or `./`. Check the "
-                "package name is right (note that we expect your "
-                "package name to be lower cased), or pass it using "
-                "'--path'."
-            )
-        )
-
-
-def _existing_version(path):
-    version_info = {}
-
-    with path.child("_version.py").open("r") as f:
-        exec(f.read(), version_info)
-
-    return version_info["__version__"]
-
-
 def _run(
-    package,
-    path,
-    newversion,
-    patch,
-    rc,
-    post,
-    dev,
-    create,
-    _date=None,
-    _getcwd=None,
-    _print=print,
-):
-
+    package,  # type: str
+    path,  # type: Optional[str]
+    newversion,  # type: Optional[str]
+    patch,  # type: bool
+    rc,  # type: bool
+    post,  # type: bool
+    dev,  # type: bool
+    create,  # type: bool
+    _date=None,  # type: Optional[datetime.date]
+    _getcwd=None,  # type: Optional[Callable[[], str]]
+    _print=print,  # type: Callable[[object], object]
+):  # type: (...) -> None
     if not _getcwd:
         _getcwd = os.getcwd
 
     if not _date:
         _date = datetime.date.today()
 
-    if type(package) != str:
-        package = package.encode("utf8")
-
     if not path:
         path = _findPath(_getcwd(), package)
-    else:
-        path = FilePath(path)
 
     if (
         newversion
@@ -114,25 +77,32 @@ def _run(
     ):
         raise ValueError("Only give --create")
 
+    versionpath = os.path.join(path, "_version.py")
     if newversion:
         from pkg_resources import parse_version
 
-        existing = _existing_version(path)
-        st_version = parse_version(newversion)._version
+        existing = _existing_version(versionpath)
+        st_version = parse_version(newversion)._version  # type: ignore[attr-defined]
 
         release = list(st_version.release)
 
+        minor = 0
+        micro = 0
         if len(release) == 1:
-            release.append(0)
-        if len(release) == 2:
-            release.append(0)
+            (major,) = release
+        elif len(release) == 2:
+            major, minor = release
+        else:
+            major, minor, micro = release
 
         v = Version(
             package,
-            *release,
+            major,
+            minor,
+            micro,
             release_candidate=st_version.pre[1] if st_version.pre else None,
             post=st_version.post[1] if st_version.post else None,
-            dev=st_version.dev[1] if st_version.dev else None
+            dev=st_version.dev[1] if st_version.dev else None,
         )
 
     elif create:
@@ -140,7 +110,7 @@ def _run(
         existing = v
 
     elif rc and not patch:
-        existing = _existing_version(path)
+        existing = _existing_version(versionpath)
 
         if existing.release_candidate:
             v = Version(
@@ -154,16 +124,17 @@ def _run(
             v = Version(package, _date.year - _YEAR_START, _date.month, 0, 1)
 
     elif patch:
-        if rc:
-            rc = 1
-        else:
-            rc = None
-
-        existing = _existing_version(path)
-        v = Version(package, existing.major, existing.minor, existing.micro + 1, rc)
+        existing = _existing_version(versionpath)
+        v = Version(
+            package,
+            existing.major,
+            existing.minor,
+            existing.micro + 1,
+            1 if rc else None,
+        )
 
     elif post:
-        existing = _existing_version(path)
+        existing = _existing_version(versionpath)
 
         if existing.post is None:
             _post = 0
@@ -173,7 +144,7 @@ def _run(
         v = Version(package, existing.major, existing.minor, existing.micro, post=_post)
 
     elif dev:
-        existing = _existing_version(path)
+        existing = _existing_version(versionpath)
 
         if existing.dev is None:
             _dev = 0
@@ -190,7 +161,7 @@ def _run(
         )
 
     else:
-        existing = _existing_version(path)
+        existing = _existing_version(versionpath)
 
         if existing.release_candidate:
             v = Version(package, existing.major, existing.minor, existing.micro)
@@ -208,41 +179,42 @@ def _run(
 
     _print("Updating codebase to %s" % (v.public()))
 
-    for x in path.walk():
+    for dirpath, dirnames, filenames in os.walk(path):
+        for filename in filenames:
+            filepath = os.path.join(dirpath, filename)
+            with open(filepath, "rb") as f:
+                original_content = f.read()
+            content = original_content
 
-        if not x.isfile():
-            continue
+            # Replace previous release_candidate calls to the new one
+            if existing.release_candidate:
+                content = content.replace(
+                    existing_version_repr_bytes, version_repr_bytes
+                )
+                content = content.replace(
+                    (package.encode("utf8") + b" " + existing.public().encode("utf8")),
+                    (package.encode("utf8") + b" " + v.public().encode("utf8")),
+                )
 
-        original_content = x.getContent()
-        content = original_content
-
-        # Replace previous release_candidate calls to the new one
-        if existing.release_candidate:
-            content = content.replace(existing_version_repr_bytes, version_repr_bytes)
+            # Replace NEXT Version calls with the new one
+            content = content.replace(NEXT_repr_bytes, version_repr_bytes)
             content = content.replace(
-                (package.encode("utf8") + b" " + existing.public().encode("utf8")),
+                NEXT_repr_bytes.replace(b"'", b'"'), version_repr_bytes
+            )
+
+            # Replace <package> NEXT with <package> <public>
+            content = content.replace(
+                package.encode("utf8") + b" NEXT",
                 (package.encode("utf8") + b" " + v.public().encode("utf8")),
             )
 
-        # Replace NEXT Version calls with the new one
-        content = content.replace(NEXT_repr_bytes, version_repr_bytes)
-        content = content.replace(
-            NEXT_repr_bytes.replace(b"'", b'"'), version_repr_bytes
-        )
+            if content != original_content:
+                _print("Updating %s" % (filepath,))
+                with open(filepath, "wb") as f:
+                    f.write(content)
 
-        # Replace <package> NEXT with <package> <public>
-        content = content.replace(
-            package.encode("utf8") + b" NEXT",
-            (package.encode("utf8") + b" " + v.public().encode("utf8")),
-        )
-
-        if content != original_content:
-            _print("Updating %s" % (x.path,))
-            with x.open("w") as f:
-                f.write(content)
-
-    _print("Updating %s/_version.py" % (path.path))
-    with path.child("_version.py").open("w") as f:
+    _print("Updating %s" % (versionpath,))
+    with open(versionpath, "wb") as f:
         f.write(
             (
                 _VERSIONPY_TEMPLATE.format(package=package, version_repr=version_repr)
@@ -259,8 +231,26 @@ def _run(
 @click.option("--post", is_flag=True)
 @click.option("--dev", is_flag=True)
 @click.option("--create", is_flag=True)
-def run(*args, **kwargs):
-    return _run(*args, **kwargs)
+def run(
+    package,  # type: str
+    path,  # type: Optional[str]
+    newversion,  # type: Optional[str]
+    patch,  # type: bool
+    rc,  # type: bool
+    post,  # type: bool
+    dev,  # type: bool
+    create,  # type: bool
+):  # type: (...) -> None
+    return _run(
+        package=package,
+        path=path,
+        newversion=newversion,
+        patch=patch,
+        rc=rc,
+        post=post,
+        dev=dev,
+        create=create,
+    )
 
 
 if __name__ == "__main__":  # pragma: no cover

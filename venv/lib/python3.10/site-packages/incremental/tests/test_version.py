@@ -7,6 +7,8 @@ Tests for L{incremental}.
 
 from __future__ import division, absolute_import
 
+import sys
+import unittest
 import operator
 
 from incremental import getVersionString, IncomparableVersions
@@ -36,6 +38,29 @@ class VersionsTests(TestCase):
         self.assertTrue(va != vb)
         self.assertTrue(vb == Version("dummy", 0, 1, 0))
         self.assertTrue(vb == vb)
+
+    @unittest.skipIf(sys.version_info < (3,), "Comparisons do not raise on py2")
+    def test_versionComparisonNonVersion(self):
+        """
+        Versions can be compared with non-versions.
+        """
+        v = Version("dummy", 1, 0, 0)
+        o = object()
+
+        with self.assertRaises(TypeError):
+            v > o
+
+        with self.assertRaises(TypeError):
+            v < o
+
+        with self.assertRaises(TypeError):
+            v >= o
+
+        with self.assertRaises(TypeError):
+            v <= o
+
+        self.assertFalse(v == o)
+        self.assertTrue(v != o)
 
     def test_versionComparisonCaseInsensitive(self):
         """
@@ -107,10 +132,8 @@ class VersionsTests(TestCase):
         self.assertEqual(len(warnings), 1)
         self.assertEqual(
             warnings[0]["message"],
-            (
-                "Passing prerelease to incremental.Version was deprecated in "
-                "Incremental 16.9.0. Please pass release_candidate instead."
-            ),
+            "Passing prerelease to incremental.Version was deprecated in "
+            "Incremental 16.9.0. Please pass release_candidate instead.",
         )
 
     def test_prereleaseAttributeDeprecated(self):
@@ -123,10 +146,8 @@ class VersionsTests(TestCase):
         self.assertEqual(len(warnings), 1)
         self.assertEqual(
             warnings[0]["message"],
-            (
-                "Accessing incremental.Version.prerelease was deprecated in "
-                "Incremental 16.9.0. Use Version.release_candidate instead."
-            ),
+            "Accessing incremental.Version.prerelease was deprecated in "
+            "Incremental 16.9.0. Use Version.release_candidate instead.",
         )
 
     def test_comparingReleaseCandidatesWithReleases(self):
@@ -261,13 +282,30 @@ class VersionsTests(TestCase):
         self.assertTrue(vb == Version("whatever", 1, 0, 0, release_candidate=2, dev=1))
         self.assertTrue(va == va)
 
-    def test_infComparison(self):
+    def test_infComparisonSelf(self):
         """
         L{_inf} is equal to L{_inf}.
 
         This is a regression test.
         """
         self.assertEqual(_inf, _inf)
+        self.assertFalse(_inf < _inf)
+        self.assertFalse(_inf > _inf)
+        self.assertTrue(_inf >= _inf)
+        self.assertTrue(_inf <= _inf)
+        self.assertFalse(_inf != _inf)
+
+    def test_infComparison(self):
+        """
+        L{_inf} is greater than any other object.
+        """
+        o = object()
+        self.assertTrue(_inf > o)
+        self.assertFalse(_inf < o)
+        self.assertTrue(_inf >= o)
+        self.assertFalse(_inf <= o)
+        self.assertTrue(_inf != o)
+        self.assertFalse(_inf == o)
 
     def test_disallowBuggyComparisons(self):
         """
@@ -350,7 +388,7 @@ class VersionsTests(TestCase):
         as a release candidate.
         """
         self.assertEqual(
-            str(Version("dummy", 1, 0, 0, prerelease=1)), "[dummy, version 1.0.0.rc1]"
+            str(Version("dummy", 1, 0, 0, prerelease=1)), "[dummy, version 1.0.0rc1]"
         )
 
     def test_strWithReleaseCandidate(self):
@@ -360,7 +398,7 @@ class VersionsTests(TestCase):
         """
         self.assertEqual(
             str(Version("dummy", 1, 0, 0, release_candidate=1)),
-            "[dummy, version 1.0.0.rc1]",
+            "[dummy, version 1.0.0rc1]",
         )
 
     def test_strWithPost(self):
@@ -379,7 +417,7 @@ class VersionsTests(TestCase):
         """
         self.assertEqual(
             str(Version("dummy", 1, 0, 0, release_candidate=1, dev=2)),
-            "[dummy, version 1.0.0.rc1.dev2]",
+            "[dummy, version 1.0.0rc1.dev2]",
         )
 
     def test_strWithDev(self):
@@ -418,7 +456,7 @@ class VersionsTests(TestCase):
         """
         self.assertEqual(
             getVersionString(Version("whatever", 8, 0, 0, prerelease=1)),
-            "whatever 8.0.0.rc1",
+            "whatever 8.0.0rc1",
         )
 
     def test_getVersionStringWithReleaseCandidate(self):
@@ -427,7 +465,7 @@ class VersionsTests(TestCase):
         """
         self.assertEqual(
             getVersionString(Version("whatever", 8, 0, 0, release_candidate=1)),
-            "whatever 8.0.0.rc1",
+            "whatever 8.0.0rc1",
         )
 
     def test_getVersionStringWithPost(self):
@@ -454,7 +492,7 @@ class VersionsTests(TestCase):
         """
         self.assertEqual(
             getVersionString(Version("whatever", 8, 0, 0, release_candidate=2, dev=1)),
-            "whatever 8.0.0.rc2.dev1",
+            "whatever 8.0.0rc2.dev1",
         )
 
     def test_getVersionStringWithDevAndPost(self):
@@ -483,7 +521,7 @@ class VersionsTests(TestCase):
         """
         The base version includes 'rcX' for versions with prereleases.
         """
-        self.assertEqual(Version("foo", 1, 0, 0, prerelease=8).base(), "1.0.0.rc8")
+        self.assertEqual(Version("foo", 1, 0, 0, prerelease=8).base(), "1.0.0rc8")
 
     def test_baseWithPost(self):
         """
@@ -502,7 +540,7 @@ class VersionsTests(TestCase):
         The base version includes 'rcX' for versions with prereleases.
         """
         self.assertEqual(
-            Version("foo", 1, 0, 0, release_candidate=8).base(), "1.0.0.rc8"
+            Version("foo", 1, 0, 0, release_candidate=8).base(), "1.0.0rc8"
         )
 
     def test_baseWithDevAndRC(self):
@@ -511,7 +549,7 @@ class VersionsTests(TestCase):
         a release candidate.
         """
         self.assertEqual(
-            Version("foo", 1, 0, 0, release_candidate=2, dev=8).base(), "1.0.0.rc2.dev8"
+            Version("foo", 1, 0, 0, release_candidate=2, dev=8).base(), "1.0.0rc2.dev8"
         )
 
     def test_baseWithDevAndPost(self):
