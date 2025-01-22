@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 const baseURL = window.location.hostname === 'www.solmazpurser.com'
   ? 'https://www.solmazpurser.com'  // Production backend
@@ -12,3 +12,4 @@ const AxiosInstance = axios.create({
     },
     withCredentials: true,
 });
+export default AxiosInstance;
