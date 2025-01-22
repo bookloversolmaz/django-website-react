@@ -49,7 +49,6 @@ class ContactView(APIView):
                     subject=subject,
                     message=text_content,
                     from_email=settings.DEFAULT_FROM_EMAIL,
-                    to=[settings.DEFAULT_FROM_EMAIL], 
                     reply_to=[contact.email]
                 )
                 email.send()

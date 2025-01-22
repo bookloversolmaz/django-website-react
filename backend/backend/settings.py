@@ -136,7 +136,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',  # React frontend during development
     'http://localhost:8000',  # Django backend in development
     'https://django-website-react-1.onrender.com',
-    'https://django-website-react.onrender.com/',
 ]
 
 CORS_ALLOW_METHODS = [
