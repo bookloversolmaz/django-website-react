@@ -17,13 +17,13 @@ class ContactView(APIView):
         # List all contact messages
         contacts = Contact.objects.all()
         serializer = ContactSerializer(contacts, many=True)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def post(self, request):
         serializer = ContactSerializer(data=request.data)
         if serializer.is_valid():
             contact = serializer.save()
-            
+
             # Email notification logic
             try:
                 subject = f"New Contact Submission from {contact.name}"
@@ -44,23 +44,32 @@ class ContactView(APIView):
                     <p><strong>Message:</strong> {contact.message}</p>
                 </ul>
                 """
+
                 # Send email with a verified "from" address
-                email = send_mail(
+                email_sent = send_mail(
                     subject=subject,
                     message=text_content,
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=['recipient@example.com'],
                     fail_silently=False,
                 )
-                email.send()
-                logger.info(f"Contact email sent successfully for {contact.name} ({contact.email}).")
+
+                if email_sent > 0:
+                    logger.info(f"Contact email sent successfully for {contact.name} ({contact.email}).")
+                else:
+                    logger.error(f"Failed to send contact email for {contact.name} ({contact.email}): No emails sent.")
+                    return Response(
+                        {"error": "Failed to send email", "details": "No emails were sent."}, 
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    )
             except Exception as e:
-                logger.error(f"Failed to send contact email for {contact.name} ({contact.email}): {e}")
+                logger.error(f"Error sending contact email for {contact.name} ({contact.email}): {str(e)}")
                 return Response(
                     {"error": "Failed to send email", "details": str(e)}, 
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
-            
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
+            logger.error(f"Invalid data submitted: {serializer.errors}")
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
