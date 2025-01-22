@@ -10,7 +10,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-@ensure_csrf_cookie
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class ContactView(APIView):
     def get(self, request):
         # List all contact messages

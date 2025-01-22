@@ -41,5 +41,3 @@ urlpatterns = [
 ]
 # Apply format suffix patterns (for REST API responses like `.json`, `.html`, etc.)
 urlpatterns = format_suffix_patterns(urlpatterns)
-
-print(contact_views.ContactView)
