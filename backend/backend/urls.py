@@ -33,7 +33,7 @@ urlpatterns = [
     path('writing/<int:pk>/', writing_views.WritingEntireView.as_view(), name='writing-detail'),
     path('projects/', project_views.ProjectListView.as_view(), name='project-list'),
     path('contact/', contact_views.ContactView.as_view(), name='contact-list'),
-    path('contact/<int:message_id>/', contact_views.ContactView.as_view(), name='delete-contact'),
+    # path('contact/<int:message_id>/', contact_views.ContactView.as_view(), name='delete-contact'),
 
     # Catch-all route for React frontend
     # This serves the React `index.html` for any unmatched routes.

@@ -5,8 +5,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Contact
 from .serializer import ContactSerializer
-import logging
 from django.views.decorators.csrf import ensure_csrf_cookie
+import logging
 
 logger = logging.getLogger(__name__)
 
