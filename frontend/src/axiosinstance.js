@@ -29,7 +29,7 @@ const AxiosInstance = axios.create({
     baseURL: 'https://www.solmazpurser.com', // or your production URL
     headers: {
         'Content-Type': 'application/json',
-        'X-CSRFToken': getCSRFToken(), // Function to fetch CSRF token
+        // 'X-CSRFToken': getCSRFToken(), // Function to fetch CSRF token
     },
     withCredentials: true,
 });
