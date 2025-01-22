@@ -25,7 +25,7 @@
 
 import axios from 'axios';
 
-const AxiosInstance = await axios.create({
+const AxiosInstance = axios.create({
     baseURL: 'http://127.0.0.1:8000', // or your production URL
     headers: {
         'Content-Type': 'application/json',
