@@ -6,6 +6,7 @@ from django.conf import settings
 from .models import Contact
 from .serializer import ContactSerializer
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.utils.decorators import method_decorator
 import logging
 
 logger = logging.getLogger(__name__)
