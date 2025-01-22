@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import AxiosInstance from '../../axiosinstance'; 
 import './contact.css';
 
+// Function to retrieve the CSRF token from cookies
+function getCSRFToken() {
+    const csrfCookie = document.cookie.match(/csrftoken=([\w-]+)/);
+    return csrfCookie ? csrfCookie[1] : '';
+}
+
 // State initialisation: formData holds the data entered by the user in the below fields. setFormData updates the fields with the user's input
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -39,6 +45,7 @@ const ContactPage = () => {
                 headers: {
                     // 'object': 'formobject',
                     'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken(), // Use the getCSRFToken function here
                 },
             });
             
