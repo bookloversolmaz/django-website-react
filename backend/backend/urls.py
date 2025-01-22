@@ -18,22 +18,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from rest_framework.urlpatterns import format_suffix_patterns
-from todo import views as todo_views
-from writing import views as writing_views
-from projects import views as project_views
-from contact import views as contact_views
+from todo.views import TodoDetailView, TodoListView
+from writing.views import WritingEntireView, WritingListView
+from projects.views import ProjectListView
+from contact.views import ContactView
 from django.views.generic import TemplateView
 
 urlpatterns = [
     # Admin URL (ensure this is prioritized)
     path('admin/', admin.site.urls),
-    path('todo/', todo_views.TodoListView.as_view(), name='todo'),
-    path('todo/<int:pk>/', todo_views.TodoDetailView.as_view(), name='todo-detail'),
-    path('writing/', writing_views.WritingListView.as_view(), name='writing-list'),
-    path('writing/<int:pk>/', writing_views.WritingEntireView.as_view(), name='writing-detail'),
-    path('projects/', project_views.ProjectListView.as_view(), name='project-list'),
-    path('contact/', contact_views.ContactView.as_view(), name='contact-list'),
-    # path('contact/<int:message_id>/', contact_views.ContactView.as_view(), name='delete-contact'),
+    path('todo/', TodoListView.as_view(), name='todo'),
+    path('todo/<int:pk>/', TodoDetailView.as_view(), name='todo-detail'),
+    path('writing/', WritingListView.as_view(), name='writing-list'),
+    path('writing/<int:pk>/', WritingEntireView.as_view(), name='writing-detail'),
+    path('projects/', ProjectListView.as_view(), name='project-list'),
+    path('contact/', ContactView.as_view(), name='contact-list'),
+    path('contact/<int:message_id>/', ContactView.as_view(), name='delete-contact'),
 
     # Catch-all route for React frontend
     # This serves the React `index.html` for any unmatched routes.
@@ -41,3 +41,5 @@ urlpatterns = [
 ]
 # Apply format suffix patterns (for REST API responses like `.json`, `.html`, etc.)
 urlpatterns = format_suffix_patterns(urlpatterns)
+
+print(contact_views.ContactView)
