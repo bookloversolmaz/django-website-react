@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import AxiosInstance from '../../axiosinstance'; 
 import './contact.css';
 
-const SENDGRID_API_KEY = process.env.REACT_APP_SENDGRID_API_KEY;
-
 // State initialisation: formData holds the data entered by the user in the below fields. setFormData updates the fields with the user's input
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -35,12 +33,13 @@ const ContactPage = () => {
     // formData is the data that the user has entered in the form, and it’s sent as the body of the POST request
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
         try {
             const response = await AxiosInstance.post('/contact/', formData, {
                 headers: {
                     // 'object': 'formobject',
-                    "Authorization": `Bearer ${SENDGRID_API_KEY}`,
                     'Content-Type': 'application/json',
+                    'X-CSRFToken': getCSRFToken(), 
                 },
             });
             
@@ -61,7 +60,7 @@ const ContactPage = () => {
                 console.error('Failed to send message:', response.data);
             }
         } catch (error) {
-            console.error('Error:', error.response.data);
+            console.error('Error:', error.response ? error.response.data : error);
         }
     };
 
