@@ -54,14 +54,12 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com', 'django-website-react-1.onrender.com']
 
 # Email settings for SendGrid
-SENDGRID_API_KEY = os.environ["SENDGRID_API_KEY"]
-# SENDGRID_API_KEY = env('SENDGRID_API_KEY')
+SENDGRID_API_KEY = env('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 REPLY_TO_EMAIL = env('DEFAULT_FROM_EMAIL')
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -160,7 +158,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CSRF_COOKIE_NAME = "csrftoken"
-CSRF_TRUSTED_ORIGINS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com', 'django-website-react-1.onrender.com']  # Add your frontend domain
+CSRF_TRUSTED_ORIGINS = ['https://solmazpurser.com', 'http://127.0.0.1', 'http://localhost', 'https://django-website-react.onrender.com', 'https://django-website-react-1.onrender.com']  # Add your frontend domain
 CSRF_COOKIE_SECURE = True  # HTTPS-only
 SESSION_COOKIE_SAMESITE = 'Lax'
 

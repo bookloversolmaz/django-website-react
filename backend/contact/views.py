@@ -1,7 +1,8 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.core.mail import send_mail
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 from django.conf import settings
 from .models import Contact
 from .serializer import ContactSerializer
@@ -18,7 +19,6 @@ class ContactView(APIView):
         contacts = Contact.objects.all()
         serializer = ContactSerializer(contacts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
     def post(self, request):
         serializer = ContactSerializer(data=request.data)
         if serializer.is_valid():
@@ -45,23 +45,32 @@ class ContactView(APIView):
                 </ul>
                 """
 
-                # Send email with a verified "from" address
-                email_sent = send_mail(
+                # Send email using SendGrid API
+                message = Mail(
+                    from_email=settings.DEFAULT_FROM_EMAIL,  # Verified sender in SendGrid
+                    to_emails='recipient@example.com',  # Replace with the recipient's email
                     subject=subject,
-                    message=text_content,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=['recipient@example.com'],
-                    fail_silently=False,
+                    plain_text_content=text_content,
+                    html_content=html_content,
                 )
 
-                if email_sent > 0:
+                sg = SendGridAPIClient(settings.SENDGRID_API_KEY)  # API key stored in settings
+                response = sg.send(message)
+
+                # Log the response for debugging
+                logger.info(f"SendGrid response status: {response.status_code}")
+                logger.info(f"SendGrid response body: {response.body}")
+                logger.info(f"SendGrid response headers: {response.headers}")
+
+                if response.status_code == 202:
                     logger.info(f"Contact email sent successfully for {contact.name} ({contact.email}).")
                 else:
-                    logger.error(f"Failed to send contact email for {contact.name} ({contact.email}): No emails sent.")
+                    logger.error(f"Failed to send contact email for {contact.name} ({contact.email}).")
                     return Response(
-                        {"error": "Failed to send email", "details": "No emails were sent."}, 
+                        {"error": "Failed to send email", "details": response.body.decode()}, 
                         status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                     )
+
             except Exception as e:
                 logger.error(f"Error sending contact email for {contact.name} ({contact.email}): {str(e)}")
                 return Response(
@@ -73,3 +82,4 @@ class ContactView(APIView):
         else:
             logger.error(f"Invalid data submitted: {serializer.errors}")
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
