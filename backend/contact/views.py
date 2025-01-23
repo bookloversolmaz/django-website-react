@@ -10,10 +10,16 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 import logging
 import os
-
-sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-
 logger = logging.getLogger(__name__)
+
+# Fetch the API key from the environment variables
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+
+if not SENDGRID_API_KEY:
+    raise ValueError("SENDGRID_API_KEY is not set in the environment variables.")
+
+# Initialize SendGrid client
+sg = SendGridAPIClient(SENDGRID_API_KEY)
 
 @method_decorator(csrf_exempt, name='dispatch')
 class ContactView(APIView):
@@ -48,10 +54,6 @@ class ContactView(APIView):
                     subject=subject,
                     html_content=html_content,
                 )
-
-                # Send the email using the SendGrid client
-                sg = SendGridAPIClient(sendgrid_api_key)
-                # os.environ.get('SENDGRID_API_KEY')
                 response = sg.send(message)
 
                 # Check the response status code
