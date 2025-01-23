@@ -55,8 +55,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com', 'django-website-react-1.onrender.com']
 
 # Email settings for SendGrid
-# SENDGRID_API_KEY = env('SENDGRID_API_KEY')
-# DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+SENDGRID_API_KEY = env('SENDGRID_API_KEY')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 REPLY_TO_EMAIL = env('DEFAULT_FROM_EMAIL')
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
@@ -65,31 +65,29 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'  # SendGrid username is always 'apikey'
-# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
 
-# EMAIL_HOST_PASSWORD  config('SENDGRID_API_KEY')
-
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=os.getenv('DATABASE_URL'),
-#         conn_max_age=600,
-#         ssl_require=True,
-#     )
-# }
-
-SECRET_KEY = config('SECRET_KEY')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DATABASE_NAME'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PASSWORD'),
-        'HOST': config('DATABASE_HOST'),
-        'PORT': config('DATABASE_PORT'),
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
-SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+# EMAIL_HOST_PASSWORD  config('SENDGRID_API_KEY'
+# SECRET_KEY = config('SECRET_KEY')
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('DATABASE_NAME'),
+#         'USER': config('DATABASE_USER'),
+#         'PASSWORD': config('DATABASE_PASSWORD'),
+#         'HOST': config('DATABASE_HOST'),
+#         'PORT': config('DATABASE_PORT'),
+#     }
+# }
+# DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+# SENDGRID_API_KEY = config('SENDGRID_API_KEY')
 
 
 STORAGE = {
