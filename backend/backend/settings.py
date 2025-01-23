@@ -44,7 +44,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 # Set your secret key from the .env file
-# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 DEBUG = False
 
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
