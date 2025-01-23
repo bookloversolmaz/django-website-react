@@ -65,7 +65,7 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'  # SendGrid username is always 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY')
 
 DATABASES = {
     'default': dj_database_url.config(
