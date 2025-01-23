@@ -10,11 +10,12 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 import logging
 import os
+
+# Initialize logger
 logger = logging.getLogger(__name__)
 
 # Fetch the API key from the environment variables
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
-
 if not SENDGRID_API_KEY:
     raise ValueError("SENDGRID_API_KEY is not set in the environment variables.")
 
@@ -24,18 +25,23 @@ sg = SendGridAPIClient(SENDGRID_API_KEY)
 @method_decorator(csrf_exempt, name='dispatch')
 class ContactView(APIView):
     def get(self, request):
-        # List all contact messages
+        """
+        Handles GET requests: List all contact messages.
+        """
         contacts = Contact.objects.all()
         serializer = ContactSerializer(contacts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        """
+        Handles POST requests: Save a contact message and send email notification.
+        """
         serializer = ContactSerializer(data=request.data)
         if serializer.is_valid():
             contact = serializer.save()
 
-            # Email notification logic
             try:
+                # Email content
                 subject = f"New Contact Submission from {contact.name}"
                 html_content = f"""
                 <p>A new contact form has been submitted:</p>
@@ -47,16 +53,27 @@ class ContactView(APIView):
                 </ul>
                 """
 
+                # Check DEFAULT_FROM_EMAIL in settings
+                from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', None)
+                if not from_email:
+                    logger.error("DEFAULT_FROM_EMAIL is not set in settings.")
+                    return Response(
+                        {"error": "Email configuration error", "details": "DEFAULT_FROM_EMAIL is not set in settings."},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    )
+
                 # Create the email message
                 message = Mail(
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    to_emails='recipient@example.com',
+                    from_email=from_email,
+                    to_emails='recipient@example.com',  # Replace with the recipient's email
                     subject=subject,
                     html_content=html_content,
                 )
+
+                # Send the email
                 response = sg.send(message)
 
-                # Check the response status code
+                # Handle response
                 if response.status_code == 202:
                     logger.info(f"Contact email sent successfully for {contact.name} ({contact.email}).")
                 else:
@@ -72,6 +89,7 @@ class ContactView(APIView):
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
 
+            # Return the saved contact data
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             logger.error(f"Invalid data submitted: {serializer.errors}")
