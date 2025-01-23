@@ -9,6 +9,9 @@ from .serializer import ContactSerializer
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 import logging
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +30,7 @@ class ContactView(APIView):
             contact = serializer.save()
 
             try:
-                sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
+                sg = SendGridAPIClient(settings.env('SENDGRID_API_KEY'))
                 message = Mail(
                 from_email='from_email@example.com',
                 to_emails=contact.email,
