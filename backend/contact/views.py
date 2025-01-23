@@ -24,51 +24,30 @@ class ContactView(APIView):
         if serializer.is_valid():
             contact = serializer.save()
 
-            # Email notification logic
-            try:
-                subject = f"New Contact Submission from {contact.name}"
-                text_content = f"""
-                A new contact form has been submitted:
-
-                Name: {contact.name}
-                Email: {contact.email}
-                Subject: {contact.subject}
-                Message: {contact.message}
-                """
-                html_content = f"""
-                <p>A new contact form has been submitted:</p>
-                <ul>
-                    <li><strong>Name:</strong> {contact.name}</li>
-                    <li><strong>Email:</strong> {contact.email}</li>
-                    <li><strong>Subject:</strong> {contact.subject}</li>
-                    <p><strong>Message:</strong> {contact.message}</p>
-                </ul>
-                """
-
-                # Send email using SendGrid API
-                message = Mail(
-                    from_email=settings.DEFAULT_FROM_EMAIL,  # Verified sender in SendGrid
-                    to_emails='recipient@example.com',  # Replace with the recipient's email
-                    subject=subject,
-                    plain_text_content=text_content,
-                    html_content=html_content,
-                )
-
-                sg = SendGridAPIClient(settings.SENDGRID_API_KEY)  # API key stored in settings
-                response = sg.send(message)
-
-                # Log the response for debugging
-                logger.info(f"SendGrid response status: {response.status_code}")
-                logger.info(f"SendGrid response body: {response.body}")
-                logger.info(f"SendGrid response headers: {response.headers}")
-
-                if response.status_code == 202:
-                    logger.info(f"Contact email sent successfully for {contact.name} ({contact.email}).")
-                else:
-                    logger.error(f"Failed to send contact email for {contact.name} ({contact.email}).")
-                    return Response(
-                        {"error": "Failed to send email", "details": response.body.decode()}, 
-                        status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        try:
+        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
+    message = Mail(
+        from_email='from_email@example.com',
+        to_emails=contact.email,
+        subject=subject,
+        html_content=html_content,
+    )
+    response = sg.send(message)
+    if response.status_code == 202:
+        logger.info(f"Contact email sent successfully for {contact.name} ({contact.email}).")
+    else:
+        logger.error(f"Failed to send contact email for {contact.name} ({contact.email}): {response.body}")
+        return Response(
+            {"error": "Failed to send email", "details": response.body.decode()},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+except Exception as e:
+    logger.error(f"Error sending contact email for {contact.name} ({contact.email}): {str(e)}")
+    return Response(
+        {"error": "Failed to send email", "details": str(e)},
+        status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+    )
+atus.HTTP_500_INTERNAL_SERVER_ERROR,
                     )
 
             except Exception as e:
