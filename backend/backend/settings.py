@@ -41,7 +41,7 @@ STATICFILES_DIRS = [
 DEBUG = False
 # Configure Django to handle static file serving in production
 if not DEBUG:
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')

@@ -7,6 +7,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializer import ContactSerializer
 from .models import Contact
+import environ
+
+env = environ.Env()
+environ.Env.read_env()  # Make sure this reads your .env file correctly
 
 class ContactView(APIView):
     def post(self, request):
@@ -27,7 +31,7 @@ class ContactView(APIView):
 
             try:
                 # Load SENDGRID_API_KEY from .env
-                sendgrid_api_key = os.getenv('SENDGRID_API_KEY')
+                sendgrid_api_key = env('SENDGRID_API_KEY')
                 if not sendgrid_api_key:
                     return Response(
                         {"error": "SendGrid API key not found in environment variables."},
