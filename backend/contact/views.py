@@ -65,7 +65,3 @@ class ContactView(APIView):
                 )
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# Testing the loading of SendGrid API key
-sendgrid_api_key = env('SENDGRID_API_KEY')
-print(f"SendGrid API Key: {sendgrid_api_key}")  # Debugging
