@@ -1,4 +1,5 @@
 import os
+import environ
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from django.conf import settings
@@ -6,11 +7,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializer import ContactSerializer
-from .models import Contact
-import environ
+from contact.models import Contact
 
+# Ensure that the environment variables are properly loaded
 env = environ.Env()
 environ.Env.read_env()  # Make sure this reads your .env file correctly
+
+# Set the DJANGO_SETTINGS_MODULE manually if needed
+os.environ['DJANGO_SETTINGS_MODULE'] = 'backend.settings'
 
 class ContactView(APIView):
     def post(self, request):
@@ -61,3 +65,7 @@ class ContactView(APIView):
                 )
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# Testing the loading of SendGrid API key
+sendgrid_api_key = env('SENDGRID_API_KEY')
+print(f"SendGrid API Key: {sendgrid_api_key}")  # Debugging

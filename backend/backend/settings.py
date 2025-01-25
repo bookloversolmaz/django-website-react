@@ -2,9 +2,9 @@ from pathlib import Path
 import os
 import dj_database_url
 import environ
+
 env = environ.Env()
 environ.Env.read_env()
-from decouple import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'build')
