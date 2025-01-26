@@ -20,10 +20,11 @@ class ContactView(APIView):
     def post(self, request):
         serializer = ContactSerializer(data=request.data)
         if serializer.is_valid():
+            # The contact variable below takes the data from serializer, which is the user input
             contact = serializer.save()
 
-            subject = f"New Contact Submission from {contact.name}"
-            html_content = f"""
+            subject=f"New Contact Submission from {contact.name}"
+            html_content=f"""
             <p>A new contact form has been submitted:</p>
             <ul>
                 <li><strong>Name:</strong> {contact.name}</li>
@@ -73,6 +74,8 @@ class ContactView(APIView):
                 message = Mail(
                 from_email=settings.DEFAULT_FROM_EMAIL,  # Use verified email
                 to_emails=settings.DEFAULT_FROM_EMAIL,  # Your email to receive the contact form
+                # contact here is an instance of serializer, which uses data inputted by the user. Hence, why it does not need to import 
+                # from models
                 subject=f"New Contact Submission from {contact.name}",
                 html_content=f"""
                 <p>A new contact form has been submitted:</p>
