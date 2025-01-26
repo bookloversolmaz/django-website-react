@@ -70,3 +70,6 @@ class ContactView(APIView):
                 )
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+print(f"From Email: {settings.DEFAULT_FROM_EMAIL}")
+print(f"To Email: {settings.DEFAULT_FROM_EMAIL}")
