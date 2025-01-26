@@ -42,7 +42,7 @@ class ContactView(APIView):
                         status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                     )
 
-                sg = SendGridAPIClient(sendgrid_api_key)
+                # sg = SendGridAPIClient(sendgrid_api_key)
                 # message = Mail(
                 #     from_email=settings.DEFAULT_FROM_EMAIL,  # Use the default from email in your settings
                 #     to_emails=[settings.DEFAULT_FROM_EMAIL],  # Use your personal email as recipient
@@ -50,7 +50,7 @@ class ContactView(APIView):
                 #     html_content=html_content,
                 # )
 
-                # sg = sendgrid.SendGridAPIClient(api_key=sendgrid_api_key)
+                sg = sendgrid.SendGridAPIClient(api_key=sendgrid_api_key)
 
                 from_email = Email("verified@example.com")
                 to_email = To("your_email@example.com")
