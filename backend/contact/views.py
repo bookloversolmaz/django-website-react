@@ -40,8 +40,8 @@ class ContactView(APIView):
 
                 # Create the email
                 message = Mail(
-                    from_email="verified_sender@example.com",  # Use a verified email address
-                    to_emails="recipient_email@example.com",  # Replace with recipient email
+                    from_email=env('DEFAULT_FROM_EMAIL'),  # Use a verified email address
+                    to_emails=env('DEFAULT_FROM_EMAIL'),  # Replace with recipient email
                     subject=subject,
                     html_content=html_content,
                 )
