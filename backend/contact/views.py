@@ -45,7 +45,7 @@ class ContactView(APIView):
                 sg = SendGridAPIClient(sendgrid_api_key)
                 message = Mail(
                     from_email=settings.DEFAULT_FROM_EMAIL,  # Use the default from email in your settings
-                    to_emails=settings.DEFAULT_FROM_EMAIL,  # Use your personal email as recipient
+                    to_emails=[settings.DEFAULT_FROM_EMAIL],  # Use your personal email as recipient
                     subject=subject,
                     html_content=html_content,
                 )
