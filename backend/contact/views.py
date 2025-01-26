@@ -44,8 +44,8 @@ class ContactView(APIView):
 
                 sg = SendGridAPIClient(sendgrid_api_key)
                 message = Mail(
-                    from_email=contact.email,  # From settings or .env
-                    to_emails=settings.DEFAULT_FROM_EMAIL,  # The recipient email
+                    from_email=Contact.email,
+                    to_emails=settings.DEFAULT_FROM_EMAIL,
                     subject=subject,
                     html_content=html_content,
                 )
