@@ -41,7 +41,7 @@ class ContactView(APIView):
                 sendgrid_api_key = env('SENDGRID_API_KEY')
                 
                 # Log the API key for debugging
-                logger.debug(f"DEBUG: SendGrid API Key = {sendgrid_api_key}")
+                # logger.debug(f"DEBUG: SendGrid API Key = {sendgrid_api_key}")
 
                 if not sendgrid_api_key:
                     return Response(
@@ -62,9 +62,9 @@ class ContactView(APIView):
                 response = sg.send(message)
 
                 # Log the response for debugging
-                logger.debug(f"SendGrid Response Status: {response.status_code}")
-                logger.debug(f"Response Body: {response.body}")
-                logger.debug(f"Response Headers: {response.headers}")
+                # logger.debug(f"SendGrid Response Status: {response.status_code}")
+                # logger.debug(f"Response Body: {response.body}")
+                # logger.debug(f"Response Headers: {response.headers}")
 
                 # Check the response status
                 if response.status_code == 202:
