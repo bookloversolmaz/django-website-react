@@ -11,6 +11,12 @@ from .serializer import ContactSerializer
 env = environ.Env()
 environ.Env.read_env()
 
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 class ContactView(APIView):
     def post(self, request):
         serializer = ContactSerializer(data=request.data)
@@ -34,8 +40,8 @@ class ContactView(APIView):
                 # Load the SendGrid API key
                 sendgrid_api_key = env('SENDGRID_API_KEY')
                 
-                # Print the API key for debugging
-                print(f"DEBUG: SendGrid API Key = {sendgrid_api_key}")
+                # Log the API key for debugging
+                logger.debug(f"DEBUG: SendGrid API Key = {sendgrid_api_key}")
 
                 if not sendgrid_api_key:
                     return Response(
@@ -55,10 +61,10 @@ class ContactView(APIView):
                 sg = SendGridAPIClient(sendgrid_api_key)
                 response = sg.send(message)
 
-                # Log response for debugging
-                print(f"SendGrid Response Status: {response.status_code}")
-                print(f"Response Body: {response.body}")
-                print(f"Response Headers: {response.headers}")
+                # Log the response for debugging
+                logger.debug(f"SendGrid Response Status: {response.status_code}")
+                logger.debug(f"Response Body: {response.body}")
+                logger.debug(f"Response Headers: {response.headers}")
 
                 # Check the response status
                 if response.status_code == 202:
