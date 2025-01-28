@@ -33,6 +33,10 @@ class ContactView(APIView):
             try:
                 # Load the SendGrid API key
                 sendgrid_api_key = env('SENDGRID_API_KEY')
+                
+                # Print the API key for debugging
+                print(f"DEBUG: SendGrid API Key = {sendgrid_api_key}")
+
                 if not sendgrid_api_key:
                     return Response(
                         {"error": "SendGrid API key not found in environment variables."},
