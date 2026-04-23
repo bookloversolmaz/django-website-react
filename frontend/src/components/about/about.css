@@ -1,33 +1,48 @@
+.about-page {
+  padding-bottom: 1rem;
+}
+
+.about-section {
+  width: min(var(--page-width), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+  padding: 5rem 0 1rem;
+  text-align: center;
+}
+
+.about-card {
+  margin: 1.5rem auto 0;
+  max-width: 760px;
+  padding: 1.4rem 1.6rem;
+  text-align: left;
+}
+
 .about-me {
-    margin-right: 15rem !important;
-    margin-left: 15rem !important;
-    font-size: 18px !important; /* Default size for body text */
-    margin-top: 0.4rem;
+  margin: 0 0 0.9rem 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #5f524b;
 }
 
-.about-heading {
-    font-size: 40px; /* Keep the font size */
-    margin-top: 3rem; /* Adjust the space from the top */
-    margin-bottom: 0.5rem; /* Reduce space below h1 */
+.about-me:last-child {
+  margin-bottom: 0;
 }
 
-.about-image-container {
-    position: relative; /* Keep positioning flexible */
-    max-width: 120%; /* Increase width by 50% */
-    max-height: calc(100vh - 5rem); /* Adjust height to fit within the viewport */
-    height: auto; /* Maintain aspect ratio */
-    margin: 0.5rem auto 0; /* Center with smaller margin */
-    opacity: 0.9; /* Keep slight transparency */
-    pointer-events: none; /* Non-interactive */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Center image */
+.about-card a {
+  color: #b35a4f;
+  text-decoration: none;
+  font-weight: 600;
 }
-  
-.about-image {
-    width: 100%; /* Ensure responsiveness */
-    max-width: 600px; /* Increase absolute maximum width by 50% */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Prevent distortion */
-    display: block; /* Ensure proper block-level behavior */
+
+.about-card a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .about-section {
+    padding: 4.75rem 0 1rem;
+  }
+
+  .about-card {
+    padding: 1.25rem;
+  }
 }

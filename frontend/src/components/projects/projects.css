@@ -1,81 +1,141 @@
-.project-header {
-    margin-top: 3rem;
-    margin-bottom: 0.5rem;
-}
-.projects-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    margin: 0 auto;
-    margin: -0.4rem auto 0; /* Add a top margin to push content below the header */
-    max-width: 1200px; /* Optional: limit the width for better appearance */
+.projects-page {
+  width: 100%;
+  padding-bottom: 1rem;
 }
 
-.project-block {
-    display: flex;
-    flex-direction: column;
-    background-color: #f0f7fc;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    color: #000000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.project-block:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+.projects-hero {
+  width: min(var(--page-width), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+  padding: 5rem 0 1rem;
+  text-align: center;
 }
 
-
-/* Title Styling for other projects (wrapped in p tags) */
-.project-title p {
-    text-decoration: none;
-    font-size: 20px !important;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 10px;
+.projects-intro {
+  max-width: 760px;
+  margin: 1rem auto 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #5f524b;
 }
 
-/* Container for the image */
-.project-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
-    margin: 10px 0;
-}
-.project-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-/* Project Description Styling */
-.project-description {
-    line-height: normal; /* Reduced line height */
-    margin: 0.5rem 0; /* Less space around paragraphs */
-    color: #000000;
+.projects-grid-section {
+  width: min(var(--page-width-wide), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+  padding-top: 0.75rem;
 }
 
-p {
-    font-size: 14px !important;
-    line-height: normal !important;
-    margin: 0 !important;
-    margin: 0.5rem 0 !important; /* Add space above and below paragraphs */
-    color: #000000; /* Optional: Adjust paragraph text color */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
 }
 
-@media (max-width: 768px) {
-    .projects-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.35rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-@media (max-width: 480px) {
-    .projects-container {
-        grid-template-columns: 1fr;
-    }
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(92, 58, 34, 0.16);
+}
+
+.project-card-top h2 {
+  margin: 0 0 0.85rem;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #1f1a17;
+  text-align: left;
+}
+
+.project-card-top p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #5f524b;
+  text-align: left;
+}
+
+.tech-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.1rem;
+}
+
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #503d36;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.35rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.05rem;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.primary-link {
+  background: #ec7063;
+  color: white;
+  box-shadow: 0 12px 28px rgba(236, 112, 99, 0.24);
+}
+
+.primary-link:hover {
+  background: #b1544a;
+  transform: translateY(-2px);
+}
+
+.secondary-link {
+  background: rgba(255, 255, 255, 0.6);
+  color: #1f1a17;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.secondary-link:hover {
+  background: rgba(255, 255, 255, 0.82);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1000px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .projects-hero {
+    padding: 4.75rem 0 1rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .project-card {
+    min-height: auto;
+  }
 }

@@ -1,165 +1,151 @@
 import React, { useState } from 'react';
-import AxiosInstance from '../../axiosinstance'; 
+import AxiosInstance from '../../axiosinstance';
 import './contact.css';
 
-// Function to retrieve the CSRF token from cookies
 function getCSRFToken() {
-    const csrfCookie = document.cookie.match(/csrftoken=([\w-]+)/);
-    return csrfCookie ? csrfCookie[1] : '';
+  const csrfCookie = document.cookie.match(/csrftoken=([\w-]+)/);
+  return csrfCookie ? csrfCookie[1] : '';
 }
 
-// State initialisation: formData holds the data entered by the user in the below fields. setFormData updates the fields with the user's input
 const ContactPage = () => {
-    const [formData, setFormData] = useState({
-        name: '', // The value in the useState here is the initial value. It is blank here as the user has not yet submitted their info.
-        email: '',
-        subject: '',
-        message: '',
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
+  };
 
-    // Boolean state, tracks whether the form was submitted or not. Initially set to false, meaning that the form has not been submitted
-    const [submitted, setSubmitted] = useState(false);
-    
-    // Triggered when user types into field. The e.target refers to the input field that was changed.
-    // name is the name of the form field (e.g., "name", "email", "subject", etc.), and value is the new value entered by the user.
-    // The setFormData updates the formData state to reflect the new value of the field that was changed. This is done by spreading 
-    // the existing formData and updating the specific field based on its name.
-    const handleChange = (event) => { // event represents all of the actions taken by the user
-        const { name, value } = event.target;   // event.target refers to the DOM element (html) that triggered the 
-        // event i.e. the form field completed by user. the event.target is deconstructed to name of field, and value inputted.
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await AxiosInstance.post('/contact/', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCSRFToken(),
+        },
+      });
+
+      if (response.status === 201) {
         setFormData({
-            ...formData,
-            [name]: value,
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
         });
-    };
-
-    // Called when user clicks submit
-    // e.preventDefault() is used to prevent the default form submission behavior, so the page doesn’t reload.
-    // Sends to backend via axios
-    // formData is the data that the user has entered in the form, and it’s sent as the body of the POST request
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        
-        try {
-            const response = await AxiosInstance.post('/contact/', formData, {
-                headers: {
-                    // 'object': 'formobject',
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken(), // Use the getCSRFToken function here
-                },
-            });
-            
-            // Waits for response from axios
-            // If the response status is 201 (created, meaning the email was successfully sent and saved), the form fields are reset using setFormData (all fields are cleared)
-            // After resetting the form, setSubmitted(true) sets the submitted state to true, which will display the "Thank you" message.
-            // If the request fails, it logs the error to the console.
-            if (response.status === 201) {
-                // Reset the form immediately after the successful submission
-                setFormData({
-                    name: '',
-                    email: '',
-                    subject: '',
-                    message: '',
-                });
-                setSubmitted(true);
-            } else {
-                console.error('Failed to send message:', response.data);
-            }
-        } catch (error) {
-            console.error('Error:', error.response ? error.response.data : error);
-        }
-    };
-
-    // handleReset is called when the user clicks the "Submit Another Message" button after the form is successfully submitted.
-    // This function resets the form data back to its initial empty values and also sets submitted back to false so the form will be shown again (not the "Thank you" message).
-    const handleReset = () => {
-        // Reset form data and submitted state if they want to submit another message
-        setFormData({
-            name: '',
-            email: '',
-            subject: '',
-            message: '',
-        });
-        setSubmitted(false);
-    };
-
-    // The button is hooked to handleReset, which clears the form and allows the user to send a new message.
-    if (submitted) {
-        return (
-            <div className="thank-you">
-                <h2>Thank you for contacting me</h2>
-                <p>I have received your message and will get back to you shortly.</p>
-                <button onClick={handleReset}>Submit another message</button>
-            </div>
-        );
+        setSubmitted(true);
+      } else {
+        console.error('Failed to send message:', response.data);
+      }
+    } catch (error) {
+      console.error('Error:', error.response ? error.response.data : error);
     }
+  };
 
-    // If submitted is false, this renders the contact form.
-    // value={formData.name} binds the form fields to the corresponding values in formData.
-    // onChange={handleChange} ensures that when a user types in the field, formData gets updated.
+  const handleReset = () => {
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
+    setSubmitted(false);
+  };
+
+  if (submitted) {
     return (
-        <div className="contact-page">
-            <h1>Contact me</h1>
-            <form onSubmit={handleSubmit} className="contact-form">
-                <div className="form-group">
-                    <label htmlFor="name">Name:</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Your Name"
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Your Email"
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="subject">Subject:</label>
-                    <input
-                        type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        placeholder="Subject"
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="message">Message:</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        placeholder="Your Message"
-                        rows="5"
-                        required
-                    />
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
+      <main className="contact-wrapper">
+        <section className="contact-hero">
+          <h1 className="page-heading">Contact</h1>
+        </section>
+
+        <div className="thank-you glass-card">
+          <h2>Thank you for getting in touch</h2>
+          <p>I’ve received your message and will reply as soon as I can.</p>
+          <button onClick={handleReset}>Send another message</button>
         </div>
+      </main>
     );
+  }
+
+  return (
+    <main className="contact-wrapper page-shell">
+    <section className="contact-hero page-hero">
+        <h1 className="page-heading">Contact</h1>
+        <p className="contact-intro page-intro">
+        Whether you’d like to talk about software, collaboration, or a role, feel free to send me a message.
+        </p>
+    </section>
+
+      <div className="contact-page glass-card">
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your name"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Your email"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              placeholder="Subject"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Your message"
+              rows="6"
+              required
+            />
+          </div>
+
+          <button type="submit">Send message</button>
+        </form>
+      </div>
+    </main>
+  );
 };
 
 export default ContactPage;
-// Overall:
-// The forms is initiliased with blank fields
-// The user enters their data into the form fields.
-// When the form is submitted, the setFormData is updated with the values from the formData
-// The data is sent to the backend (Django) via axios.
-// If the form is successfully submitted (i.e., the response status is 201), the form is cleared, and the "Thank you" message is displayed.
-// The user can click "Submit Another Message" to reset the form to its initial empty state, and they can send another message.

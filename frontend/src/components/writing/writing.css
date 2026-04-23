@@ -1,37 +1,170 @@
-p {
-    margin: -0.5rem 0; /* Add space above and below paragraphs */
-    margin-right: 2rem;
-    margin-left: 2rem;
-    line-height: 1.6; /* Improve readability with increased line spacing */
-    font-size: 18px !important; /* Default size for body text */
-    color: #000000; /* Optional: Adjust paragraph text color */
-  }
-
-.landing-page-heading {
-  margin-top: 3rem;
-  margin-bottom: 1.2rem;
-
-  }
-
-.return-button {
-  margin-top: 4.5rem;
+.writing-page,
+.post-page {
+  width: 100%;
+  min-height: calc(100vh - var(--header-height));
+  padding-bottom: 1rem;
 }
 
-.writing-title{
-    font-weight: bold;
-  }
-.writing-title:hover {
-    transform: scale(1.05);
+.writing-hero,
+.post-section {
+  width: min(var(--page-width), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+  padding: 5rem 0 1rem;
+}
+
+.writing-hero {
+  text-align: center;
+}
+
+.writing-intro {
+  max-width: 760px;
+  margin: 1rem auto 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #5f524b;
+}
+
+.writing-grid-section {
+  width: min(var(--page-width-wide), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+  padding-top: 0.75rem;
+}
+
+.writing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
 }
 
 .writing-block {
-    display: flex;
-    flex-direction: column;
-    background-color: #f0f7fc;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    color: #000000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.35rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.writing-block:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(92, 58, 34, 0.16);
+}
+
+.writing-title {
+  margin: 0 0 0.85rem;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #1f1a17;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.writing-title:hover {
+  color: #b35a4f;
+  transform: translateY(-1px);
+}
+
+.writing-meta {
+  margin-bottom: 0.85rem;
+}
+
+.writing-meta p {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #7a6a61;
+}
+
+.writing-excerpt {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #5f524b;
+}
+
+.writing-read-more,
+.return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0.8rem 1.05rem;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+  background: #ec7063;
+  color: white;
+  box-shadow: 0 12px 28px rgba(236, 112, 99, 0.24);
+}
+
+.writing-read-more:hover,
+.return-button:hover {
+  background: #b1544a;
+  transform: translateY(-2px);
+}
+
+.post-card {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.7rem 1.9rem;
+}
+
+.post-meta {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.post-meta p {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #7a6a61;
+}
+
+.post-body p {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #544841;
+}
+
+.post-body a {
+  color: #b35a4f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.post-body a:hover {
+  text-decoration: underline;
+}
+
+.return-button {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 1000px) {
+  .writing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .writing-hero,
+  .post-section {
+    padding: 4.75rem 0 1rem;
+  }
+
+  .writing-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .writing-block,
+  .post-card {
+    min-height: auto;
+    padding: 1.25rem;
+  }
 }

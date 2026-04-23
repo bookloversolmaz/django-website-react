@@ -1,73 +1,144 @@
 import React, { useState, useEffect } from 'react';
-import AxiosInstance from '../../axiosinstance'; 
-import { useNavigate } from 'react-router-dom'; // Correctly import useNavigate
-import './writing.css'
+import AxiosInstance from '../../axiosinstance';
+import { useNavigate } from 'react-router-dom';
+import './writing.css';
 
-// This is the writing landing page, which contains all of the blogs with the first 100 words of the body text.
-// The user can then click on the title of each blog and they are then taken to the post detail page
+// Main component for the writing landing page
 const WritingLandingPage = () => {
+
+  // State to store all posts (initially empty array)
   const [posts, setPosts] = useState([]);
+
+  // Hook to programmatically navigate between pages
   const navigate = useNavigate();
 
+  // Function to fetch all blog posts from backend
   const getPostData = async () => {
     try {
+      // Make GET request to /writing/ endpoint
       const response = await AxiosInstance.get('/writing/');
+
+      // If request is successful (status 200), store data
       if (response.status === 200) {
         setPosts(response.data);
       } else {
+        // Handle unexpected response status
         console.error('Error fetching data: Response is undefined or status is not 200');
       }
+
     } catch (error) {
-      console.error('Error fetching data:', error.response.data);
+      // Catch and log errors from the request
+      console.error('Error fetching data:', error.response?.data || error);
     }
   };
 
+  // Run once when component mounts
   useEffect(() => {
-    getPostData();
-  }, []);
-  
-  // Sort posts by 'created_on' date, with newest at the top
-  // The sortedPosts variable uses the Array.sort() method to sort the posts array by the created_on date in ascending order (oldest first).
-  // new Date(a.created_on): Converts the created_on string into a JavaScript Date object for comparison.
-  // Ascending Order: Subtracts a.created_on from b.created_on. To reverse the order, you could subtract b.created_on from a.created_on.
-  const sortedPosts = [...posts].sort((a, b) => new Date(b.created_on) - new Date(a.created_on));
+    getPostData(); // Fetch posts
+  }, []); // Empty dependency array = runs once
 
-  // Function to handle post click
+  // Sort posts by creation date (newest first)
+  const sortedPosts = [...posts].sort(
+    (a, b) => new Date(b.created_on) - new Date(a.created_on)
+  );
+
+  // Navigate to a specific post when clicked
   const handlePostClick = (postId) => {
-    navigate(`/writing/${postId}`); // Redirect to the detailed view of the post
+    navigate(`/writing/${postId}`); // Go to post detail page
   };
 
+  // JSX layout
   return (
-    <div>
-      <h1 className='landing-page-heading'>Writing</h1>
-      {sortedPosts.length === 0 ? (
-        <div>Loading...</div>
-      ) : (
-        <div>
-          {sortedPosts.map((post) => (
-            <div className="writing-block" key={post.id}>
-              <h2 className='writing-title' style={{ cursor: 'pointer' }} onClick={() => handlePostClick(post.id)}>
-                {post.title}
-              </h2>
-              <p>Publication date: {new Date(post.publication_date).toLocaleDateString('en-GB', {
-              day: '2-digit',
-              month: 'long',
-              year: 'numeric',
-              })}</p>
-              <p>Created on: {new Date(post.created_on).toLocaleDateString('en-GB', {
-              day: '2-digit',
-              month: 'long',
-              year: 'numeric',
-              })}</p>
-              <p>
-                {post.body.length > 100 ? `${post.body.substring(0, 100)}...` : post.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+    <main className="writing-page page-shell"> {/* Main page wrapper */}
+
+      {/* Top hero section */}
+      <section className="writing-hero page-hero">
+
+        {/* Page heading */}
+        <h1 className="writing-heading page-heading">Writing</h1>
+
+        {/* Intro text */}
+        <p className="writing-intro page-intro">
+          Articles, reflections, and notes on software, books, and the ideas I keep returning to.
+        </p>
+      </section>
+
+      {/* Grid section containing posts */}
+      <section className="writing-grid-section">
+
+        {/* Show loading state if no posts yet */}
+        {sortedPosts.length === 0 ? (
+          <div className="writing-loading">Loading...</div>
+
+        ) : (
+          // Otherwise render posts grid
+          <div className="writing-grid">
+
+            {/* Loop through each post */}
+            {sortedPosts.map((post) => (
+
+              // Individual post card
+              <article className="writing-block glass-card" key={post.id}>
+
+                <div className="writing-block-top">
+
+                  {/* Post title (clickable) */}
+                  <h2
+                    className="writing-title"
+                    onClick={() => handlePostClick(post.id)}
+                  >
+                    {post.title}
+                  </h2>
+
+                  {/* Metadata (dates) */}
+                  <div className="writing-meta">
+
+                    {/* Publication date */}
+                    <p>
+                      Publication date:{' '}
+                      {new Date(post.publication_date).toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                    </p>
+
+                    {/* Creation date */}
+                    <p>
+                      Created on:{' '}
+                      {new Date(post.created_on).toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                    </p>
+
+                  </div>
+
+                  {/* Short preview of the post */}
+                  <p className="writing-excerpt">
+                    {post.body.length > 140
+                      ? `${post.body.substring(0, 140)}...` // Truncate long text
+                      : post.body} {/* Show full if short */}
+                  </p>
+                </div>
+
+                {/* Button to open full post */}
+                <button
+                  className="writing-read-more"
+                  onClick={() => handlePostClick(post.id)}
+                >
+                  Read more
+                </button>
+
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+    </main>
   );
 };
 
+// Export component to allow React to import this page and render it
 export default WritingLandingPage;
