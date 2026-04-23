@@ -1,134 +1,111 @@
-@import url('https://fonts.googleapis.com/css?family=Inter&display=swap');
+:root {
+  --header-height: 72px;
+  --page-width: 1100px;
+  --page-width-wide: 1200px;
+  --page-gutter: 3rem;
+  --section-top: 5rem;
+  --section-bottom: 1rem;
 
-h1, h2, h3 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400; /* Semi-bold for headings */
-  color: black;
-  text-align: center;
-  font-size: 40px;
+  --heading-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  --heading-color: #1f1a17;
+  --eyebrow-color: #9a4d4d;
+  --body-color: #5f524b;
+
+  --glass-bg: rgba(255, 255, 255, 0.42);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 16px 40px rgba(98, 70, 48, 0.08);
+  --glass-radius: 28px;
 }
-html, body {
-  height: 100%;  /* Ensure the elements take the full viewport height */
+
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-image: url('../public/pexels-padrinan-255379.jpg'); /* Path to your image */
-  background-size: cover; /* Cover the entire viewport */
-  background-repeat: no-repeat; /* Avoid tiling the background */
-  background-attachment: fixed; /* Ensure background stays fixed during scroll */
-  background-position: center; /* Center the image */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  overflow-y: auto;
+  min-height: 100%;
 }
-/* Additional styles for other elements */
+
 body {
-  line-height: 1.6;
-  font-size: 18px;
-  color: black;
-}
-
-p {
-  margin-right: 2rem;
-  margin-left: 2rem;
-  line-height: 1.6; /* Improve readability with increased line spacing */
-  font-size: 18px; /* Default size for body text */
-  font-weight: 300;
-  color: black; /* Optional: Adjust paragraph text color */
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-h1 {
-  font-size: 40px;
-}
-
-h2 {
-  font-size: 25px;
-}
-
-/* Global Button Style */
-button {
-  padding: 0.75rem 1.5rem; /* Consistent padding for all buttons */
-  font-family: 'Inter', sans-serif; /* Use the same font as the website */
-  font-size: 1rem; /* Default font size */
-  font-weight: 400; /* Regular font weight */
-  border: none; /* Remove default button border */
-  border-radius: 4px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  background-color: #ec7063;
-  color: black; /* White text color */
-  text-align: center; /* Center align text */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
-}
-
-/* Button Hover Effect */
-button:hover {
-  background-color: #b1544a; /* Darker when hovered */
-  transform: translateY(-2px); /* Slight lift effect on hover */
-}
-
-/* Button Active Effect (When Clicked) */
-button:active {
-  background-color: #763832; /* Even darker when clicked */
-  transform: translateY(1px); /* Slight push down effect when clicked */
-}
-
-/* Disabled Button */
-button:disabled {
-  background-color: #cccccc; /* Light gray for disabled state */
-  color: #666666; /* Darker gray text */
-  cursor: not-allowed; /* Indicating it's not clickable */
-  transform: none; /* No transformation effect */
-}
-
-/* Global Button for Links (in case you have links styled as buttons) */
-a.button-link {
-  display: inline-block; /* Treat links as buttons */
-  padding: 0.75rem 1.5rem;
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  border-radius: 4px;
+  overflow-x: hidden;
+  background-image: url('/public/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: rgba(255, 248, 240, 0.08);
+}
+
+#root,
+.home-page,
+.about-page,
+.projects-page,
+.writing-page,
+.post-page,
+.contact-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.page-shell {
+  width: 100%;
+  min-height: calc(100vh - var(--header-height));
+}
+
+.page-hero {
+  width: min(var(--page-width), calc(100% - var(--page-gutter)));
+  margin: 0 auto;
+  padding: var(--section-top) 0 var(--section-bottom);
   text-align: center;
-  text-decoration: none; /* Remove underline from links */
-  background-color: #85c1e9 ; /* Primary color */
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover and Active Effects for Button Links */
-a.button-link:hover {
-  background-color: #6491af;
-  transform: translateY(-2px);
+.page-eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--eyebrow-color);
+  letter-spacing: 0.01em;
 }
 
-a.button-link:active {
-  background-color: #324857;
-  transform: translateY(1px);
+.page-heading {
+  margin: 0;
+  font-size: var(--heading-size);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--heading-color);
 }
 
-a.button-link:disabled {
-  background-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
-  transform: none;
+.page-intro {
+  max-width: 760px;
+  margin: 1rem auto 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--body-color);
 }
 
-@media (max-width: 768px) {
-  html, body {
-    background-attachment: scroll; /* Use scrollable background on smaller screens */
+.glass-card {
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--glass-radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --page-gutter: 1.5rem;
+    --section-top: 4.75rem;
   }
-  .section {
-    grid-template-columns: 1fr; /* Stack sections on smaller screens */
-  }
 }
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0.5rem;
-  }
-}
-/* colours: main header #cb4335, second: #35bdcb, darker colour #21767f, very light #e6f7f9 */

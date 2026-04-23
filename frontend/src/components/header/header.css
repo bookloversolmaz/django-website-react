@@ -1,95 +1,86 @@
-header {
-    background-color: #85c1e9;
-    padding: 0.50rem 2rem; /* Reduced padding for less depth but keep left and right padding */
-    width: 100%; /* Ensure it spans the full width */
-    font-size: 18px;
-    font-weight: 600; /* Semi-bold for header */
-    display: flex; /* Flexbox for easier layout control */
-    justify-content: space-between; /* Spread out the navigation and social links */
-    align-items: center; /* Vertically center the content */
-    position: fixed; /* Keeps header at the top of the page */
-    top: 0; /* Place it at the very top */
-    left: 0; /* Ensure it starts from the very left */
-    right: 0; /* Ensure it ends at the very right */
-    z-index: 1000; /* Ensure it stays on top of other content */
-    margin: 0; /* Remove any margin */
-    height: 3rem;
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.25rem 0;
+  background: transparent;
 }
 
-/* Ensure the main body content is not hidden under the fixed header */
-body {
-    margin-top: 5rem; /* Adjust this depending on the height of your header */
-    padding: 0;
-    height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Prevent scrollbars */
+.site-nav {
+  width: min(1320px, calc(100% - 4rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 2rem;
 }
 
-.nav-list {
-    list-style: none;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    font-size: 15px; /* Slightly smaller font size */
-    font-weight: 400; /* Regular weight for nav links */
-    gap: 1.5rem; /* Reduce spacing between links */
-    white-space: nowrap; /* Prevent links from wrapping to the next line */
+.site-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #2b221d;
+  text-decoration: none;
 }
 
-.dropdown {
-    position: relative;
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2.25rem;
+  margin: 0;
+  padding: 0;
 }
 
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #f0f7fc;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    box-shadow: none;
-    border-radius: 0;
-    padding: 0.5rem 1rem;
-    list-style: none;
-    z-index: 10;
-    display: none;
-    width: auto;
+.nav-links li a {
+  text-decoration: none;
+  color: #4b4038;
+  font-size: 0.98rem;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-/* Targets list elements inside the dropdown list. li represents a list item */
-.dropdown-menu li {
-    padding: 0.5rem 0.5rem;
-    width: 100%;
-}
-/* Targets the <a> tag (hyperlink) inside each list item of the dropdown menu */
-.dropdown-menu li a {
-    text-decoration: none;
-    color: #000000;
-    display: block;
-    transition: background-color 0.2s ease-in-out;
-    width: auto;
-}
-
-.dropdown:hover .dropdown-menu,
-.dropdown:focus-within .dropdown-menu {
-    display: block;
+.nav-links li a:hover {
+  color: #b35a4f;
+  transform: translateY(-1px);
 }
 
 .social-links {
-    font-size: 12px; /* Smaller font size for social links */
-    display: flex;
-    gap: 1rem; /* Reduce gap between icons */
-    align-items: center; /* Vertically align the icons */
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
-.social-links li a {
-    text-decoration: none; /* Remove underlining */
-    display: inline-flex; /* Ensure the icons are inline */
-    justify-content: center;
-    align-items: center;
-    transition: color 0.2s ease, transform 0.2s ease; /* Smooth transition */
-    font-size: 12px;
+.social-links li {
+  display: flex;
+  align-items: center;
 }
 
-.social-links li a:hover {
-    transform: scale(1.1); /* Optional: icon grows slightly on hover */
+
+/* Mobile */
+@media (max-width: 900px) {
+  .site-nav {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    justify-items: center;
+  }
+
+  .nav-links {
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .social-links {
+  gap: 0.6rem;
+}
+
+    .social-icon {
+    width: 30px !important;
+    height: 30px !important;
+    } 
 }

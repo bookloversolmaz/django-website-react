@@ -5,7 +5,6 @@
 import React from "react";
 import {Routes, Route } from "react-router-dom";
 import Home from '../home/home.js';
-import Todo from '../todo/todo.js';
 import Projects from '../projects/projects.js'
 import WritingLandingPage from '../writing/writinglandingpage.js'
 import PostDetail from "../writing/postdetail.js";
@@ -20,7 +19,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/todo" element={<Todo />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/writing" element={<WritingLandingPage/>} />
           <Route path="/writing/:postId" element={<PostDetail />} />

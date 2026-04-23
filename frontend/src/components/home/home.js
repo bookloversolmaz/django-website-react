@@ -1,30 +1,41 @@
 import React from 'react';
 import './home.css';
-import macbookImage from '../images/gummy-macbook.png';
+import laptopImage from '../images/homepage-image.png';
+
 
 function Home() {
-    return (
-        <div> <h1>Solmaz Purser</h1>
-        <h2>Software developer and writer</h2>
-        <div className="home-container">
-            <div className="links-container">
-                <a href="/about" className="link-bubble link1">About</a>
-                <a href="/projects" className="link-bubble link2">Projects</a>
-                <a href="/writing" className="link-bubble link3">Writing</a>
-                <a href="/contact" className="link-bubble link4">Contact</a>
-                <a href="/todo" className="link-bubble link5">To do list</a>
-            </div>
-            {/* Image with attribution */}
-            <div className="home-image-container">
-                <img 
-                    src={macbookImage} 
-                    alt="MacBook Illustration" 
-                    className="home-image" 
-                />
-            </div>
+  return (
+    <main className="home-page">
+      <section className="hero">
+        <div className="hero-text">
+          <p className="hero-eyebrow">Hi, I’m Solmaz</p>
+
+          <h1>
+            <span className="line">I build</span>
+            <span className="line">thoughtful</span>
+            <span className="line accent">software.</span>
+          </h1>
+
+          <p className="hero-description">
+            Software engineer with experience building production systems in fintech across C#, React, Kafka and Azure, with a background in editorial and content strategy.
+          </p>
+
+          <div className="hero-buttons">
+            <a href="/projects" className="primary-button">
+              View Projects →
+            </a>
+            <a href="/about" className="secondary-button">
+              About Me →
+            </a>
+          </div>
         </div>
+
+        <div className="hero-image-wrapper">
+          <img src={laptopImage} alt="Laptop setup" className="hero-image" />
         </div>
-    );
+      </section>
+    </main>
+  );
 }
 
-export default Home;
+export default Home

@@ -18,7 +18,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from rest_framework.urlpatterns import format_suffix_patterns
-from todo.views import TodoDetailView, TodoListView
 from writing.views import WritingEntireView, WritingListView
 from projects.views import ProjectListView
 from contact.views import ContactView
@@ -27,8 +26,6 @@ from django.views.generic import TemplateView
 urlpatterns = [
     # Admin URL (ensure this is prioritized)
     path('admin/', admin.site.urls),
-    path('todo/', TodoListView.as_view(), name='todo'),
-    path('todo/<int:pk>/', TodoDetailView.as_view(), name='todo-detail'),
     path('writing/', WritingListView.as_view(), name='writing-list'),
     path('writing/<int:pk>/', WritingEntireView.as_view(), name='writing-detail'),
     path('projects/', ProjectListView.as_view(), name='project-list'),
