@@ -3,8 +3,9 @@ import os
 import dj_database_url
 import environ
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
-environ.Env.read_env()
+environ.Env.read_env(BASE_DIR.parent / ".env")
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'build')
@@ -110,7 +111,6 @@ INSTALLED_APPS = [
     'backend',
     'home',
     'projects',
-    'todo',
     'writing',
     'contact',
     'rest_framework',

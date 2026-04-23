@@ -3,28 +3,52 @@ import './home.css';
 import macbookImage from '../images/gummy-macbook.png';
 
 function Home() {
-    return (
-        <div> <h1>Solmaz Purser</h1>
-        <h2>Software developer and writer</h2>
-        <div className="home-container">
-            <div className="links-container">
-                <a href="/about" className="link-bubble link1">About</a>
-                <a href="/projects" className="link-bubble link2">Projects</a>
-                <a href="/writing" className="link-bubble link3">Writing</a>
-                <a href="/contact" className="link-bubble link4">Contact</a>
-                <a href="/todo" className="link-bubble link5">To do list</a>
-            </div>
-            {/* Image with attribution */}
-            <div className="home-image-container">
-                <img 
-                    src={macbookImage} 
-                    alt="MacBook Illustration" 
-                    className="home-image" 
-                />
-            </div>
+  return (
+    <main className="home-page">
+      <section className="hero">
+        <div className="hero-text">
+          <p className="hero-eyebrow">Hi, I’m Solmaz</p>
+
+          <h1>
+            I build thoughtful
+            <span> software for the web.</span>
+          </h1>
+
+          <p className="hero-description">
+            Software engineer with experience building production systems in
+            fintech across C#, React, Kafka and Azure, with a background in
+            editorial and content strategy.
+          </p>
+
+          <div className="hero-buttons">
+            <a href="/projects" className="primary-button">
+              View Projects
+            </a>
+            <a href="/about" className="secondary-button">
+              About Me
+            </a>
+          </div>
         </div>
+
+        <div className="hero-image-wrapper">
+          <img
+            src={macbookImage}
+            alt="Laptop with code and coffee mug"
+            className="hero-image"
+          />
         </div>
-    );
+      </section>
+
+      <section className="quick-links-section">
+        <div className="quick-links-card">
+          <a href="/about" className="quick-link">About</a>
+          <a href="/projects" className="quick-link">Projects</a>
+          <a href="/writing" className="quick-link">Writing</a>
+          <a href="/contact" className="quick-link">Contact</a>
+        </div>
+      </section>
+    </main>
+  );
 }
 
 export default Home;
