@@ -1,11 +1,8 @@
 from pathlib import Path
 import os
 import dj_database_url
-import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
-environ.Env.read_env(BASE_DIR.parent / ".env")
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'build')
@@ -55,18 +52,26 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allowed hosts
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com', 'django-website-react-1.onrender.com']
 
-# Email settings for SendGrid
-SENDGRID_API_KEY = env('SENDGRID_API_KEY')
+# Email settings for RESEND
+RESEND_API_KEY = env('RESEND_API_KEY')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 REPLY_TO_EMAIL = env('DEFAULT_FROM_EMAIL')
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
-EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'apikey'  # SendGrid username is always 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
+ANYMAIL = {
+    "RESEND_API_KEY": os.environ.get("RESEND_API_KEY"),
+}
+
+DEFAULT_FROM_EMAIL = os.environ.get(
+    "DEFAULT_FROM_EMAIL",
+    "onboarding@resend.dev"
+)
+
+CONTACT_TO_EMAIL = os.environ.get(
+    "CONTACT_TO_EMAIL",
+    "your_email@example.com"
+)
+EMAIL_HOST_PASSWORD = RESEND_API_KEY
 
 DATABASES = {
     'default': dj_database_url.config(
@@ -75,21 +80,6 @@ DATABASES = {
         ssl_require=True,
     )
 }
-# EMAIL_HOST_PASSWORD  config('SENDGRID_API_KEY'
-# SECRET_KEY = config('SECRET_KEY')
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': config('DATABASE_NAME'),
-#         'USER': config('DATABASE_USER'),
-#         'PASSWORD': config('DATABASE_PASSWORD'),
-#         'HOST': config('DATABASE_HOST'),
-#         'PORT': config('DATABASE_PORT'),
-#     }
-# }
-# DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
-# SENDGRID_API_KEY = config('SENDGRID_API_KEY')
-
 
 STORAGE = {
     "default":{
@@ -116,7 +106,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'whitenoise.runserver_nostatic',
-    'sendgrid'
+    'anymail'
 ]
 
 MIDDLEWARE = [
