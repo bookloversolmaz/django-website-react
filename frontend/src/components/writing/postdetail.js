@@ -4,53 +4,71 @@ import { useParams, useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import './writing.css';
 
-// Define the PostDetail component (this page shows a full blog post)
+// Define the PostDetail component.
+// This page displays one full writing/blog post.
 const PostDetail = () => {
-
-  // Extract the postId from the URL (e.g. /writing/3 → postId = 3)
+  // Get the postId from the URL.
+  // Example: /writing/3 means postId is 3.
   const { postId } = useParams();
 
-  // Create state to store the fetched post data (initially null)
+  // Store the post returned from the backend.
+  // It starts as null while the data is loading.
   const [post, setPost] = useState(null);
 
-  // Hook to programmatically navigate between pages
+  // Allows navigation from code, such as going back one page.
   const navigate = useNavigate();
 
-  // useEffect runs when the component loads OR when postId changes
+  // Fetch the post when the component loads, or whenever postId changes.
   useEffect(() => {
-
-    // Async function to fetch the post from the backend
+    // Define an async function so we can use await.
     const fetchPost = async () => {
       try {
-        // Make GET request to backend API for this specific post
+        // Request the post data from the backend API.
         const response = await AxiosInstance.get(`/writing/${postId}/`);
 
-        // Store the returned post data in state
+        // Save the returned post data into state.
         setPost(response.data);
-
       } catch (error) {
-        // Log any errors if the request fails
+        // Log any API errors to the console.
         console.error('Error fetching post details:', error);
       }
     };
 
-    // Call the fetch function
+    // Run the fetch function.
     fetchPost();
+  }, [postId]);
 
-  }, [postId]); // Dependency array: re-run if postId changes
-
-  // While the post is still loading, show a loading message
+  // Show a loading message until the post has been fetched.
   if (!post) return <div className="writing-loading">Loading...</div>;
 
-  // Split the post body into paragraphs using newline characters
-  const splitParagraphs = post.body
-    .split('\n') // Split string into array by line breaks
-    .filter((paragraph) => paragraph.trim() !== ''); // Remove empty lines
+  // Go back to the previous page in browser history.
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
-  // Sanitize each paragraph to prevent malicious code
+  // Insert the post image into the body wherever [IMAGE] appears.
+  // If there is no image, keep the body unchanged.
+  const bodyWithImage = post.image
+    ? post.body.replace(
+        '[IMAGE]',
+        `<img src="${post.image}" alt="${post.title}" class="post-inline-image" />`
+      )
+    : post.body;
+
+  // Split the post body into paragraph-like chunks using line breaks.
+  // Empty lines are removed.
+  const splitParagraphs = bodyWithImage
+    .split('\n')
+    .filter((paragraph) => paragraph.trim() !== '');
+
+  // Sanitize each paragraph before rendering it as HTML.
+  // This protects against unsafe HTML such as scripts.
   const sanitizedParagraphs = splitParagraphs.map((paragraph) =>
     DOMPurify.sanitize(paragraph, {
-      ADD_ATTR: ['target', 'src', 'alt', 'class'], // Allow "target" attribute on links
+      // Allow the attributes needed for links and images.
+      ADD_ATTR: ['target', 'src', 'alt', 'class'],
+
+      // Allow only these HTML tags inside post content.
       ALLOWED_TAGS: [
         'p',
         'a',
@@ -64,47 +82,31 @@ const PostDetail = () => {
         'h2',
         'h3',
       ],
-      // Add target="_blank" to any links that don’t already have it
-      FORBID_TAGS: ['script'], // Block <script> tags for security
+
+      // Explicitly block script tags.
+      FORBID_TAGS: ['script'],
     }).replace(/<a\s+(?!.*target)/g, '<a target="_blank" ')
   );
 
-  // Function to go back to the previous page
-  const handleGoBack = () => {
-    navigate(-1); // Go back one step in browser history
-  };
-
-  const bodyWithImage = post.image
-  ? post.body.replace(
-      '[IMAGE]',
-      `<img src="${post.image}" alt="${post.title}" class="post-inline-image" />`
-    )
-  : post.body;
-
-  // JSX layout for the page
   return (
-    <main className="post-page"> {/* Main page wrapper */}
-      
-      <section className="post-section"> {/* Content section */}
-
-        {/* Back button */}
+    <main className="post-page">
+      {/* Main content section for the post */}
+      <section className="post-section">
+        {/* Button returns the user to the previous page */}
         <button className="return-button" onClick={handleGoBack}>
           ← Return to Writing
         </button>
 
-        {/* Glass-style card container */}
+        {/* Glass-style card containing the post */}
         <article className="post-card glass-card">
-
-          {/* Small label above title */}
+          {/* Small label above the post title */}
           <p className="writing-eyebrow">Writing</p>
 
-          {/* Post title */}
+          {/* Main post title */}
           <h1 className="post-heading">{post.title}</h1>
 
-          {/* Metadata section */}
+          {/* Post date metadata */}
           <div className="post-meta">
-
-            {/* Publication date */}
             <p>
               Publication date:{' '}
               {new Date(post.publication_date).toLocaleDateString('en-GB', {
@@ -114,7 +116,6 @@ const PostDetail = () => {
               })}
             </p>
 
-            {/* Creation date */}
             <p>
               Created on:{' '}
               {new Date(post.created_on).toLocaleDateString('en-GB', {
@@ -123,28 +124,23 @@ const PostDetail = () => {
                 year: 'numeric',
               })}
             </p>
-
           </div>
 
-          {/* Main body content */}
+          {/* Main body of the post */}
           <div className="post-body">
-
-            {/* Loop through paragraphs and render each one */}
+            {/* Render each sanitized paragraph or image block */}
             {sanitizedParagraphs.map((paragraph, index) => (
-              <p
-                key={index} // Unique key for React rendering
-                dangerouslySetInnerHTML={{ __html: paragraph }} 
-                // Render HTML content safely (after sanitization)
+              <div
+                key={index}
+                dangerouslySetInnerHTML={{ __html: paragraph }}
               />
             ))}
-
           </div>
-
         </article>
       </section>
     </main>
   );
 };
 
-// Export component so it can be used in routing
+// Export this component so React Router can render it.
 export default PostDetail;
