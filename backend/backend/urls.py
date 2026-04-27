@@ -22,6 +22,8 @@ from writing.views import WritingEntireView, WritingListView
 from projects.views import ProjectListView
 from contact.views import ContactView
 from django.views.generic import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # Admin URL (ensure this is prioritized)
@@ -38,3 +40,6 @@ urlpatterns = [
 ]
 # Apply format suffix patterns (for REST API responses like `.json`, `.html`, etc.)
 urlpatterns = format_suffix_patterns(urlpatterns)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

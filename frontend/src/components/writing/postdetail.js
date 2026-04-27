@@ -50,17 +50,36 @@ const PostDetail = () => {
   // Sanitize each paragraph to prevent malicious code
   const sanitizedParagraphs = splitParagraphs.map((paragraph) =>
     DOMPurify.sanitize(paragraph, {
-      ADD_ATTR: ['target'], // Allow "target" attribute on links
+      ADD_ATTR: ['target', 'src', 'alt', 'class'], // Allow "target" attribute on links
+      ALLOWED_TAGS: [
+        'p',
+        'a',
+        'img',
+        'strong',
+        'em',
+        'ul',
+        'ol',
+        'li',
+        'br',
+        'h2',
+        'h3',
+      ],
+      // Add target="_blank" to any links that don’t already have it
       FORBID_TAGS: ['script'], // Block <script> tags for security
-    })
-    // Add target="_blank" to any links that don’t already have it
-    .replace(/<a\s+(?!.*target)/g, '<a target="_blank" ')
+    }).replace(/<a\s+(?!.*target)/g, '<a target="_blank" ')
   );
 
   // Function to go back to the previous page
   const handleGoBack = () => {
     navigate(-1); // Go back one step in browser history
   };
+
+  const bodyWithImage = post.image
+  ? post.body.replace(
+      '[IMAGE]',
+      `<img src="${post.image}" alt="${post.title}" class="post-inline-image" />`
+    )
+  : post.body;
 
   // JSX layout for the page
   return (

@@ -42,7 +42,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Set your secret key from the .env file
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
@@ -53,9 +53,15 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com', 'django-website-react-1.onrender.com']
 
 # Email settings for RESEND
-RESEND_API_KEY = env('RESEND_API_KEY')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-REPLY_TO_EMAIL = env('DEFAULT_FROM_EMAIL')
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "onboarding@resend.dev")
+CONTACT_TO_EMAIL = os.environ.get("CONTACT_TO_EMAIL", "your_email@example.com")
+
+EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
+
+ANYMAIL = {
+    "RESEND_API_KEY": RESEND_API_KEY,
+}
 
 EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
 ANYMAIL = {
@@ -71,7 +77,6 @@ CONTACT_TO_EMAIL = os.environ.get(
     "CONTACT_TO_EMAIL",
     "your_email@example.com"
 )
-EMAIL_HOST_PASSWORD = RESEND_API_KEY
 
 DATABASES = {
     'default': dj_database_url.config(
@@ -80,6 +85,9 @@ DATABASES = {
         ssl_require=True,
     )
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STORAGE = {
     "default":{
