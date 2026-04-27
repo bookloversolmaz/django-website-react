@@ -1,83 +1,70 @@
-import environ
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+import logging
+
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+
 from .serializer import ContactSerializer
-# from backend import settings
 
-# Ensure that the environment variables are properly loaded
-env = environ.Env()
-environ.Env.read_env()
-
-import logging
-
-# Set up logging
-logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+
 
 class ContactView(APIView):
     def post(self, request):
         serializer = ContactSerializer(data=request.data)
-        if serializer.is_valid():
-            # Save the contact form data
-            contact = serializer.save()
 
-            # Email subject and content
-            subject = f"New Contact Submission from {contact.name}"
-            html_content = f"""
-            <p>A new contact form has been submitted:</p>
-            <ul>
-                <li><strong>Name:</strong> {contact.name}</li>
-                <li><strong>Email:</strong> {contact.email}</li>
-                <li><strong>Subject:</strong> {contact.subject}</li>
-                <li><strong>Message:</strong> {contact.message}</li>
-            </ul>
-            """
-
-            try:
-                # Load the SendGrid API key
-                sendgrid_api_key = env('SENDGRID_API_KEY')
-                
-                # Log the API key for debugging
-                # logger.debug(f"DEBUG: SendGrid API Key = {sendgrid_api_key}")
-
-                if not sendgrid_api_key:
-                    return Response(
-                        {"error": "SendGrid API key not found in environment variables."},
-                        status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                    )
-
-                # Create the email
-                message = Mail(
-                    from_email=env('DEFAULT_FROM_EMAIL'),  # Use a verified email address
-                    to_emails=env('DEFAULT_FROM_EMAIL'),  # Replace with recipient email
-                    subject=subject,
-                    html_content=html_content,
-                )
-
-                # Send the email
-                sg = SendGridAPIClient(sendgrid_api_key)
-                response = sg.send(message)
-
-                # Log the response for debugging
-                # logger.debug(f"SendGrid Response Status: {response.status_code}")
-                # logger.debug(f"Response Body: {response.body}")
-                # logger.debug(f"Response Headers: {response.headers}")
-
-                # Check the response status
-                if response.status_code == 202:
-                    return Response(serializer.data, status=status.HTTP_201_CREATED)
-                else:
-                    return Response(
-                        {"error": "Failed to send email", "details": response.body.decode()},
-                        status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                    )
-            except Exception as e:
-                return Response(
-                    {"error": "An error occurred while sending the email", "details": str(e)},
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                )
-        else:
+        if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        contact = serializer.save()
+
+        subject = f"New Contact Submission from {contact.name}"
+
+        text_content = f"""
+A new contact form has been submitted:
+
+Name: {contact.name}
+Email: {contact.email}
+Subject: {contact.subject}
+
+Message:
+{contact.message}
+"""
+
+        html_content = f"""
+        <p>A new contact form has been submitted:</p>
+        <ul>
+            <li><strong>Name:</strong> {contact.name}</li>
+            <li><strong>Email:</strong> {contact.email}</li>
+            <li><strong>Subject:</strong> {contact.subject}</li>
+            <li><strong>Message:</strong> {contact.message}</li>
+        </ul>
+        """
+
+        try:
+            email = EmailMultiAlternatives(
+                subject=subject,
+                body=text_content,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[settings.CONTACT_TO_EMAIL],
+                reply_to=[contact.email],
+            )
+
+            email.attach_alternative(html_content, "text/html")
+            email.send(fail_silently=False)
+
+        except Exception as error:
+            logger.exception("Contact message was saved, but email sending failed.")
+
+            # Important: return success because the message is saved in Django admin
+            return Response(
+                {
+                    "message": "Contact message saved successfully, but email notification failed.",
+                    "email_error": str(error),
+                },
+                status=status.HTTP_201_CREATED,
+            )
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
