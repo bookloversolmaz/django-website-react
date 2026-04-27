@@ -84,18 +84,6 @@ const PostDetail = () => {
     }).replace(/<a\s+(?!.*target)/g, '<a target="_blank" ')
   );
 
-  // Function to go back to the previous page
-  const handleGoBack = () => {
-    navigate(-1); // Go back one step in browser history
-  };
-
-  const bodyWithImage = post.image
-  ? post.body.replace(
-      '[IMAGE]',
-      `<img src="${post.image}" alt="${post.title}" class="post-inline-image" />`
-    )
-  : post.body;
-
   // JSX layout for the page
   return (
     <main className="post-page">
