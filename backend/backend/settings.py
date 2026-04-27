@@ -53,9 +53,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com', 'django-website-react-1.onrender.com']
 
 # Email settings for RESEND
-RESEND_API_KEY = env('RESEND_API_KEY')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-REPLY_TO_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
 ANYMAIL = {
