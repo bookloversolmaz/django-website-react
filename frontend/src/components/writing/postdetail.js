@@ -65,10 +65,7 @@ const PostDetail = () => {
   // This protects against unsafe HTML such as scripts.
   const sanitizedParagraphs = splitParagraphs.map((paragraph) =>
     DOMPurify.sanitize(paragraph, {
-      // Allow the attributes needed for links and images.
-      ADD_ATTR: ['target', 'src', 'alt', 'class'],
-
-      // Allow only these HTML tags inside post content.
+      ADD_ATTR: ['target', 'src', 'alt', 'class'], // Allow "target" attribute on links
       ALLOWED_TAGS: [
         'p',
         'a',
@@ -82,12 +79,24 @@ const PostDetail = () => {
         'h2',
         'h3',
       ],
-
-      // Explicitly block script tags.
-      FORBID_TAGS: ['script'],
+      // Add target="_blank" to any links that don’t already have it
+      FORBID_TAGS: ['script'], // Block <script> tags for security
     }).replace(/<a\s+(?!.*target)/g, '<a target="_blank" ')
   );
 
+  // Function to go back to the previous page
+  const handleGoBack = () => {
+    navigate(-1); // Go back one step in browser history
+  };
+
+  const bodyWithImage = post.image
+  ? post.body.replace(
+      '[IMAGE]',
+      `<img src="${post.image}" alt="${post.title}" class="post-inline-image" />`
+    )
+  : post.body;
+
+  // JSX layout for the page
   return (
     <main className="post-page">
       {/* Main content section for the post */}
