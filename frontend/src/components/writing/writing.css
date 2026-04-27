@@ -168,3 +168,12 @@
     padding: 1.25rem;
   }
 }
+
+.post-inline-image {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 1.5rem 0;
+  display: block;
+}

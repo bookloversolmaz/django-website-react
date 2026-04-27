@@ -42,7 +42,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Set your secret key from the .env file
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
@@ -71,8 +71,6 @@ CONTACT_TO_EMAIL = os.environ.get(
     "CONTACT_TO_EMAIL",
     "your_email@example.com"
 )
-EMAIL_HOST_PASSWORD = RESEND_API_KEY
-
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv('DATABASE_URL'),
