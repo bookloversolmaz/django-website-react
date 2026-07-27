@@ -124,15 +124,67 @@ const PostDetail = () => {
           </div>
 
           {/* Main body of the post */}
-          <div className="post-body">
-            {/* Render each sanitized paragraph or image block */}
-            {sanitizedParagraphs.map((paragraph, index) => (
-              <div
-                key={index}
-                dangerouslySetInnerHTML={{ __html: paragraph }}
-              />
-            ))}
-          </div>
+<div className="post-body">
+
+    {post.blocks.map((block) => {
+
+        if (block.block_type === "text") {
+
+            return (
+
+                <section key={block.id}>
+
+                    {block.heading &&
+                        <h2>{block.heading}</h2>
+                    }
+
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: DOMPurify.sanitize(
+                                block.body.replace(/\n/g, "<br/>")
+                            )
+                        }}
+                    />
+
+                </section>
+
+            );
+
+        }
+
+        if (block.block_type === "image") {
+
+            return (
+
+                <figure key={block.id}>
+
+                    <img
+                      src={block.image}
+                      alt={block.alt_text}
+                      className="post-inline-image"
+                    />
+
+                    {block.caption &&
+
+                        <figcaption>
+
+                            {block.caption}
+
+                        </figcaption>
+
+                    }
+
+                </figure>
+
+            );
+
+        }
+
+        return null;
+
+    })}
+
+</div>
         </article>
       </section>
     </main>

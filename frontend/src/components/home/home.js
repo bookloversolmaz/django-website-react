@@ -11,13 +11,13 @@ function Home() {
           <p className="hero-eyebrow">Hi, I’m Solmaz</p>
 
           <h1>
-            <span className="line">I build</span>
+            <span className="line">I develop</span>
             <span className="line">thoughtful</span>
-            <span className="line accent">software.</span>
+            <span className="line accent">content.</span>
           </h1>
 
           <p className="hero-description">
-            Software engineer with experience building production systems in fintech across C#, React, Kafka and Azure, with a background in editorial and content strategy.
+            Content designer and UX writer with with a background in content strategy, editorial and software development within fintech
           </p>
 
           <div className="hero-buttons">
