@@ -61,29 +61,6 @@ const PostDetail = () => {
     .split('\n')
     .filter((paragraph) => paragraph.trim() !== '');
 
-  // Sanitize each paragraph before rendering it as HTML.
-  // This protects against unsafe HTML such as scripts.
-  const sanitizedParagraphs = splitParagraphs.map((paragraph) =>
-    DOMPurify.sanitize(paragraph, {
-      ADD_ATTR: ['target', 'src', 'alt', 'class'], // Allow "target" attribute on links
-      ALLOWED_TAGS: [
-        'p',
-        'a',
-        'img',
-        'strong',
-        'em',
-        'ul',
-        'ol',
-        'li',
-        'br',
-        'h2',
-        'h3',
-      ],
-      // Add target="_blank" to any links that don’t already have it
-      FORBID_TAGS: ['script'], // Block <script> tags for security
-    }).replace(/<a\s+(?!.*target)/g, '<a target="_blank" ')
-  );
-
   // JSX layout for the page
   return (
     <main className="post-page">
