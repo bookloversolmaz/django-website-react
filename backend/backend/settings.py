@@ -1,11 +1,13 @@
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'build')
+load_dotenv(BASE_DIR / ".env")
+
+FRONTEND_DIR = BASE_DIR.parent / "frontend" / "build"
 
 TEMPLATES = [
     {
@@ -43,7 +45,6 @@ if not DEBUG:
 
 # Set your secret key from the .env file
 SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = False
 
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
 SECURE_SSL_REDIRECT = True  
@@ -76,13 +77,13 @@ DATABASES = {
     )
 }
 
-STORAGE = {
-    "default":{
+STORAGES = {
+    "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"
-    }
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
 }
 
 # Application definition
