@@ -1,4 +1,12 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Section
 
-admin.site.register(Post)
+
+class SectionInline(admin.StackedInline):
+    model = Section
+    extra = 1
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    inlines = [SectionInline]

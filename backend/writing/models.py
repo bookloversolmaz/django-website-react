@@ -58,7 +58,5 @@ class ContentBlock(models.Model):
 
     order = models.PositiveIntegerField(default=0)
 
-    alt_text = models.CharField(max_length=255, blank=True)
-
     class Meta:
         ordering = ["order"]
