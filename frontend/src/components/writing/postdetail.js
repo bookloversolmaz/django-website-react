@@ -46,21 +46,6 @@ const PostDetail = () => {
     navigate(-1);
   };
 
-  // Insert the post image into the body wherever [IMAGE] appears.
-  // If there is no image, keep the body unchanged.
-  const bodyWithImage = post.image
-    ? post.body.replace(
-        '[IMAGE]',
-        `<img src="${post.image}" alt="${post.title}" class="post-inline-image" />`
-      )
-    : post.body;
-
-  // Split the post body into paragraph-like chunks using line breaks.
-  // Empty lines are removed.
-  const splitParagraphs = bodyWithImage
-    .split('\n')
-    .filter((paragraph) => paragraph.trim() !== '');
-
   // JSX layout for the page
   return (
     <main className="post-page">
