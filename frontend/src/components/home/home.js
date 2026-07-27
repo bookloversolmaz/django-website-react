@@ -17,7 +17,7 @@ function Home() {
           </h1>
 
           <p className="hero-description">
-            Content designer and UX writer with with a background in content strategy, editorial and software development within fintech
+            Content designer and UX writer with a background in content strategy, editorial and software development.
           </p>
 
           <div className="hero-buttons">
