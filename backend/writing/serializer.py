@@ -2,14 +2,13 @@
 # in React on the client-side (frontend)
 
 from rest_framework import serializers
-from .models import Section, Post
+from .models import Post
 
 class SectionSerializer(serializers.ModelSerializer):
 
     image = serializers.SerializerMethodField()
 
     class Meta:
-        model = Section
         fields = "__all__"
 
     def get_image(self, obj):
