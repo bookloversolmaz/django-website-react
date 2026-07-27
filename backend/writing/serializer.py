@@ -2,28 +2,27 @@
 # in React on the client-side (frontend)
 
 from rest_framework import serializers
-from .models import Section, Post
+from .models import Post, ContentBlock
 
-class SectionSerializer(serializers.ModelSerializer):
 
+class ContentBlockSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
     class Meta:
-        model = Section
+        model = ContentBlock
         fields = "__all__"
 
     def get_image(self, obj):
         request = self.context.get("request")
 
         if obj.image:
-            return request.build_absolute_uri(obj.image.url)
+            return request.build_absolute_uri(obj.image.url) if request else obj.image.url
 
         return None
 
 
 class PostSerializer(serializers.ModelSerializer):
-
-    sections = SectionSerializer(
+    blocks = ContentBlockSerializer(
         many=True,
         read_only=True
     )
