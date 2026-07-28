@@ -135,7 +135,7 @@ REST_FRAMEWORK = {
 
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
-CLOUDINARY_URL = env("CLOUDINARY_URL")
+# CLOUDINARY_URL = env("CLOUDINARY_URL")
 
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": "your-cloud-name",
