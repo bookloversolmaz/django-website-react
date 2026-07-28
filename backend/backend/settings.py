@@ -26,23 +26,20 @@ TEMPLATES = [
     },
 ]
 
-PORT = env('PORT', 8000)  # Default to 8000 if PORT is not provided
+PORT = env.int('PORT', 8000)  # Default to 8000 if PORT is not provided
 
 # Define the URL for accessing static files
 STATIC_URL = '/static/'
 
 # Directory where collectstatic will copy all static files
-STATIC_ROOT = env(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Additional locations of static files (e.g., React build directory's static folder)
 STATICFILES_DIRS = [
-    env(BASE_DIR, '..', 'frontend', 'build', 'static'),  # React's static files
+    BASE_DIR.parent / "frontend" / "build" / "static",
 ]
 
 DEBUG = False
-# Configure Django to handle static file serving in production
-if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
@@ -63,19 +60,16 @@ ANYMAIL = {
 
 DEFAULT_FROM_EMAIL = env(
     "DEFAULT_FROM_EMAIL",
-    "onboarding@resend.dev"
+    default="onboarding@resend.dev",
 )
 
 CONTACT_TO_EMAIL = env(
     "CONTACT_TO_EMAIL",
-    "your_email@example.com"
+    default="your_email@example.com",
 )
+
 DATABASES = {
-    'default': env.db(
-        default=env('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True,
-    )
+    "default": env.db()
 }
 
 STORAGES = {
