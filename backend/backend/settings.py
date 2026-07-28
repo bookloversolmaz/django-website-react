@@ -46,6 +46,9 @@ TEMPLATES = [
     },
 ]
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 PORT = env.int("PORT", default=8000)
 # Default to 8000 if PORT is not provided
 
