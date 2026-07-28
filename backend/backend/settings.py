@@ -26,7 +26,7 @@ TEMPLATES = [
     },
 ]
 
-PORT = os.getenv('PORT', 8000)  # Default to 8000 if PORT is not provided
+PORT = env('PORT', 8000)  # Default to 8000 if PORT is not provided
 
 # Define the URL for accessing static files
 STATIC_URL = '/static/'
