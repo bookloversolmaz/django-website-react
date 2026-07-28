@@ -1,11 +1,12 @@
 from pathlib import Path
-import os
-import dj_database_url
-from dotenv import load_dotenv
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / ".env")
+env = environ.Env()
+
+# Read .env locally if present
+environ.Env.read_env(BASE_DIR / ".env")
 
 FRONTEND_DIR = BASE_DIR.parent / "frontend" / "build"
 
@@ -25,17 +26,17 @@ TEMPLATES = [
     },
 ]
 
-PORT = os.getenv('PORT', 8000)  # Default to 8000 if PORT is not provided
+PORT = env('PORT', 8000)  # Default to 8000 if PORT is not provided
 
 # Define the URL for accessing static files
 STATIC_URL = '/static/'
 
 # Directory where collectstatic will copy all static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = env(BASE_DIR, 'staticfiles')
 
 # Additional locations of static files (e.g., React build directory's static folder)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '..', 'frontend', 'build', 'static'),  # React's static files
+    env(BASE_DIR, '..', 'frontend', 'build', 'static'),  # React's static files
 ]
 
 DEBUG = False
@@ -44,7 +45,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Set your secret key from the .env file
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
 SECURE_SSL_REDIRECT = True  
@@ -57,21 +58,21 @@ ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'local
 
 EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
 ANYMAIL = {
-    "RESEND_API_KEY": os.environ.get("RESEND_API_KEY"),
+    "RESEND_API_KEY": env("RESEND_API_KEY"),
 }
 
-DEFAULT_FROM_EMAIL = os.environ.get(
+DEFAULT_FROM_EMAIL = env(
     "DEFAULT_FROM_EMAIL",
     "onboarding@resend.dev"
 )
 
-CONTACT_TO_EMAIL = os.environ.get(
+CONTACT_TO_EMAIL = env(
     "CONTACT_TO_EMAIL",
     "your_email@example.com"
 )
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
+    'default': env.db(
+        default=env('DATABASE_URL'),
         conn_max_age=600,
         ssl_require=True,
     )
