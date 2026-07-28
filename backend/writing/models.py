@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Post(models.Model):
     title = models.CharField(max_length=255)
 
@@ -14,8 +13,12 @@ class Post(models.Model):
         blank=True
     )
 
+    class Meta:
+        ordering = ["-created_on"]
+
     def __str__(self):
         return self.title
+
 
 class ContentBlock(models.Model):
 

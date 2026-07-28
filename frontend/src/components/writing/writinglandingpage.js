@@ -117,9 +117,11 @@ const WritingLandingPage = () => {
 
                   {/* Short preview of the post */}
                   <p className="writing-excerpt">
-                    {post.body.length > 140
-                      ? `${post.body.substring(0, 140)}...` // Truncate long text
-                      : post.body} {/* Show full if short */}
+                    {post.blocks
+                      ? post.blocks.length > 140
+                        ? `${post.blocks.substring(0, 140)}...`
+                        : post.blocks
+                      : "No preview available."}
                   </p>
                 </div>
 
