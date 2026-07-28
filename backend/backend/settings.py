@@ -2,6 +2,25 @@ from pathlib import Path
 import environ
 import os
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "ERROR",
+        },
+    },
+}
+
+DEBUG = True
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
@@ -41,7 +60,7 @@ STATICFILES_DIRS = [
     BASE_DIR.parent / "frontend" / "build" / "static",
 ]
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+# DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
