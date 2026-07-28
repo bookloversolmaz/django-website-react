@@ -10,11 +10,11 @@ function About() {
 
         <div className="about-card glass-card">
           <p className="about-me">
-            I’m a contend developer based in London, with recent software development experience in building production systems and growing my skills through projects and online courses such as Pluralsight.
+            I’m a content designer and writer based in London, with recent software development experience in building production systems and growing my skills through projects and online courses on Pluralsight.
           </p>
 
           <p className="about-me">
-            I previously worked in editorial and content roles, where I transformed technical, complicated information into clear and easy to read content. My background shapes how I approach content design and writing, with a strong focus on communication, clarity and the user experience.
+            I have worked in editorial and content roles, where I transformed technical, complicated information into clear and easy to read content. My background shapes how I approach content design and writing, with a strong focus on communication, clarity and the user experience.
           </p>
 
           <p className="about-me">
