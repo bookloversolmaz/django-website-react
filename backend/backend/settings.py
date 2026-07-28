@@ -1,5 +1,6 @@
 from pathlib import Path
 import environ
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,11 +41,7 @@ STATICFILES_DIRS = [
     BASE_DIR.parent / "frontend" / "build" / "static",
 ]
 
-# for production
-# DEBUG = False
-
-# for development
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
