@@ -40,7 +40,11 @@ STATICFILES_DIRS = [
     BASE_DIR.parent / "frontend" / "build" / "static",
 ]
 
-DEBUG = False
+# for production
+# DEBUG = False
+
+# for development
+DEBUG = True
 
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
@@ -48,7 +52,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SET BELOW TO TRUE WHEN RUNNING IN PRODUCTION
 # SECURE_SSL_REDIRECT = True  
 SECURE_SSL_REDIRECT = False
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allowed hosts
 ALLOWED_HOSTS = ['solmazpurser.com', 'www.solmazpurser.com', '127.0.0.1', 'localhost', 'django-website-react.onrender.com', 'django-website-react-1.onrender.com']
