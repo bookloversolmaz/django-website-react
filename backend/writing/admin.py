@@ -48,23 +48,26 @@ class PostAdmin(admin.ModelAdmin):
         formset.save_m2m()
 
 def save_formset(self, request, form, formset, change):
-    print("REQUEST FILES:")
-    print(request.FILES)
+    print("ENTERED SAVE_FORMSET")
 
-    instances = formset.save(commit=False)
+    try:
+        instances = formset.save(commit=False)
+        print("FORMSET SAVED")
 
-    for instance in instances:
-        print("IMAGE NAME BEFORE SAVE:")
-        print(repr(instance.image.name))
+        for instance in instances:
+            print("INSTANCE:", instance)
+            print("IMAGE:", repr(instance.image.name))
 
-        try:
             instance.save()
-            print("IMAGE NAME AFTER SAVE:")
-            print(repr(instance.image.name))
 
-        except Exception as e:
-            import traceback
-            traceback.print_exc()
-            raise
+            print("SAVED OK")
+            print("IMAGE AFTER:", repr(instance.image.name))
 
-    formset.save_m2m()
+        formset.save_m2m()
+
+    except Exception:
+        import traceback
+        print("========== ERROR ==========")
+        traceback.print_exc()
+        print("============================")
+        raise
