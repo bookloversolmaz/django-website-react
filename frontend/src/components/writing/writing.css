@@ -171,9 +171,9 @@
 
 .post-inline-image {
   width: 100%;
-  max-width: 900px;
   height: auto;
+  max-height: none;
   border-radius: 20px;
-  margin: 1.5rem auto;
+  margin: 1.5rem 0;
   display: block;
 }
