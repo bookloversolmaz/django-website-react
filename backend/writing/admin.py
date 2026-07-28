@@ -28,22 +28,33 @@ class ContentBlockInline(admin.StackedInline):
     extra = 1
 
 
-@admin.register(Post)
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 class PostAdmin(admin.ModelAdmin):
     inlines = [ContentBlockInline]
 
     def save_formset(self, request, form, formset, change):
-        print("REQUEST FILES:")
-        print(request.FILES)
+        logger.warning("ENTERED SAVE_FORMSET")
 
         instances = formset.save(commit=False)
 
         for instance in instances:
-            print("IMAGE NAME BEFORE SAVE:")
-            print(repr(instance.image.name))
-            instance.save()
-            print("IMAGE NAME AFTER SAVE:")
-            print(repr(instance.image.name))
+            logger.warning("IMAGE BEFORE SAVE: %s", repr(instance.image.name))
+
+            try:
+                instance.save()
+
+                logger.warning(
+                    "IMAGE AFTER SAVE: %s",
+                    repr(instance.image.name)
+                )
+
+            except Exception:
+                logger.exception("CLOUDINARY SAVE FAILED")
+                raise
 
         formset.save_m2m()
 
