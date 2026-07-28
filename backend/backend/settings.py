@@ -34,7 +34,20 @@ cloudinary.config(
     api_secret=env("CLOUDINARY_API_SECRET")
 )
 
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": env("CLOUDINARY_API_KEY"),
+    "API_SECRET": env("CLOUDINARY_API_SECRET"),
+}
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 PORT = env.int("PORT", default=8000)
 # Default to 8000 if PORT is not provided
@@ -84,15 +97,6 @@ DATABASES = {
     "default": env.db()
 }
 
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -137,11 +141,6 @@ DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 # CLOUDINARY_URL = env("CLOUDINARY_URL")
 
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": "your-cloud-name",
-    "API_KEY": "your-api-key",
-    "API_SECRET": "your-api-secret",
-}
 
 # CORS settings
 CORS_ALLOW_HEADERS = [
