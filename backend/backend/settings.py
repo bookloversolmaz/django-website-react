@@ -188,7 +188,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CSRF_COOKIE_NAME = "csrftoken"
-CSRF_TRUSTED_ORIGINS = ['https://solmazpurser.com', 'http://127.0.0.1', 'http://localhost', 'https://django-website-react.onrender.com', 'https://django-website-react-1.onrender.com']  # Add your frontend domain
+CSRF_TRUSTED_ORIGINS = ['https://solmazpurser.com', 'https://www.solmazpurser.com', 'http://127.0.0.1', 'http://localhost', 'https://django-website-react.onrender.com', 'https://django-website-react-1.onrender.com']  # Add your frontend domain
 CSRF_COOKIE_SECURE = True  # HTTPS-only
 SESSION_COOKIE_SAMESITE = 'Lax'
 
