@@ -21,7 +21,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from writing.views import WritingEntireView, WritingListView
 from projects.views import ProjectListView
 from contact.views import ContactView
-from django.views.generic import TemplateView
+# from django.views.generic import TemplateView
 from django.conf import settings
 
 urlpatterns = [
@@ -35,12 +35,8 @@ urlpatterns = [
 
     # Catch-all route for React frontend
     # This serves the React `index.html` for any unmatched routes.
-    re_path(r'^(?!admin/|media/).*$', TemplateView.as_view(template_name="index.html")),
+    # re_path(r'^(?!admin/|media/).*$', TemplateView.as_view(template_name="index.html")),
 ]
 # Apply format suffix patterns (for REST API responses like `.json`, `.html`, etc.)
 urlpatterns = format_suffix_patterns(urlpatterns)
 
-
-urlpatterns += [
-re_path(r'^(?!admin/|media/).*$', TemplateView.as_view(template_name="index.html")),
-]
