@@ -68,7 +68,7 @@ const WritingLandingPage = () => {
         </h1>
 
         <p className="writing-intro page-intro">
-          Content design, software and other interests.
+          Content designer, software and other ideas
         </p>
 
       </section>
