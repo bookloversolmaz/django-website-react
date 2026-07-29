@@ -151,8 +151,6 @@ REST_FRAMEWORK = {
     ], 
 }
 
-# CLOUDINARY_URL = env("CLOUDINARY_URL")
-
 # CORS settings
 CORS_ALLOW_HEADERS = [
     'content-type',
