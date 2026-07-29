@@ -63,7 +63,21 @@ STATICFILES_DIRS = [
     BASE_DIR.parent / "frontend" / "build" / "static",
 ]
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+# DEBUG = os.environ.get("DEBUG", "False") == "True"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "ERROR",
+    },
+}
 
 # Set your secret key from the .env file
 SECRET_KEY = env('SECRET_KEY')
