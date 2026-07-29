@@ -35,8 +35,7 @@ urlpatterns = [
 
     # Catch-all route for React frontend
     # This serves the React `index.html` for any unmatched routes.
-    # re_path(r'^(?!admin/|media/).*$', TemplateView.as_view(template_name="index.html")),
-    re_path(TemplateView.as_view(template_name="index.html")),
+    re_path(r'^(?!admin/|media/).*$', TemplateView.as_view(template_name="index.html")),
 ]
 # Apply format suffix patterns (for REST API responses like `.json`, `.html`, etc.)
 urlpatterns = format_suffix_patterns(urlpatterns)
