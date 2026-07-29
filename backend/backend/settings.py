@@ -34,9 +34,15 @@ cloudinary.config(
     api_secret=env("CLOUDINARY_API_SECRET")
 )
 
+# CLOUDINARY_STORAGE = {
+#     "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME"),
+#     "API_KEY": env("CLOUDINARY_API_KEY"),
+#     "API_SECRET": env("CLOUDINARY_API_SECRET"),
+# }
+
 CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME"),
-    "API_KEY": env("CLOUDINARY_API_KEY"),
+    "CLOUD_NAME": "vzqczcxt",
+    "API_KEY": "845741223358289",
     "API_SECRET": env("CLOUDINARY_API_SECRET"),
 }
 
@@ -137,10 +143,7 @@ REST_FRAMEWORK = {
     ], 
 }
 
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-
 # CLOUDINARY_URL = env("CLOUDINARY_URL")
-
 
 # CORS settings
 CORS_ALLOW_HEADERS = [
