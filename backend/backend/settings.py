@@ -162,6 +162,7 @@ CORS_ALLOW_HEADERS = [
 
 CORS_ALLOWED_ORIGINS = [
     'https://solmazpurser.com',
+    'https://www.solmazpurser.com',
     'http://localhost:3000',  # React frontend during development
     'http://127.0.0.1:3000',  # React frontend during development
     'http://localhost:8000',  # Django backend in development
