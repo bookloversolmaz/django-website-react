@@ -34,15 +34,9 @@ cloudinary.config(
     api_secret=env("CLOUDINARY_API_SECRET")
 )
 
-# CLOUDINARY_STORAGE = {
-#     "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME"),
-#     "API_KEY": env("CLOUDINARY_API_KEY"),
-#     "API_SECRET": env("CLOUDINARY_API_SECRET"),
-# }
-
 CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": "vzqczcxt",
-    "API_KEY": "845741223358289",
+    "CLOUD_NAME": env("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": env("CLOUDINARY_API_KEY"),
     "API_SECRET": env("CLOUDINARY_API_SECRET"),
 }
 
