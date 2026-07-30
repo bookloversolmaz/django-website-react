@@ -20,31 +20,9 @@ Myself
 Coffee. 
 
 ## Site architecture
-Static Site (React)
-        │
-        ▼
-www.solmazpurser.com
+Static Site (React) -> website -> API requests -> Django Web Service
 
-        │
-        ▼
-API requests
-
-        │
-        ▼
-Django Web Service
-
-User
-  │
-  ▼
-React Frontend
-(Render Static Site)
-  │
-  │ Axios (HTTP/REST)
-  ▼
-Django REST API
-(Render Web Service)
-  │
-  ▼
-PostgreSQL Database
+User -> React Frontend (Render Static Site) --Axios (HTTP/REST)-> Django REST API
+(Render Web Service) -> PostgreSQL Database
 
 The application follows a decoupled frontend/backend architecture. The React frontend is deployed as a Render Static Site, while the Django backend is deployed as a separate Render Web Service. The frontend communicates with the backend through a REST API using Axios, allowing it to retrieve and update data stored in a PostgreSQL database.
