@@ -9,8 +9,8 @@ function getCSRFToken() {
 }
 
 const baseURL = window.location.hostname === 'localhost'
-  ? 'http://127.0.0.1:8000'
-  : 'https://django-website-react.onrender.com';
+  ? 'http://127.0.0.1:8000' // development
+  : 'https://django-website-react.onrender.com'; // production
 
 const AxiosInstance = axios.create({
     baseURL: baseURL,
